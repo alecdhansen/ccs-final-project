@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # 3rd Party
     # Local
     "accounts.apps.AccountsConfig",
+    "frontend.apps.FrontendConfig",
 ]
 
 MIDDLEWARE = [
