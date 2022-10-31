@@ -1,0 +1,15 @@
+.cards {
+  display: flex;
+  flex-direction: column;
+}
+.gamelist {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+.imgcontainer {
+  width: 100px;
+}
+.teamlogo {
+  width: 100%;
+}

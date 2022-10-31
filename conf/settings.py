@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "frontend.apps.FrontendConfig",
     "api.apps.ApiConfig",
+    "cards.apps.CardsConfig",
 ]
 
 MIDDLEWARE = [
