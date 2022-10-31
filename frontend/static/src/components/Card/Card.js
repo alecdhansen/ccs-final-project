@@ -22,13 +22,6 @@ function Card() {
   }, []);
 
   const getTodaysGames = async () => {
-    // const options = {
-    //   method: "GET",
-    //   headers: {
-    //     "X-RapidAPI-Key": {apiKey},
-    //     "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com",
-    //   },
-    // };
     const options = {
       method: "GET",
       headers: {
@@ -36,12 +29,6 @@ function Card() {
         "X-RapidAPI-Host": "nba-schedule.p.rapidapi.com",
       },
     };
-    // const data = await fetch(
-    //   "https://api-nba-v1.p.rapidapi.com/games?live=all",
-    //   options
-    // ).then((response) => response.json());
-    // setTodaysGames(data.response);
-    // console.log(data.response);
     const data = await fetch(
       `https://nba-schedule.p.rapidapi.com/schedule?date=${currentDay}`,
       options
@@ -49,6 +36,7 @@ function Card() {
     setTodaysGames(data[0].games);
     console.log(data[0].games);
   };
+
   const gameListHtml = todaysGames.map((game) => (
     <li key={game.gameId} className="gamelist">
       <div>
