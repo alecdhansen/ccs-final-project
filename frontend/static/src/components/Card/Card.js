@@ -1,6 +1,5 @@
 import "./Card.css";
 import { useState, useEffect } from "react";
-import STATIC_GAMES from "../../JSONData";
 import Button from "react-bootstrap/Button";
 
 function Card() {
