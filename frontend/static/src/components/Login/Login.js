@@ -58,11 +58,9 @@ function Login() {
       },
       body: formData,
     };
-    const data = await fetch(
-      "https://api.twitter.com/2/oauth2/token",
-      options
-    ).then((response) => response.json());
-    console.log(data);
+    const data = await fetch("https://api.twitter.com/2/oauth2/token", options);
+    const response = await data.json();
+    console.log(response);
   };
 
   return (
