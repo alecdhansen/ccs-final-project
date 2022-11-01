@@ -1,6 +1,5 @@
 import TwitterLogin from "./TwitterLogin";
 import AppLogin from "./AppLogin";
-import Register from "./Register";
 import { Link } from "react-router-dom";
 
 function LoginHome({ setIsAuth, setState }) {

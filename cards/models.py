@@ -9,15 +9,18 @@ class Card(models.Model):
     )
     gameid = models.IntegerField()
     date = models.DateField()
-    home_team = models.CharField(max_length=255)
-    away_team = models.CharField(max_length=255)
-    home_team_score = models.IntegerField()
-    away_team_score = models.IntegerField()
+    home_team = models.CharField(null=True, max_length=255)
+    away_team = models.CharField(null=True, max_length=255)
+    home_team_score = models.IntegerField(null=True, default=0)
+    away_team_score = models.IntegerField(null=True, default=0)
     user_pick = models.CharField(max_length=255)
-    winning_team = models.CharField(max_length=255)
+    winning_team = models.CharField(max_length=255, null=True)
     user_pick_correct = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
+
+
+# class Pick()

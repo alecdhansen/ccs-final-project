@@ -7,7 +7,7 @@ from .serializers import CardSerializer
 # Create your views here.
 
 
-class CardAPIView(generics.ListAPIView):
+class CardAPIView(generics.ListCreateAPIView):
     serializer_class = CardSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Card.objects.all()

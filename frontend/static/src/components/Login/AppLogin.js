@@ -41,6 +41,7 @@ function AppLogin({ setIsAuth, setState }) {
     } else {
       const data = await response.json();
       Cookies.set("Authorization", `Token ${data.key}`);
+      delete data.key;
       await setIsAuth(true);
       setState(data);
       sessionStorage.setItem("state", JSON.stringify(data));
