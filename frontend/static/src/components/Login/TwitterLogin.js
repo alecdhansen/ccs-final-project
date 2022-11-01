@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-function Login() {
+function TwitterLogin() {
   //   const redirectURI = "http://localhost:3000/card/";
 
   function randomStringGenerator(length) {
@@ -58,16 +58,18 @@ function Login() {
       },
       body: formData,
     };
-    const data = await fetch("https://api.twitter.com/2/oauth2/token", options);
-    const response = await data.json();
-    console.log(response);
+    const response = await fetch(
+      "https://api.twitter.com/2/oauth2/token",
+      options
+    );
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
     <div>
-      Login
       <a href={twitterSignIn}>Login with Twitter</a>
     </div>
   );
 }
-export default Login;
+export default TwitterLogin;

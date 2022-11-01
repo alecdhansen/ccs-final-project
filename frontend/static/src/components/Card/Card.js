@@ -1,6 +1,7 @@
 import "./Card.css";
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 function Card() {
   const [todaysGames, setTodaysGames] = useState([]);
@@ -38,33 +39,48 @@ function Card() {
   };
 
   const gameListHtml = todaysGames.map((game) => (
-    <li key={game.gameId} className="gamelist">
-      <div>
-        <Button>{game.awayTeam.teamName}</Button>
+    <li key={game.gameId} className="gamdivst">
+      <form>
+        <input
+          type="radio"
+          id="game"
+          name="game"
+          value={game.awayTeam.teamName}
+        />
+        <label htmlFor="game">{game.awayTeam.teamName}</label>
         {game.awayTeam.score}pts
-        <Button>{game.homeTeam.teamName}</Button>
+        <input
+          type="radio"
+          id="game"
+          name="game"
+          value={game.homeTeam.teamName}
+        />
+        <label htmlFor="game">{game.homeTeam.teamName}</label>
         {game.homeTeam.score}pts
         <span>{game.gameStatusText}</span>
-      </div>
-      <div className="imgcontainer">
-        <img
-          src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
-          alt=""
-          className="teamlogo"
-        ></img>
-      </div>
-      <div className="imgcontainer">
-        <img
-          src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
-          alt=""
-          className="teamlogo"
-        ></img>
-        <img src={game.homeTeam.teamLogo} />
-      </div>
+        <div className="imgcontainer">
+          <img
+            src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
+            alt=""
+            className="teamlogo"
+          ></img>
+        </div>
+        <div className="imgcontainer">
+          <img
+            src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
+            alt=""
+            className="teamlogo"
+          ></img>
+        </div>
+      </form>
     </li>
   ));
 
-  return <ul className="cards">{gameListHtml}</ul>;
+  return (
+    <>
+      <ul className="cards">{gameListHtml}</ul>
+    </>
+  );
 }
 
 export default Card;
