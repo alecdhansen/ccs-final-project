@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 # Create your models here.
-class Card(models.Model):
+class Game(models.Model):
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True
@@ -17,10 +17,15 @@ class Card(models.Model):
     winning_team = models.CharField(max_length=255, null=True)
     user_pick_correct = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
 
 
-# class Pick()
+class Pick(models.Model):
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True
+    )
+    gameid = models.IntegerField()
+    user_pick = models.CharField(max_length=255)
