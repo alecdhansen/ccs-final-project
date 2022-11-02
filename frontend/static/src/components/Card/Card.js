@@ -1,11 +1,12 @@
 import "./Card.css";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import moment from "moment";
 
 function Card() {
   const [todaysGames, setTodaysGames] = useState([]);
   const [gameID, setGameID] = useState("");
-  const [gamedate, setGameDate] = useState("");
+  const [gameDate, setGameDate] = useState("");
   const [userPick, setUserPick] = useState("");
 
   const day = new Date();
@@ -36,26 +37,30 @@ function Card() {
       options
     ).then((response) => response.json());
     setTodaysGames(data[0].games);
-    setGameDate(data[0].gameDate);
-    // console.log(data);
+    setGameDate(moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD"));
     console.log(data[0].games);
   };
 
   const handleAwayTeamInput = (e) => {
     setUserPick(e.target.value);
-    setGameID(e.target.id);
+    setGameID(parseInt(e.target.id));
   };
 
   const handleHomeTeamInput = (e) => {
     setUserPick(e.target.value);
-    setGameID(e.target.id);
+    setGameID(parseInt(e.target.id));
   };
 
-  const handleSubmit = async (e, gameID, date, userPick) => {
+  console.log({ gameID });
+  console.log({ gameDate });
+  console.log({ userPick });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("this", e.target);
     const formData = new FormData();
     formData.append("gameid", gameID);
-    formData.append("date", date);
+    formData.append("date", gameDate);
     formData.append("user_pick", userPick);
     const options = {
       method: "POST",
@@ -64,16 +69,17 @@ function Card() {
       },
       body: formData,
     };
-    const response = await fetch("/api_v1/cards/", options).catch(handleError);
+    const response = await fetch("/api_v1/picks/", options).catch(handleError);
     if (!response.ok) {
       throw new Error("Network response was not OK");
     } else {
       const data = await response.json();
     }
+    e.target.style.display = "none";
   };
 
   const gameListHtml = todaysGames.map((game) => (
-    <li key={game.gameId}>
+    <li key={game.gameId} className="card">
       <form onSubmit={handleSubmit}>
         <input
           type="radio"
@@ -96,26 +102,28 @@ function Card() {
         <span>{game.gameStatusText}</span>
         <button type="submit">Submit Picks</button>
       </form>
-      <div className="imgcontainer">
-        <img
-          src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
-          alt=""
-          className="teamlogo"
-        ></img>
-      </div>
-      <div className="imgcontainer">
-        <img
-          src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
-          alt=""
-          className="teamlogo"
-        ></img>
+      <div style={{ display: "flex" }}>
+        <div className="imgcontainer">
+          <img
+            src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
+            alt=""
+            className="teamlogo"
+          ></img>
+        </div>
+        <div className="imgcontainer">
+          <img
+            src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
+            alt=""
+            className="teamlogo"
+          ></img>
+        </div>
       </div>
     </li>
   ));
 
   return (
     <>
-      <ul className="cards">{gameListHtml}</ul>
+      <ul className="cards col-4 offset-4">{gameListHtml}</ul>
     </>
   );
 }

@@ -1,15 +1,18 @@
-import { useNavigate, Routes, Route } from "react-router-dom";
+import "./App.css";
+import { useNavigate, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Card from "../Card/Card";
 import Layout from "../Layout/Layout";
 import LoginHome from "../Login/LoginHome";
 import Register from "../Login/Register";
+import ProfileForm from "../Profile/ProfileForm";
+import Button from "react-bootstrap/Button";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [state, setState] = useState(null);
   const navigate = useNavigate();
-  const newState = JSON.parse(window.sessionStorage.getItem("state"));
+  const newState = JSON.parse(window.localStorage.getItem("state"));
 
   useEffect(() => {
     setState(newState);
@@ -26,6 +29,7 @@ function App() {
     };
     checkAuth();
   }, []);
+
   return (
     <>
       <Routes>
@@ -49,7 +53,19 @@ function App() {
             path="register"
             element={<Register setIsAuth={setIsAuth} setState={setState} />}
           />
+          <Route path="profile" element={<ProfileForm />} />
         </Route>
+        <Route
+          path="*"
+          element={
+            <main>
+              <p>there is nothing here! try again! lol!</p>
+              <Link to="card">
+                <Button>Take me back</Button>
+              </Link>
+            </main>
+          }
+        />
       </Routes>
     </>
   );

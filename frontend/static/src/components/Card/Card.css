@@ -1,7 +1,12 @@
 .cards {
   display: flex;
   flex-direction: column;
+  list-style-type: none;
+  /* margin-top: 30px; */
 }
+/* .card {
+  background-color: #fff;
+} */
 .gamelist {
   list-style-type: none;
   display: flex;

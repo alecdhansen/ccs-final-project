@@ -42,7 +42,7 @@ function Register({ setIsAuth, setState }) {
       const data = await response.json();
       Cookies.set("Authorization", `Token ${data.key}`);
       await setIsAuth(true);
-      sessionStorage.setItem("state", JSON.stringify(data));
+      localStorage.setItem("state", JSON.stringify(data));
       navigate("/card/");
     }
   };

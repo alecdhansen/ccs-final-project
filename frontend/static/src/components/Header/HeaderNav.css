@@ -1,0 +1,30 @@
+.mainheader {
+  position: relative;
+}
+.curvehead {
+  height: 100px;
+  background-color: #dc5a32;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+  border: 2px solid #bd4a27;
+  /* position: fixed; */
+  top: 0;
+  z-index: 20;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.headertitle {
+  margin-bottom: 0px;
+  font-family: "Bowlby One SC", cursive;
+  font-size: 80px;
+}
+.navheader {
+  display: flex;
+  justify-content: space-evenly;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: #051923;
+}

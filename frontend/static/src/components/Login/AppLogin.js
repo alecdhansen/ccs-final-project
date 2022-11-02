@@ -44,7 +44,7 @@ function AppLogin({ setIsAuth, setState }) {
       delete data.key;
       await setIsAuth(true);
       setState(data);
-      sessionStorage.setItem("state", JSON.stringify(data));
+      localStorage.setItem("state", JSON.stringify(data));
       navigate("/card/");
     }
   };

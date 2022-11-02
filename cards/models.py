@@ -29,3 +29,4 @@ class Pick(models.Model):
     )
     gameid = models.IntegerField()
     user_pick = models.CharField(max_length=255)
+    date = models.DateField(null=True)
