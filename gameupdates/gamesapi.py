@@ -1,21 +1,22 @@
 from cards.models import Game
 from datetime import date
 import requests
+from datetime import timedelta
 
 
 def _get_games_json():
     url = "https://nba-schedule.p.rapidapi.com/schedule"
     today = date.today()
-
-    todays_date = today.strftime("%d-%m-%Y")
-
-    querystring = {"date": f"{todays_date}"}
+    yesterday = today - timedelta(days=1)
+    yesterdays_date = yesterday.strftime("%Y-%m-%d")
+    print("here")
+    print(yesterdays_date)
+    querystring = {"date": f"{yesterdays_date}"}
     headers = {
         "X-RapidAPI-Key": "60cb513f31msh304564080a974d5p1686d5jsnfbf4f636814d",
         "X-RapidAPI-Host": "nba-schedule.p.rapidapi.com",
     }
     response = requests.request("GET", url, headers=headers, params=querystring)
-    print(response.text)
     try:
         response.raise_for_status()
         return response.json()
@@ -27,16 +28,42 @@ def update_games():
     json = _get_games_json()
     if json is not None:
         try:
+            print(json)
+            print("hello world")
             new_game = Game()
-            # new_game.gameid = temp_in_celsius
-            # new_game.date = json["weather"][0]["description"]
-            # # new_forecast.city = json["name"]
-            # # new_forecast.save()
-            # # print("saving...\n" + new_forecast)
+            for nba_game in json[0]["games"]:
+                # import pdb
+                # pdb.set_trace()
+                print(new_game)
+                new_game.gameid = nba_game["gameId"]
+                new_game.date = json[0]["gameDate"]
+                new_game.home_team = nba_game["homeTeam"]["teamName"]
+                new_game.away_team = nba_game["awayTeam"]["teamName"]
+                new_game.home_team_score = nba_game["homeTeam"]["score"]
+                new_game.away_team_score = nba_game["awayTeam"]["score"]
+                if new_game.home_team_score > new_game.away_team_score:
+                    new_game.winning_team = new_game.home_team
+                else:
+                    new_game.winning_team = new_game.away_team
+                print("gamesapi")
+                print(new_game)
+                new_game.save()
+
         except:
             pass
 
 
+# gameid = models.IntegerField()
+# date = models.DateField()
+# home_team = models.CharField(null=True, max_length=255)
+# away_team = models.CharField(null=True, max_length=255)
+# home_team_score = models.IntegerField(null=True, default=0)
+# away_team_score = models.IntegerField(null=True, default=0)
+# winning_team = models.CharField(max_length=255, null=True)
+# user_pick_correct = models.BooleanField()
+
+
+# update_games()
 # [
 #     {
 #         "gameDate": "11/3/2022 12:00:00 AM",

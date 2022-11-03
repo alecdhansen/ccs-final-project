@@ -126,7 +126,11 @@ function Card() {
 
   return (
     <>
-      <ul className="cards col-4 offset-4">{gameListHtml}</ul>
+      <ul className="cards col-4 offset-4">
+        {gameListHtml}
+        {gameListHtml}
+        {gameListHtml}
+      </ul>
     </>
   );
 }

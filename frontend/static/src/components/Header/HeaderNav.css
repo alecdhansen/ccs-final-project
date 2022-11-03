@@ -64,3 +64,47 @@
   border-bottom-left-radius: 0%;
   border-bottom-right-radius: 0%;
 }
+.sticky {
+  position: sticky;
+  top: 0;
+}
+.offcanvasheader {
+  background-color: var(--navyblue);
+}
+
+@media (max-width: 1160px) {
+  .navbtn {
+    padding: 6px 40px 3px 40px;
+  }
+}
+@media (max-width: 768px) {
+  .offcanvasbody {
+    background-color: var(--navyblue);
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .navlink {
+    display: flex;
+    justify-content: center;
+  }
+  .navbtn {
+    font-size: 40px;
+  }
+  .offcanvasbody :nth-child(1) {
+    order: 4;
+  }
+  .offcanvasbody :nth-child(2) {
+    order: 2;
+  }
+  .offcanvasbody :nth-child(3) {
+    order: 1;
+  }
+  .offcanvasbody :nth-child(4) {
+    order: 3;
+  }
+  .offcanvasbody :nth-child(5) {
+    order: 5;
+  }
+}

@@ -7,6 +7,7 @@ import LoginHome from "../Login/LoginHome";
 import Register from "../Login/Register";
 import ProfileForm from "../Profile/ProfileForm";
 import Button from "react-bootstrap/Button";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -48,20 +49,45 @@ function App() {
             index
             element={<LoginHome setIsAuth={setIsAuth} setState={setState} />}
           />
-          {isAuth ? <Route path="card" element={<Card />} /> : null}
+          <Route
+            path="card"
+            element={
+              <ProtectedRoute isAuth={isAuth}>
+                <Card />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="register"
-            element={<Register setIsAuth={setIsAuth} setState={setState} />}
+            element={
+              <ProtectedRoute isAuth={isAuth}>
+                <Register setIsAuth={setIsAuth} setState={setState} />
+              </ProtectedRoute>
+            }
           />
-          <Route path="profile" element={<ProfileForm />} />
+          <Route
+            path="profile"
+            element={
+              <ProtectedRoute isAuth={isAuth}>
+                <ProfileForm />
+              </ProtectedRoute>
+            }
+          />
         </Route>
+
         <Route
           path="*"
           element={
             <main>
               <p>there is nothing here! try again! lol!</p>
               <Link to="card">
-                <Button>Take me back</Button>
+                <Button
+                  onClick={() => {
+                    window.history.back();
+                  }}
+                >
+                  Take me back
+                </Button>
               </Link>
             </main>
           }

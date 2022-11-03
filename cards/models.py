@@ -5,9 +5,6 @@ from datetime import datetime
 # Create your models here.
 class Game(models.Model):
 
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True
-    )
     gameid = models.IntegerField()
     date = models.DateField()
     home_team = models.CharField(null=True, max_length=255)
@@ -15,15 +12,16 @@ class Game(models.Model):
     home_team_score = models.IntegerField(null=True, default=0)
     away_team_score = models.IntegerField(null=True, default=0)
     winning_team = models.CharField(max_length=255, null=True)
-    user_pick_correct = models.BooleanField()
 
     def __str__(self):
-        return self.title
+        return f"{self.away_team} at {self.home_team}"
 
-    def save(self, *args, **kwargs):
+    def save(self):
+        print(self)
+        print("here")
         if not self.id:
             self.timestamp = datetime.utcnow()
-        return super(Game, self).save(*args, **kwargs)
+        return super(Game, self).save()
 
 
 class Pick(models.Model):

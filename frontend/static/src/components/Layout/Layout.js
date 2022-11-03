@@ -1,13 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
-import Navbar from "../Header/Navbar";
+import Navigation from "../Header/Navigation";
 
 function Layout({ isAuth, setIsAuth, state, setState }) {
   return (
     <>
       <Header />
-      <Navbar
+      <Navigation
         isAuth={isAuth}
         setIsAuth={setIsAuth}
         state={state}
