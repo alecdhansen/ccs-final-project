@@ -2,6 +2,7 @@ import "./Card.css";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import moment from "moment";
+import Button from "react-bootstrap/Button";
 
 function Card() {
   const [todaysGames, setTodaysGames] = useState([]);
@@ -81,26 +82,28 @@ function Card() {
   const gameListHtml = todaysGames.map((game) => (
     <li key={game.gameId} className="card">
       <form onSubmit={handleSubmit}>
-        <input
-          type="radio"
+        <Button
+          type="button"
           id={game.gameId}
-          name="game"
+          name="awayTeam"
           onClick={handleAwayTeamInput}
           value={game.awayTeam.teamName}
-        />
-        <label htmlFor="game">{game.awayTeam.teamName}</label>
+        >
+          {game.awayTeam.teamName}
+        </Button>
         {game.awayTeam.score}pts
-        <input
-          type="radio"
+        <Button
+          type="button"
           id={game.gameId}
-          name="game"
-          onClick={handleHomeTeamInput}
+          name="homeTeam"
+          onClick={handleAwayTeamInput}
           value={game.homeTeam.teamName}
-        />
-        <label htmlFor="game">{game.homeTeam.teamName}</label>
+        >
+          {game.homeTeam.teamName}
+        </Button>
         {game.homeTeam.score}pts
         <span>{game.gameStatusText}</span>
-        <button type="submit">Submit Picks</button>
+        <Button type="submit">Submit Picks!</Button>
       </form>
       <div style={{ display: "flex" }}>
         <div className="imgcontainer">

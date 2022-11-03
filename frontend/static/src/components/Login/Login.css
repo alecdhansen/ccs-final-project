@@ -1,0 +1,6 @@
+.loginbox {
+  background-color: var(--offwhite);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 3px 2px var(--mainorange);
+}

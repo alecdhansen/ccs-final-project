@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from datetime import datetime
 
 # Create your models here.
 class Game(models.Model):
@@ -13,13 +14,16 @@ class Game(models.Model):
     away_team = models.CharField(null=True, max_length=255)
     home_team_score = models.IntegerField(null=True, default=0)
     away_team_score = models.IntegerField(null=True, default=0)
-    user_pick = models.CharField(max_length=255)
     winning_team = models.CharField(max_length=255, null=True)
     user_pick_correct = models.BooleanField()
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.timestamp = datetime.utcnow()
+        return super(Game, self).save(*args, **kwargs)
 
 
 class Pick(models.Model):

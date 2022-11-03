@@ -66,6 +66,8 @@ function TwitterLogin() {
     console.log(data);
   };
 
+  // check out allauth docs! ---> https://django-allauth.readthedocs.io/en/latest/providers.html
+
   return (
     <div>
       <a href={twitterSignIn}>Login with Twitter</a>

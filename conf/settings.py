@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "frontend.apps.FrontendConfig",
     "api.apps.ApiConfig",
     "cards.apps.CardsConfig",
+    "gameupdates.apps.GameupdatesConfig",
 ]
 
 MIDDLEWARE = [

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Cookies from "js-cookie";
+import "./Login.css";
 
 function AppLogin({ setIsAuth, setState }) {
   const [user, setUser] = useState({ username: "", password: "" });
@@ -50,34 +51,36 @@ function AppLogin({ setIsAuth, setState }) {
   };
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="username">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter username"
-            value={user.username}
-            onChange={handleUsernameInput}
-            name="username"
-          />
-        </Form.Group>
+      <div>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="username">
+            <Form.Label>username</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter username"
+              value={user.username}
+              onChange={handleUsernameInput}
+              name="username"
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password..."
-            value={user.password}
-            onChange={handlePasswordInput}
-            name="password"
-          />
-        </Form.Group>
-        <div>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </div>
-      </Form>
+          <Form.Group className="mb-3" controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password..."
+              value={user.password}
+              onChange={handlePasswordInput}
+              name="password"
+            />
+          </Form.Group>
+          <div>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </div>
+        </Form>
+      </div>
     </>
   );
 }
