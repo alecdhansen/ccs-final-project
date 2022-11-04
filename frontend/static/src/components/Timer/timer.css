@@ -1,0 +1,61 @@
+.expired-notice {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  margin: 0.5rem;
+}
+
+.expired-notice > span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: red;
+}
+
+.expired-notice > p {
+  font-size: 1.5rem;
+}
+
+.show-counter {
+  color: white;
+}
+.countdown-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.75rem;
+  padding: 3px;
+  text-decoration: none;
+  margin-top: 100px;
+}
+
+.show-counter .countdown {
+  line-height: 1.25rem;
+  padding: 0px 0.65rem 0 0.65rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.show-counter .countdown.danger {
+  color: #ff0000;
+}
+
+.show-counter .countdown > p {
+  margin: 0;
+}
+
+.show-counter .countdown > span {
+  font-family: "Bebas Neue";
+  font-size: 20px;
+  line-height: 1.5rem;
+}
+.carddiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  align-items: center;
+  font-family: "Bebas Neue";
+  font-size: 20px;
+}

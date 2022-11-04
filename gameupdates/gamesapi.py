@@ -1,22 +1,23 @@
 from cards.models import Game
-from datetime import date
 import requests
-from datetime import timedelta
+from datetime import timedelta, datetime, date
+import pytz
 
 
 def _get_games_json():
     url = "https://nba-schedule.p.rapidapi.com/schedule"
-    today = date.today()
-    yesterday = today - timedelta(days=1)
-    yesterdays_date = yesterday.strftime("%Y-%m-%d")
-    print("here")
-    print(yesterdays_date)
+    est_time = datetime.now(pytz.timezone("US/Eastern"))
+    yesterday = est_time - timedelta(days=1)
+    yesterdays_date = yesterday.strftime("%d-%m-%Y")
     querystring = {"date": f"{yesterdays_date}"}
+    # querystring = {"date": "02-11-2022"}
     headers = {
         "X-RapidAPI-Key": "60cb513f31msh304564080a974d5p1686d5jsnfbf4f636814d",
         "X-RapidAPI-Host": "nba-schedule.p.rapidapi.com",
     }
+
     response = requests.request("GET", url, headers=headers, params=querystring)
+
     try:
         response.raise_for_status()
         return response.json()
@@ -66,7 +67,7 @@ def update_games():
 # update_games()
 # [
 #     {
-#         "gameDate": "11/3/2022 12:00:00 AM",
+# "gameDate": "11/3/2022 12:00:00 AM",
 #         "games": [
 #             {
 #                 "gameId": "0022200118",

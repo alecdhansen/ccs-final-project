@@ -4,14 +4,14 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from .models import Game, Pick
 from .serializers import GameSerializer, PickSerializer
-from datetime import date
-from datetime import timedelta
+from datetime import date, datetime, timedelta
+import pytz
 
 
 # Create your views here.
-today = date.today()
-todays_date = today.strftime("%Y-%m-%d")
-yesterday = today - timedelta(days=1)
+est_time = datetime.now(pytz.timezone("US/Eastern"))
+yesterday = est_time - timedelta(days=1)
+todays_date = est_time.strftime("%Y-%m-%d")
 yesterdays_date = yesterday.strftime("%Y-%m-%d")
 print(yesterdays_date, todays_date)
 

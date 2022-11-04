@@ -14,11 +14,9 @@ class Game(models.Model):
     winning_team = models.CharField(max_length=255, null=True)
 
     def __str__(self):
-        return f"{self.away_team} at {self.home_team}"
+        return f"{self.away_team} at {self.home_team}, {self.date}"
 
     def save(self):
-        print(self)
-        print("here")
         if not self.id:
             self.timestamp = datetime.utcnow()
         return super(Game, self).save()

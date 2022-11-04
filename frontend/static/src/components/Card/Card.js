@@ -1,14 +1,17 @@
 import "./Card.css";
+import "../Timer/timer.css";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import moment from "moment";
 import Button from "react-bootstrap/Button";
+import CountdownTimer from "../Timer/CountdownTimer";
 
 function Card() {
   const [todaysGames, setTodaysGames] = useState([]);
   const [gameID, setGameID] = useState("");
   const [gameDate, setGameDate] = useState("");
   const [userPick, setUserPick] = useState("");
+  const [firstGameTime, setFirstGameTime] = useState("");
 
   const day = new Date();
   const dd = String(day.getDate()).padStart(2, "0");
@@ -38,8 +41,8 @@ function Card() {
       options
     ).then((response) => response.json());
     setTodaysGames(data[0].games);
+    setFirstGameTime(data[0].games[1].gameDateTimeEst);
     setGameDate(moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD"));
-    console.log(data[0].games);
   };
 
   const handleAwayTeamInput = (e) => {
@@ -51,10 +54,6 @@ function Card() {
     setUserPick(e.target.value);
     setGameID(parseInt(e.target.id));
   };
-
-  console.log({ gameID });
-  console.log({ gameDate });
-  console.log({ userPick });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -96,7 +95,7 @@ function Card() {
           type="button"
           id={game.gameId}
           name="homeTeam"
-          onClick={handleAwayTeamInput}
+          onClick={handleHomeTeamInput}
           value={game.homeTeam.teamName}
         >
           {game.homeTeam.teamName}
@@ -124,13 +123,20 @@ function Card() {
     </li>
   ));
 
+  const firstGameStartingTime = new Date(firstGameTime);
+  const firstGameStartingTimeInMS = firstGameStartingTime.getTime();
+  const fourHoursInMS = 14400000;
+  const nowInMS = new Date().getTime();
+  const timeUntilGameInMS = firstGameStartingTimeInMS - nowInMS;
+  const gameTimeCountDownInMS = nowInMS + timeUntilGameInMS + fourHoursInMS;
+
   return (
     <>
-      <ul className="cards col-4 offset-4">
-        {gameListHtml}
-        {gameListHtml}
-        {gameListHtml}
-      </ul>
+      <div className="carddiv">
+        <CountdownTimer targetDate={gameTimeCountDownInMS} />
+        remaining to submit picks!
+      </div>
+      <ul className="cards col-4 offset-4">{gameListHtml}</ul>
     </>
   );
 }

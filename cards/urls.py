@@ -1,13 +1,13 @@
 from django.urls import path
-from datetime import date
-from datetime import timedelta
+from datetime import datetime, timedelta
+import pytz
 
 from . import views
 
 app_name = "cards"
-today = date.today()
-todays_date = today.strftime("%Y-%m-%d")
-yesterday = today - timedelta(days=1)
+est_time = datetime.now(pytz.timezone("US/Eastern"))
+todays_date = est_time.strftime("%Y-%m-%d")
+yesterday = est_time - timedelta(days=1)
 yesterdays_date = yesterday.strftime("%Y-%m-%d")
 
 urlpatterns = [

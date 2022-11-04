@@ -93,9 +93,11 @@ function Navigation({ isAuth, setIsAuth, state }) {
               </Nav.Item>
             ) : null}
             {isAuth ? (
-              <Nav.Item className="navlink">
+              <Nav.Item autofocus className="navlink">
                 <Link to={"card"}>
-                  <Button className="navbtn">Home</Button>
+                  <Button type="button" autoFocus className="navbtn">
+                    Home
+                  </Button>
                 </Link>
               </Nav.Item>
             ) : null}
