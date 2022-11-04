@@ -1,5 +1,4 @@
 import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Cookies from "js-cookie";
 import { useNavigate, Link } from "react-router-dom";
@@ -58,13 +57,9 @@ function Navigation({ isAuth, setIsAuth, state }) {
 
   return (
     <>
-      <Button
-        variant="primary"
-        className="d-md-none sticky"
-        onClick={handleShow}
-      >
+      <button className="d-md-none sticky" onClick={handleShow}>
         Launch
-      </Button>
+      </button>
       <header className="col-12 navheader">
         <Offcanvas
           placement="end"
@@ -79,7 +74,7 @@ function Navigation({ isAuth, setIsAuth, state }) {
             {isAuth ? (
               <Nav.Item className="navlink">
                 <Link to={"/profile/"} className="link">
-                  <Button className="navbtn">Profile</Button>
+                  <button className="navbtn">Profile</button>
                 </Link>
               </Nav.Item>
             ) : (
@@ -88,31 +83,31 @@ function Navigation({ isAuth, setIsAuth, state }) {
             {isAuth ? (
               <Nav.Item className="navlink">
                 <Link to={"leaderboard"}>
-                  <Button className="navbtn">Leaderboard</Button>
+                  <button className="navbtn">Leaderboard</button>
                 </Link>
               </Nav.Item>
             ) : null}
             {isAuth ? (
               <Nav.Item autofocus className="navlink">
                 <Link to={"card"}>
-                  <Button type="button" autoFocus className="navbtn">
+                  <button type="button" autoFocus className="navbtn">
                     Home
-                  </Button>
+                  </button>
                 </Link>
               </Nav.Item>
             ) : null}
             {isAuth ? (
               <Nav.Item className="navlink">
                 <Link to={"h2h"}>
-                  <Button className="navbtn">Head to Head</Button>
+                  <button className="navbtn">Head to Head</button>
                 </Link>
               </Nav.Item>
             ) : null}
             {isAuth ? (
               <Nav.Item className="navlink">
-                <Button className="navbtn" onClick={() => logout()}>
+                <button className="navbtn" onClick={() => logout()}>
                   <a>Logout</a>
-                </Button>
+                </button>
               </Nav.Item>
             ) : null}
           </Offcanvas.Body>

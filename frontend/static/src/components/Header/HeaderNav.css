@@ -48,6 +48,7 @@
   padding: 6px 80px 3px 80px;
   font-family: "Bebas Neue", cursive;
   font-size: 24px;
+  color: #fff;
 }
 .navbtn:hover {
   background-color: #5f899e2a;
@@ -62,6 +63,13 @@
   border-top-right-radius: 3px;
   border-bottom-left-radius: 0%;
   border-bottom-right-radius: 0%;
+}
+.navbtn:active {
+  background-color: #5f899e2a;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 .sticky {
   position: sticky;
