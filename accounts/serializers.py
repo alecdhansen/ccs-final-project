@@ -21,19 +21,12 @@ class TokenSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField(source="user.id")
     date_joined = serializers.ReadOnlyField(source="user.date_joined")
     avatar = serializers.ImageField(source="user.profile.avatar")
+    favorite_team = serializers.ReadOnlyField(source="user.profile.favorite_team")
+    right_handed = serializers.BooleanField(source="user.profile.right_handed")
 
     class Meta:
         model = TokenModel
-        fields = (
-            "key",
-            "is_superuser",
-            "id",
-            "username",
-            "first_name",
-            "last_name",
-            "date_joined",
-            "avatar",
-        )
+        fields = "__all__"
 
 
 # class UserSerializer(serializers.ModelSerializer):

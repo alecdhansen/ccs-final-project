@@ -12,9 +12,9 @@ yesterdays_date = yesterday.strftime("%Y-%m-%d")
 
 urlpatterns = [
     path("games/", views.GameAPIView.as_view(), name="game_list"),
-    path("picks/", views.PickAPIView.as_view(), name="pick_list"),
+    path("picks/current/", views.PickAPIView.as_view(), name="pick_list"),
     path(
-        f"picks/{yesterdays_date}/",
+        "picks/",
         views.PreviousDayPickAPIView.as_view(),
         name="yesterdays_pick_list",
     ),

@@ -59,11 +59,7 @@ function App() {
           />
           <Route
             path="register"
-            element={
-              <ProtectedRoute isAuth={isAuth}>
-                <Register setIsAuth={setIsAuth} setState={setState} />
-              </ProtectedRoute>
-            }
+            element={<Register setIsAuth={setIsAuth} setState={setState} />}
           />
           <Route
             path="profile"

@@ -86,6 +86,7 @@ class Profile(models.Model):
         choices=CHOICES,
         default=NBA,
     )
+    right_handed = models.BooleanField(default=True)
 
     def __str__(self):
         return self.user.username

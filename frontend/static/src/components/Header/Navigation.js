@@ -6,6 +6,7 @@ import "./HeaderNav.css";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { BsArrowLeftSquare } from "react-icons/bs";
 
 function Navigation({ isAuth, setIsAuth, state }) {
   const [show, setShow] = useState(false);
@@ -51,15 +52,28 @@ function Navigation({ isAuth, setIsAuth, state }) {
         icon: "warning",
         title: "You are now logged out.",
       });
+      handleClose();
       navigate("/");
+    }
+  };
+
+  const whoseHandIsItAnyway = () => {
+    if (!state.right_handed) {
+      return "end";
+    } else {
+      return "start";
     }
   };
 
   return (
     <>
-      <button className="d-md-none sticky" onClick={handleShow}>
-        Launch
-      </button>
+      {isAuth ? (
+        <div className="mobilenav">
+          <button className="d-md-none offcanvasopenbtn" onClick={handleShow}>
+            <BsArrowLeftSquare />
+          </button>
+        </div>
+      ) : null}
       <header className="col-12 navheader">
         <Offcanvas
           placement="end"
@@ -74,7 +88,9 @@ function Navigation({ isAuth, setIsAuth, state }) {
             {isAuth ? (
               <Nav.Item className="navlink">
                 <Link to={"/profile/"} className="link">
-                  <button className="navbtn">Profile</button>
+                  <button className="navbtn" onClick={handleClose}>
+                    Profile
+                  </button>
                 </Link>
               </Nav.Item>
             ) : (
@@ -83,14 +99,21 @@ function Navigation({ isAuth, setIsAuth, state }) {
             {isAuth ? (
               <Nav.Item className="navlink">
                 <Link to={"leaderboard"}>
-                  <button className="navbtn">Leaderboard</button>
+                  <button className="navbtn" onClick={handleClose}>
+                    Leaderboard
+                  </button>
                 </Link>
               </Nav.Item>
             ) : null}
             {isAuth ? (
               <Nav.Item autofocus className="navlink">
                 <Link to={"card"}>
-                  <button type="button" autoFocus className="navbtn">
+                  <button
+                    type="button"
+                    autoFocus
+                    className="navbtn"
+                    onClick={handleClose}
+                  >
                     Home
                   </button>
                 </Link>
@@ -99,7 +122,9 @@ function Navigation({ isAuth, setIsAuth, state }) {
             {isAuth ? (
               <Nav.Item className="navlink">
                 <Link to={"h2h"}>
-                  <button className="navbtn">Head to Head</button>
+                  <button className="navbtn" onClick={handleClose}>
+                    Head to Head
+                  </button>
                 </Link>
               </Nav.Item>
             ) : null}

@@ -19,7 +19,8 @@ print(yesterdays_date, todays_date)
 class GameAPIView(generics.ListCreateAPIView):
     serializer_class = GameSerializer
     permission_classes = (IsAuthenticated,)
-    queryset = Game.objects.all()
+    # queryset = Game.objects.all()
+    queryset = Game.objects.filter(date=yesterdays_date)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

@@ -40,12 +40,18 @@ def test_update_games(self):
                 new_game = Game()
                 new_game.gameid = nba_game["gameId"]
 
-                # new_game.date = json[0]["gameDate"]
-                # game_date = json[0]["gameDate"]
-                # split_game_date = game_date.split[0]
-                # new_game.date = split_game_date.strftime("%Y-%m-%d")
+                # "2022-11-03T00:00:00Z"
+                # game_date = nba_game["gameDateEst"]
+                # datetime_obj = datetime.strptime(game_date, "%Y-%m-%d")
+                # hello = game_date.strftime("%Y-%m-%d")
+                # print(datetime_obj)
+                # split_game_date = game_date.split()
+                # split_game_date = split_game_date[:-1]
+                # game_date_time = " ".join(split_game_date)
+                # hello = game_date_time.strftime("%Y-%m-%d")
+                # print(hello)
 
-                new_game.date = "2022-11-02"
+                new_game.date = "2022-11-03"
                 new_game.home_team = nba_game["homeTeam"]["teamName"]
                 new_game.away_team = nba_game["awayTeam"]["teamName"]
                 new_game.home_team_score = nba_game["homeTeam"]["score"]

@@ -71,7 +71,22 @@
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.sticky {
+.offcanvasopenbtn {
+  position: sticky;
+  top: 0;
+  background-color: var(--navyblue);
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.mobilenav {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
   position: sticky;
   top: 0;
 }
@@ -116,3 +131,10 @@
     padding-bottom: 30px;
   }
 }
+/* const whoseHandIsItAnyway = () => {
+  if (state.right_handed) {
+    return "end";
+  } else {
+    return "start";
+  }
+}; */
