@@ -6,8 +6,8 @@ import "./timer.css";
 const ExpiredNotice = () => {
   return (
     <div className="expired-notice">
-      <span>Games have begun!</span>
-      <p>Check back tomorrow to play again</p>
+      <span>Games have begun</span>
+      <p>Check back tomorrow to play again!</p>
     </div>
   );
 };
@@ -22,6 +22,7 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
         <p>:</p>
         <DateTimeDisplay value={seconds} type={"Seconds"} isDanger={false} />
       </div>
+      <div>before picks close!</div>
     </div>
   );
 };

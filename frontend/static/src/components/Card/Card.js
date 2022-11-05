@@ -3,10 +3,10 @@ import "../Timer/timer.css";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import moment from "moment";
-import Button from "react-bootstrap/Button";
 import CountdownTimer from "../Timer/CountdownTimer";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import Swal from "sweetalert2";
 
 function Card() {
   const [todaysGames, setTodaysGames] = useState([]);
@@ -43,7 +43,7 @@ function Card() {
       options
     ).then((response) => response.json());
     setTodaysGames(data[0].games);
-    setFirstGameTime(data[0].games[1].gameDateTimeEst);
+    setFirstGameTime(data[0].games[0].gameDateTimeEst);
     setGameDate(moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD"));
   };
 
@@ -60,6 +60,7 @@ function Card() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("this", e.target);
+    // debugger;
     const formData = new FormData();
     formData.append("gameid", gameID);
     formData.append("date", gameDate);
@@ -79,7 +80,24 @@ function Card() {
     } else {
       const data = await response.json();
     }
-    e.target.style.display = "none";
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: "success",
+      title: "Pick Submitted!",
+    });
+    e.target.children[3].children[0].disabled = true;
+    window.scrollBy(0, 250);
+    setUserPick("");
   };
 
   useEffect(() => {
@@ -87,87 +105,162 @@ function Card() {
   }, []);
 
   const gameListHtml = todaysGames.map((game) => (
-    <div data-aos="zoom-in-up" className="maincard" key={game.gameId}>
-      {/* <li key={game.gameId} className="card"> */}
-      <form className="formbox" onSubmit={handleSubmit}>
-        <h4 className="gamestatus">{game.gameStatusText}</h4>
-        <div className="spanbar"></div>
-        <div className="gamebtnhouse">
-          <button
-            type="button"
-            id={game.gameId}
-            name="awayTeam"
-            onClick={handleAwayTeamInput}
-            value={game.awayTeam.teamName}
-            className={`gamebtn${game.awayTeam.teamTricode} gamebtn`}
-          >
-            <div className="imghouse">
-              {" "}
-              <img
-                src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
-                alt=""
-                className="teamlogo"
-              ></img>
+    <form
+      className="formbox"
+      data-aos="zoom-in"
+      key={game.gameId}
+      onSubmit={handleSubmit}
+    >
+      <h4 className="gamestatus">{game.gameStatusText}</h4>
+      <div className="spanbar"></div>
+      <div className="gamebtnhouse">
+        <button
+          type="button"
+          id={game.gameId}
+          name="awayTeam"
+          onClick={handleAwayTeamInput}
+          value={game.awayTeam.teamName}
+          className={`gamebtn${game.awayTeam.teamTricode} gamebtn`}
+        >
+          <div className="imghouse">
+            {" "}
+            <img
+              src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
+              alt=""
+              className="teamlogo"
+            ></img>
+          </div>
+          <div className="gamedetails">
+            <div className="cityteam">
+              {game.awayTeam.teamCity} {game.awayTeam.teamName}
             </div>
-            <div className="gamedetails">
-              <div className="cityteam">
-                {game.awayTeam.teamCity} {game.awayTeam.teamName}
-              </div>
-              <div div className="winloss">
-                {game.awayTeam.wins}-{game.awayTeam.losses}
-              </div>
+            <div div className="winloss">
+              {game.awayTeam.wins}-{game.awayTeam.losses}
             </div>
-          </button>
-          <button
-            type="button"
-            id={game.gameId}
-            name="homeTeam"
-            onClick={handleHomeTeamInput}
-            value={game.homeTeam.teamName}
-            className={`gamebtn${game.homeTeam.teamTricode} gamebtn`}
-          >
-            <div className="imghouse">
-              <img
-                src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
-                alt=""
-                className="teamlogo"
-              ></img>
+          </div>
+        </button>
+        <button
+          type="button"
+          id={game.gameId}
+          name="homeTeam"
+          onClick={handleHomeTeamInput}
+          value={game.homeTeam.teamName}
+          className={`gamebtn${game.homeTeam.teamTricode} gamebtn`}
+        >
+          <div className="imghouse">
+            <img
+              src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
+              alt=""
+              className="teamlogo"
+            ></img>
+          </div>
+          <div className="gamedetails">
+            <div className="cityteam">
+              {game.homeTeam.teamCity} {game.homeTeam.teamName}
             </div>
-            <div className="gamedetails">
-              <div className="cityteam">
-                {game.homeTeam.teamCity} {game.homeTeam.teamName}
-              </div>
-              <div className="winloss">
-                {game.homeTeam.wins}-{game.homeTeam.losses}
-              </div>
+            <div className="winloss">
+              {game.homeTeam.wins}-{game.homeTeam.losses}
             </div>
-          </button>
-        </div>
-        <div>
-          <button type="submit" className="gamesubmitbtn">
-            Submit Picks!
-          </button>
-        </div>
-      </form>
-      {/* </li> */}
-    </div>
+          </div>
+        </button>
+      </div>
+      <div>
+        <button type="submit" className="gamesubmitbtn">
+          Submit Pick
+        </button>
+      </div>
+    </form>
+  ));
+
+  const afterHoursGameListHtml = todaysGames.map((game) => (
+    <form
+      className="formbox"
+      data-aos="zoom-in"
+      key={game.gameId}
+      onSubmit={handleSubmit}
+    >
+      <h4 className="gamestatus">{game.gameStatusText}</h4>
+      <div className="spanbar"></div>
+      <div className="gamebtnhouse">
+        <button
+          disabled
+          type="button"
+          id={game.gameId}
+          name="awayTeam"
+          onClick={handleAwayTeamInput}
+          value={game.awayTeam.teamName}
+          className={`gamebtn${game.awayTeam.teamTricode} gamebtn`}
+        >
+          <div className="imghouse">
+            {" "}
+            <img
+              src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
+              alt=""
+              className="teamlogo"
+            ></img>
+          </div>
+          <div className="gamedetails">
+            <div className="cityteam">
+              {game.awayTeam.teamCity} {game.awayTeam.teamName}
+            </div>
+            <div div className="winloss">
+              {game.awayTeam.wins}-{game.awayTeam.losses}
+            </div>
+          </div>
+        </button>
+        <button
+          disabled
+          type="button"
+          id={game.gameId}
+          name="homeTeam"
+          onClick={handleHomeTeamInput}
+          value={game.homeTeam.teamName}
+          className={`gamebtn${game.homeTeam.teamTricode} gamebtn`}
+        >
+          <div className="imghouse">
+            <img
+              src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
+              alt=""
+              className="teamlogo"
+            ></img>
+          </div>
+          <div className="gamedetails">
+            <div className="cityteam">
+              {game.homeTeam.teamCity} {game.homeTeam.teamName}
+            </div>
+            <div className="winloss">
+              {game.homeTeam.wins}-{game.homeTeam.losses}
+            </div>
+          </div>
+        </button>
+      </div>
+    </form>
   ));
 
   const firstGameStartingTime = new Date(firstGameTime);
   const firstGameStartingTimeInMS = firstGameStartingTime.getTime();
-  const fourHoursInMS = 14400000;
+  // const fourHoursInMS = 14400000; //use this line for production
+  const fourHoursInMS = 11114400000;
   const nowInMS = new Date().getTime();
   const timeUntilGameInMS = firstGameStartingTimeInMS - nowInMS;
   const gameTimeCountDownInMS = nowInMS + timeUntilGameInMS + fourHoursInMS;
+  const timeUntilEstGameInMS = timeUntilGameInMS + fourHoursInMS;
 
   return (
     <>
       <div className="carddiv">
         <CountdownTimer targetDate={gameTimeCountDownInMS} />
       </div>
-      <div className="cards col-md-8 offset-md-2 col-10 offset-1 divist">
-        {gameListHtml}
-      </div>
+      {timeUntilEstGameInMS > 0 ? (
+        <div className="cards col-md-8 offset-md-2 col-10 offset-1 divlist">
+          {gameListHtml}
+        </div>
+      ) : (
+        <div className="cards col-md-8 offset-md-2 col-10 offset-1 divlist">
+          {afterHoursGameListHtml}
+        </div>
+      )}
+      <div style={{ visibility: "hidden", height: "250px" }}></div>
     </>
   );
 }

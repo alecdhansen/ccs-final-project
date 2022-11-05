@@ -37,13 +37,13 @@
 .radio-toolbar > input[type="radio"]:focus + label {
   border: 2px dashed #444;
 }
-.ulist {
+.divlist {
   padding: 0px;
+  margin: 30px 0px 0px 240px;
 }
 .maincard {
   background-color: var(--offwhite);
   border-radius: 8px;
-  margin-bottom: 20px;
 }
 .gamestatus {
   display: flex;
@@ -60,6 +60,7 @@
   flex-direction: column;
   justify-content: center;
   border-radius: 8px;
+  margin-bottom: 30px;
 }
 .spanbar {
   width: 95%;
@@ -100,21 +101,9 @@
   font-size: 12px;
 }
 .gamesubmitbtn {
-  margin: 10px 0px;
-  /* background-color: var(--mainorange); */
-  border: none;
-  color: black;
-  padding: 6px 12px;
-  border-radius: 5px;
+  /* needs soemting */
+}
 
-  opacity: 0.6;
-  transition: 0.3s;
-}
-.gamesubmitbtn:hover {
-  background-color: var(--mainorange);
-  opacity: 0.8;
-  transition: 0.3s;
-}
 .gamebtn:focus {
   border-style: outset;
   border: 5px solid var(--borderyellow);
