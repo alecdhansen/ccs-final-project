@@ -11,7 +11,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
-  const [state, setState] = useState(null);
+  const [state, setState] = useState("");
   const navigate = useNavigate();
   const newState = JSON.parse(window.localStorage.getItem("state"));
 

@@ -80,8 +80,14 @@
   display: flex;
   align-items: center;
   font-size: 40px;
-  margin-right: 10px;
-  margin-top: 10px;
+  margin: 10px;
+}
+.lefthand {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 30px;
+  position: sticky;
+  top: 0;
 }
 .mobilenav {
   display: flex;

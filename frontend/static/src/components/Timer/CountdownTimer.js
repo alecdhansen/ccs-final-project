@@ -7,7 +7,7 @@ const ExpiredNotice = () => {
   return (
     <div className="expired-notice">
       <span>Games have begun!</span>
-      <p>Tomorrow's games will be available at 12am</p>
+      <p>Check back tomorrow to play again</p>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import "./HeaderNav.css";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { BsArrowLeftSquare } from "react-icons/bs";
+import { HiOutlineMenu } from "react-icons/hi";
 
 function Navigation({ isAuth, setIsAuth, state }) {
   const [show, setShow] = useState(false);
@@ -58,25 +58,34 @@ function Navigation({ isAuth, setIsAuth, state }) {
   };
 
   const whoseHandIsItAnyway = () => {
-    if (!state.right_handed) {
+    if (state?.right_handed) {
       return "end";
     } else {
       return "start";
+    }
+  };
+  const whoseHandIsItAnywayStyle = () => {
+    if (state?.right_handed) {
+      return "d-md-none mobilenav";
+    } else {
+      return "lefthand";
     }
   };
 
   return (
     <>
       {isAuth ? (
-        <div className="mobilenav">
+        <div className={whoseHandIsItAnywayStyle()}>
           <button className="d-md-none offcanvasopenbtn" onClick={handleShow}>
-            <BsArrowLeftSquare />
+            <HiOutlineMenu />
           </button>
         </div>
-      ) : null}
+      ) : (
+        ""
+      )}
       <header className="col-12 navheader">
         <Offcanvas
-          placement="end"
+          placement={whoseHandIsItAnyway()}
           show={show}
           onHide={handleClose}
           responsive="md"
@@ -106,7 +115,7 @@ function Navigation({ isAuth, setIsAuth, state }) {
               </Nav.Item>
             ) : null}
             {isAuth ? (
-              <Nav.Item autofocus className="navlink">
+              <Nav.Item className="navlink">
                 <Link to={"card"}>
                   <button
                     type="button"

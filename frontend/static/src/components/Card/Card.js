@@ -5,6 +5,8 @@ import Cookies from "js-cookie";
 import moment from "moment";
 import Button from "react-bootstrap/Button";
 import CountdownTimer from "../Timer/CountdownTimer";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function Card() {
   const [todaysGames, setTodaysGames] = useState([]);
@@ -69,7 +71,9 @@ function Card() {
       },
       body: formData,
     };
-    const response = await fetch("/api_v1/picks/", options).catch(handleError);
+    const response = await fetch("/api_v1/picks/current/", options).catch(
+      handleError
+    );
     if (!response.ok) {
       throw new Error("Network response was not OK");
     } else {
@@ -78,49 +82,74 @@ function Card() {
     e.target.style.display = "none";
   };
 
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
+
   const gameListHtml = todaysGames.map((game) => (
-    <li key={game.gameId} className="card">
-      <form onSubmit={handleSubmit}>
-        <Button
-          type="button"
-          id={game.gameId}
-          name="awayTeam"
-          onClick={handleAwayTeamInput}
-          value={game.awayTeam.teamName}
-        >
-          {game.awayTeam.teamName}
-        </Button>
-        {game.awayTeam.score}pts
-        <Button
-          type="button"
-          id={game.gameId}
-          name="homeTeam"
-          onClick={handleHomeTeamInput}
-          value={game.homeTeam.teamName}
-        >
-          {game.homeTeam.teamName}
-        </Button>
-        {game.homeTeam.score}pts
-        <span>{game.gameStatusText}</span>
-        <Button type="submit">Submit Picks!</Button>
-      </form>
-      <div style={{ display: "flex" }}>
-        <div className="imgcontainer">
-          <img
-            src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
-            alt=""
-            className="teamlogo"
-          ></img>
-        </div>
-        <div className="imgcontainer">
-          <img
-            src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
-            alt=""
-            className="teamlogo"
-          ></img>
-        </div>
-      </div>
-    </li>
+    <div data-aos="zoom-in-up" className="maincard" key={game.gameId}>
+      <h4 className="gamestatus">{game.gameStatusText}</h4>
+      <li key={game.gameId} className="card">
+        <form className="formbox" onSubmit={handleSubmit}>
+          <div className="gamebtnhouse">
+            <button
+              type="button"
+              id={game.gameId}
+              name="awayTeam"
+              onClick={handleAwayTeamInput}
+              value={game.awayTeam.teamName}
+              className={`gamebtn${game.awayTeam.teamTricode}`}
+            >
+              <div className="imghouse">
+                {" "}
+                <img
+                  src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
+                  alt=""
+                  className="teamlogo"
+                ></img>
+              </div>
+              <div className="gamedetails">
+                <div>
+                  {game.awayTeam.teamCity} {game.awayTeam.teamName}
+                </div>
+                <div>
+                  {game.awayTeam.wins}-{game.awayTeam.losses}
+                </div>
+              </div>
+            </button>
+            <button
+              type="button"
+              id={game.gameId}
+              name="homeTeam"
+              onClick={handleHomeTeamInput}
+              value={game.homeTeam.teamName}
+              className={`gamebtn${game.homeTeam.teamTricode}`}
+            >
+              <div className="imghouse">
+                <img
+                  src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
+                  alt=""
+                  className="teamlogo"
+                ></img>
+              </div>
+              <div className="gamedetails">
+                <div>
+                  {game.homeTeam.teamCity} {game.homeTeam.teamName}
+                </div>
+                <div>
+                  {game.homeTeam.wins}-{game.homeTeam.losses}
+                </div>
+              </div>
+            </button>
+          </div>
+          <div>
+            <Button type="submit" className="gamesubmitbtn">
+              Submit Picks!
+            </Button>
+          </div>
+        </form>
+      </li>
+    </div>
   ));
 
   const firstGameStartingTime = new Date(firstGameTime);
@@ -134,9 +163,10 @@ function Card() {
     <>
       <div className="carddiv">
         <CountdownTimer targetDate={gameTimeCountDownInMS} />
-        remaining to submit picks!
       </div>
-      <ul className="cards col-4 offset-4">{gameListHtml}</ul>
+      <ul className="cards col-md-8 offset-md-2 col-10 offset-1 ulist">
+        {gameListHtml}
+      </ul>
     </>
   );
 }
