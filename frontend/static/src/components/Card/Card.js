@@ -88,67 +88,68 @@ function Card() {
 
   const gameListHtml = todaysGames.map((game) => (
     <div data-aos="zoom-in-up" className="maincard" key={game.gameId}>
-      <h4 className="gamestatus">{game.gameStatusText}</h4>
-      <li key={game.gameId} className="card">
-        <form className="formbox" onSubmit={handleSubmit}>
-          <div className="gamebtnhouse">
-            <button
-              type="button"
-              id={game.gameId}
-              name="awayTeam"
-              onClick={handleAwayTeamInput}
-              value={game.awayTeam.teamName}
-              className={`gamebtn${game.awayTeam.teamTricode}`}
-            >
-              <div className="imghouse">
-                {" "}
-                <img
-                  src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
-                  alt=""
-                  className="teamlogo"
-                ></img>
+      {/* <li key={game.gameId} className="card"> */}
+      <form className="formbox" onSubmit={handleSubmit}>
+        <h4 className="gamestatus">{game.gameStatusText}</h4>
+        <div className="spanbar"></div>
+        <div className="gamebtnhouse">
+          <button
+            type="button"
+            id={game.gameId}
+            name="awayTeam"
+            onClick={handleAwayTeamInput}
+            value={game.awayTeam.teamName}
+            className={`gamebtn${game.awayTeam.teamTricode} gamebtn`}
+          >
+            <div className="imghouse">
+              {" "}
+              <img
+                src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
+                alt=""
+                className="teamlogo"
+              ></img>
+            </div>
+            <div className="gamedetails">
+              <div className="cityteam">
+                {game.awayTeam.teamCity} {game.awayTeam.teamName}
               </div>
-              <div className="gamedetails">
-                <div>
-                  {game.awayTeam.teamCity} {game.awayTeam.teamName}
-                </div>
-                <div>
-                  {game.awayTeam.wins}-{game.awayTeam.losses}
-                </div>
+              <div div className="winloss">
+                {game.awayTeam.wins}-{game.awayTeam.losses}
               </div>
-            </button>
-            <button
-              type="button"
-              id={game.gameId}
-              name="homeTeam"
-              onClick={handleHomeTeamInput}
-              value={game.homeTeam.teamName}
-              className={`gamebtn${game.homeTeam.teamTricode}`}
-            >
-              <div className="imghouse">
-                <img
-                  src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
-                  alt=""
-                  className="teamlogo"
-                ></img>
+            </div>
+          </button>
+          <button
+            type="button"
+            id={game.gameId}
+            name="homeTeam"
+            onClick={handleHomeTeamInput}
+            value={game.homeTeam.teamName}
+            className={`gamebtn${game.homeTeam.teamTricode} gamebtn`}
+          >
+            <div className="imghouse">
+              <img
+                src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
+                alt=""
+                className="teamlogo"
+              ></img>
+            </div>
+            <div className="gamedetails">
+              <div className="cityteam">
+                {game.homeTeam.teamCity} {game.homeTeam.teamName}
               </div>
-              <div className="gamedetails">
-                <div>
-                  {game.homeTeam.teamCity} {game.homeTeam.teamName}
-                </div>
-                <div>
-                  {game.homeTeam.wins}-{game.homeTeam.losses}
-                </div>
+              <div className="winloss">
+                {game.homeTeam.wins}-{game.homeTeam.losses}
               </div>
-            </button>
-          </div>
-          <div>
-            <Button type="submit" className="gamesubmitbtn">
-              Submit Picks!
-            </Button>
-          </div>
-        </form>
-      </li>
+            </div>
+          </button>
+        </div>
+        <div>
+          <button type="submit" className="gamesubmitbtn">
+            Submit Picks!
+          </button>
+        </div>
+      </form>
+      {/* </li> */}
     </div>
   ));
 
@@ -164,9 +165,9 @@ function Card() {
       <div className="carddiv">
         <CountdownTimer targetDate={gameTimeCountDownInMS} />
       </div>
-      <ul className="cards col-md-8 offset-md-2 col-10 offset-1 ulist">
+      <div className="cards col-md-8 offset-md-2 col-10 offset-1 divist">
         {gameListHtml}
-      </ul>
+      </div>
     </>
   );
 }
