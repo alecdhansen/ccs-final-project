@@ -3,8 +3,9 @@ import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
+import "./Profile.css";
 
-function ProfileForm() {
+function ProfileForm({ state }) {
   const [profile, setProfile] = useState({ avatar: null });
   const [preview, setPreview] = useState("");
   const [favoriteTeam, setFavoriteTeam] = useState("");
@@ -46,11 +47,28 @@ function ProfileForm() {
 
   return (
     <div className="row">
-      <div className="col-md-4 offset-md-1 col-10 offset-1">
-        <div className=""></div>
+      <div className="col-md-4 offset-md-1 col-10 offset-1 profilebox">
+        <div className="avatarsection">
+          <div className="avatarbox">
+            {profile.avatar && (
+              <img
+                src={preview}
+                alt=""
+                style={{
+                  width: "100%",
+                  overflow: "hidden",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+              />
+            )}
+          </div>
+          <div className="username">{state?.username}</div>
+        </div>
         <h4 style={{ textAlign: "center", marginBottom: "30px" }}>
           Upload a Profile Image Below
         </h4>
+        <img src={state?.avatar}></img>
         <Form onSubmit={handleSubmit}>
           <Form.Control
             style={{ marginBottom: "30px" }}
@@ -58,7 +76,7 @@ function ProfileForm() {
             name="avatar"
             onChange={handleImage}
           />
-          {profile.avatar && <img src={preview} alt="" />}
+
           <Form.Select
             size="sm"
             aria-label="Default select example"

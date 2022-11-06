@@ -1,0 +1,16 @@
+.profilebox {
+}
+.avatarsection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatarbox {
+  display: flex;
+  justify-content: center;
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 50%;
+  border: 2px solid #dc5a32;
+  background-color: #fff;
+}

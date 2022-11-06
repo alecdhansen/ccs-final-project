@@ -65,7 +65,7 @@ function App() {
             path="profile"
             element={
               <ProtectedRoute isAuth={isAuth}>
-                <ProfileForm />
+                <ProfileForm state={state} />
               </ProtectedRoute>
             }
           />

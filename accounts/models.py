@@ -75,9 +75,7 @@ class User(AbstractUser):
 
 
 class Profile(models.Model):
-    avatar = models.ImageField(
-        upload_to="profiles/",
-    )
+    avatar = models.ImageField(default="default.jpg", upload_to="profiles/")
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True
     )

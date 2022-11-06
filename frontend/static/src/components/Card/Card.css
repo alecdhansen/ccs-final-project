@@ -101,7 +101,22 @@
   font-size: 12px;
 }
 .gamesubmitbtn {
-  /* needs soemting */
+  padding: 4px 52px;
+  margin: 6px 0px 3px 0px;
+  border: none;
+  border-radius: 24px;
+  background-color: var(--navyblue);
+  color: var(--offwhite);
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.gamesubmitbtn:hover {
+  background-color: #123548;
+  transition: 0.3s;
+}
+.gamesubmitbtn:disabled {
+  display: none;
 }
 
 .gamebtn:focus {
