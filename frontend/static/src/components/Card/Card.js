@@ -239,8 +239,8 @@ function Card() {
 
   const firstGameStartingTime = new Date(firstGameTime);
   const firstGameStartingTimeInMS = firstGameStartingTime.getTime();
-  // const fourHoursInMS = 14400000; //use this line for production
-  const fourHoursInMS = 11114400000;
+  const fourHoursInMS = 14400000; //use this line for production
+  // const fourHoursInMS = 11114400000;
   const nowInMS = new Date().getTime();
   const timeUntilGameInMS = firstGameStartingTimeInMS - nowInMS;
   const gameTimeCountDownInMS = nowInMS + timeUntilGameInMS + fourHoursInMS;

@@ -4,6 +4,11 @@
 .profilebox {
   display: flex;
   flex-direction: column;
+  padding: 0px;
+  margin-bottom: 100px;
+  border-radius: 20px;
+  background: linear-gradient(315deg, #051720, #051b25);
+  box-shadow: -23px -23px 46px #082636, 23px 23px 46px #082636;
 }
 .avatarsection {
   display: flex;
@@ -16,31 +21,59 @@
   max-width: 150px;
   max-height: 150px;
   border-radius: 50%;
-  border: 3px solid #dc5a32;
+  border: 3px solid var(--navyblue);
   background-color: #fff;
   position: absolute;
 }
-.landscape {
-  height: 125px;
-  background-color: red;
+
+.teamimgbox {
+  width: 125px;
+  margin-right: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
 }
 .username {
   display: flex;
   justify-content: center;
-  margin-top: 85px;
-  color: #fff;
+  color: var(--offwhite);
   font-size: 40px;
+  margin: 0px;
 }
-.remindertag {
-  color: #fff;
-  font-size: 22px;
-  text-align: center;
-  margin-top: 75px;
+
+.initialprofileform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .mobiledisclaimer {
-  color: #fff;
+  color: var(--navyblue);
   text-align: start;
   font-size: 12px;
+  margin-bottom: 30px;
+}
+.editsubmitbtns {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+}
+.sb2 {
+  padding: 6px 30px;
+}
+.editbtn {
+  font-size: 24px;
+  border: none;
+  background-color: var(--navyblue);
+  color: var(--offwhite);
+  margin-left: 10px;
+}
+.usernameedit {
+  margin-top: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
 }
 .avatarinput {
   width: 70%;
@@ -55,4 +88,500 @@
 .formbtn {
   background-color: #fff;
   color: #000;
+  margin-bottom: 30px;
+}
+.statbox {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  margin-bottom: 100px;
+  border-radius: 20px;
+  background: linear-gradient(315deg, #051720, #051b25);
+  box-shadow: -23px -23px 46px #082636, 23px 23px 46px #082636;
+}
+.mystatsheader {
+  display: flex;
+  justify-content: center;
+  color: var(--offwhite);
+  margin-top: 30px;
+}
+.landscapeATL {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #c8102e 10%,
+    #9ea2a2 10%,
+    #9ea2a2 90%,
+    #c8102e 90%,
+    #c8102e 100%
+  );
+}
+.landscapeBOS {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #007a33 10%,
+    #ba9653 10%,
+    #ba9653 90%,
+    #007a33 90%,
+    #007a33 100%
+  );
+}
+.landscapeBKN {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #000000 10%,
+    #ffffff 10%,
+    #ffffff 90%,
+    #000000 90%,
+    #000000 100%
+  );
+}
+.landscapeCHA {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #1d1160 10%,
+    #00788c 10%,
+    #00788c 90%,
+    #1d1160 90%,
+    #1d1160 100%
+  );
+}
+.landscapeCHI {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #ce1141 10%,
+    #fff 10%,
+    #fff 90%,
+    #ce1141 90%,
+    #ce1141 100%
+  );
+}
+.landscapeCLE {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #041e42 10%,
+    #860038 10%,
+    #860038 90%,
+    #041e42 90%,
+    #041e42 100%
+  );
+}
+.landscapeDAL {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #002b5e 10%,
+    #b8c4ca 10%,
+    #b8c4ca 90%,
+    #002b5e 90%,
+    #002b5e 100%
+  );
+}
+.landscapeDEN {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #0e2240 10%,
+    #fec524 10%,
+    #fec524 90%,
+    #0e2240 90%,
+    #0e2240 100%
+  );
+}
+.landscapeDET {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #c8102e 10%,
+    #bec0c2 10%,
+    #bec0c2 90%,
+    #c8102e 90%,
+    #c8102e 100%
+  );
+}
+.landscapeGSW {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #1d428a 10%,
+    #ffc72c 10%,
+    #ffc72c 90%,
+    #1d428a 90%,
+    #1d428a 100%
+  );
+}
+.landscapeHOU {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #ce1141 10%,
+    #c4ced4 10%,
+    #c4ced4 90%,
+    #ce1141 90%,
+    #ce1141 100%
+  );
+}
+.landscapeIND {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #002d62 10%,
+    #fdbb30 10%,
+    #fdbb30 90%,
+    #002d62 90%,
+    #002d62 100%
+  );
+}
+.landscapeLAC {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #c8102e 10%,
+    #bec0c2 10%,
+    #bec0c2 90%,
+    #c8102e 90%,
+    #c8102e 100%
+  );
+}
+.landscapeLAL {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #552583 10%,
+    #fdb927 10%,
+    #fdb927 90%,
+    #552583 90%,
+    #552583 100%
+  );
+}
+.landscapeMEM {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #12173f 10%,
+    #5d76a9 10%,
+    #5d76a9 90%,
+    #12173f 90%,
+    #12173f 100%
+  );
+}
+.landscapeMIA {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #98002e 10%,
+    #f9a01b 10%,
+    #f9a01b 90%,
+    #98002e 90%,
+    #98002e 100%
+  );
+}
+.landscapeMIL {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #00471b 10%,
+    #eee1c6 10%,
+    #eee1c6 90%,
+    #00471b 90%,
+    #00471b 100%
+  );
+}
+.landscapeMIN {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #0c2340 10%,
+    #236192 10%,
+    #236192 90%,
+    #0c2340 90%,
+    #0c2340 100%
+  );
+}
+.landscapeNBA {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #b90024 10%,
+    #fff 10%,
+    #fff 90%,
+    #162f76 90%,
+    #162f76 100%
+  );
+}
+.landscapeNOP {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #0c2340 10%,
+    #85714d 10%,
+    #85714d 90%,
+    #0c2340 90%,
+    #0c2340 100%
+  );
+}
+.landscapeNYK {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #f58426 10%,
+    #006bb6 10%,
+    #006bb6 90%,
+    #f58426 90%,
+    #f58426 100%
+  );
+}
+.landscapeOKC {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #ef3b24 10%,
+    #007ac1 10%,
+    #007ac1 90%,
+    #ef3b24 90%,
+    #ef3b24 100%
+  );
+}
+.landscapeORL {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #0077c0 10%,
+    #c4ced4 10%,
+    #c4ced4 90%,
+    #0077c0 90%,
+    #0077c0 100%
+  );
+}
+.landscapePHI {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #006bb6 10%,
+    #ed174c 10%,
+    #ed174c 90%,
+    #006bb6 90%,
+    #006bb6 100%
+  );
+}
+.landscapePHX {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #1d1160 10%,
+    #e56020 10%,
+    #e56020 90%,
+    #1d1160 90%,
+    #1d1160 100%
+  );
+}
+.landscapePOR {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #000000 10%,
+    #e03a3e 10%,
+    #e03a3e 90%,
+    #000000 90%,
+    #000000 100%
+  );
+}
+.landscapeSAC {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #5a2d81 10%,
+    #63727a 10%,
+    #63727a 90%,
+    #5a2d81 90%,
+    #5a2d81 100%
+  );
+}
+.landscapeSAS {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #000000 10%,
+    #c4ced4 10%,
+    #c4ced4 90%,
+    #000000 90%,
+    #000000 100%
+  );
+}
+.landscapeTOR {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #ce1141 10%,
+    #a1a1a4 10%,
+    #a1a1a4 90%,
+    #ce1141 90%,
+    #ce1141 100%
+  );
+}
+.landscapeUTA {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #002b5c 10%,
+    #f9a01b 10%,
+    #f9a01b 90%,
+    #002b5c 90%,
+    #002b5c 100%
+  );
+}
+.landscapeWAS {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #e31837 10%,
+    #c4ced4 10%,
+    #c4ced4 90%,
+    #e31837 90%,
+    #e31837 100%
+  );
+}
+.landscapenull {
+  height: 150px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #ffffff 8%,
+    var(--navyblue) 8%,
+    var(--navyblue) 92%,
+    #ffffff 92%,
+    #ffffff 100%
+  );
 }

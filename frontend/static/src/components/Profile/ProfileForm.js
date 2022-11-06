@@ -2,11 +2,16 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineEdit } from "react-icons/ai";
 import "./Profile.css";
 import "../Card/Card.css";
 
 function ProfileForm({ state }) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const [profile, setProfile] = useState({ avatar: null });
   const [preview, setPreview] = useState("");
   const [favoriteTeam, setFavoriteTeam] = useState("");
@@ -40,24 +45,49 @@ function ProfileForm({ state }) {
     formData.append("favorite_team", favoriteTeam);
     formData.append("right_handed", hand);
     const options = {
-      method: "POST",
+      method: "PUT",
       headers: {
         "X-CSRFToken": Cookies.get("csrftoken"),
       },
       body: formData,
     };
-    const response = await fetch("/api_v1/user/profile/", options);
-    const data = await response.json();
-    navigate("/card");
+    const response = await fetch(`/api_v1/user/profile/${state.id}/`, options);
+    if (!response.ok) {
+      throw new Error("Network response was not OK");
+    } else {
+      const data = await response.json();
+      handleClose();
+      navigate("/card");
+    }
   };
 
   return (
-    <div className="row mainprofilepage">
-      <div className="col-md-4 offset-md-1 col-10 offset-1 profilebox">
-        <div className="landscape">
-          <img src={require(`../../media/ATL.png`)}></img>
+    <main className="row mainprofilepage">
+      <section className="col-md-4 offset-md-1 col-10 offset-1 profilebox">
+        <div className={`landscape${state?.favorite_team}`}>
+          <div className="teamimgbox">
+            <img
+              src={require(`../../media/${state?.favorite_team}.png`)}
+              style={{ width: "100%" }}
+            ></img>
+          </div>
         </div>
-        {state?.avatar ? (
+        {preview ? (
+          <div className="avatarsection">
+            <div className="avatarbox">
+              <img
+                src={preview}
+                alt=""
+                style={{
+                  width: "100%",
+                  overflow: "hidden",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+          </div>
+        ) : (
           <div className="avatarsection">
             <div className="avatarbox">
               <img
@@ -72,123 +102,99 @@ function ProfileForm({ state }) {
               />
             </div>
           </div>
-        ) : (
-          <div className="avatarsection">
-            {preview ? (
-              <div className="avatarbox">
-                <img
-                  src={preview}
-                  alt=""
-                  style={{
-                    width: "100%",
-                    overflow: "hidden",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                  }}
-                />
-              </div>
-            ) : (
-              <div className="avatarbox">
-                <img
-                  src="../.././media/default.jpg"
-                  alt=""
-                  style={{
-                    width: "100%",
-                    overflow: "hidden",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                  }}
-                />
-              </div>
-            )}
-          </div>
         )}
-        <h4 className="username">{state?.username}</h4>
-        <div className="formsbox">
-          <h2 className="remindertag">
-            Reminder: Complete your profile information!
-          </h2>
-          <Form onSubmit={handleSubmit}>
-            <Form.Control
-              style={{ marginBottom: "30px" }}
-              type="file"
-              name="avatar"
-              onChange={handleImage}
-              className="avatarinput"
-            />
-
-            <Form.Select
-              size="sm"
-              aria-label="Default select example"
-              onChange={handleFavoriteTeam}
-              className="favteaminput"
-            >
-              <option>Favorite NBA Team</option>
-              <option value="Atlanta Hawks">Atlanta Hawks</option>
-              <option value="Brooklyn Nets">Brooklyn Nets</option>
-              <option value="Boston Celtics">Boston Celtics</option>
-              <option value="Charlotte Hornets">Charlotte Hornets</option>
-              <option value="Chicago Bulls">Chicago Bulls</option>
-              <option value="Cleveland Cavaliers">Cleveland Cavaliers</option>
-              <option value="Dallas Mavericks">Dallas Mavericks</option>
-              <option value="Denver Nuggets">Denver Nuggets</option>
-              <option value="Detroit Pistons">Detroit Pistons</option>
-              <option value="Golden State Warriors">
-                Golden State Warriors
-              </option>
-              <option value="Houston Rockets">Houston Rockets</option>
-              <option value="Indiana Pacers">Indiana Pacers</option>
-              <option value="Los Angeles Clippers">Los Angeles Clippers</option>
-              <option value="Los Angeles Lakers">Los Angeles Lakers</option>
-              <option value="Memphis Grizzlies">Memphis Grizzlies</option>
-              <option value="Miami Heat">Miami Heat</option>
-              <option value="Milwaukee Bucks">Milwaukee Bucks</option>
-              <option value="Minnesota Timberwolves">
-                Minnesota Timberwolves
-              </option>
-              <option value="New Orleans Pelicans">New Orleans Pelicans</option>
-              <option value="New York Knicks">New York Knicks</option>
-              <option value="Oklahoma City Thunder">
-                Oklahoma City Thunder
-              </option>
-              <option value="Orlanda Magic">Orlanda Magic</option>
-              <option value="Philadelphia 76ers">Philadelphia 76ers</option>
-              <option value="Phoenix Suns">Phoenix Suns</option>
-              <option value="Portland Trailblazers">
-                Portland Trailblazers
-              </option>
-              <option value="Sacramento Kings">Sacramento Kings</option>
-              <option value="San Antonio Spurs">San Antonio Spurs</option>
-              <option value="Toronto Raptors">Toronto Raptors</option>
-              <option value="Utah Jazz">Utah Jazz</option>
-              <option value="Washington Wizards">Washington Wizards</option>
-            </Form.Select>
-
-            <Form.Select
-              size="sm"
-              aria-label="Default select example"
-              onChange={handleHand}
-              className="handinput"
-            >
-              <option>Are you...</option>
-              <option value="true">Right Handed</option>
-              <option value="false">Left Handed</option>
-            </Form.Select>
-            <div className="mobiledisclaimer">
-              *This allows us to optimize your mobile experience
-            </div>
-            <Button
-              style={{ marginBottom: "180px" }}
-              variant="success"
-              type="submit"
-              className="submitbtn formbtn"
-            >
-              Save
-            </Button>
-          </Form>
+        <div className="usernameedit">
+          <h4 className="username">{state?.username}</h4>
+          <button className="editbtn" onClick={handleShow}>
+            <AiOutlineEdit />
+          </button>
         </div>
-      </div>
-    </div>
+        <div className="formsbox">
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header>
+              <Modal.Title>Edit Profile</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form className="initialprofileform" onSubmit={handleSubmit}>
+                <Form.Control
+                  style={{ marginBottom: "30px" }}
+                  type="file"
+                  name="avatar"
+                  onChange={handleImage}
+                  className="avatarinput"
+                />
+
+                <Form.Select
+                  size="sm"
+                  aria-label="Default select example"
+                  onChange={handleFavoriteTeam}
+                  className="favteaminput"
+                  required
+                >
+                  <option>Favorite NBA Team</option>
+                  <option value="ATL">Atlanta Hawks</option>
+                  <option value="BKN">Brooklyn Nets</option>
+                  <option value="BOS">Boston Celtics</option>
+                  <option value="CHA">Charlotte Hornets</option>
+                  <option value="CHI">Chicago Bulls</option>
+                  <option value="CLE">Cleveland Cavaliers</option>
+                  <option value="DAL">Dallas Mavericks</option>
+                  <option value="DEN">Denver Nuggets</option>
+                  <option value="DET">Detroit Pistons</option>
+                  <option value="GSW">Golden State Warriors</option>
+                  <option value="HOU">Houston Rockets</option>
+                  <option value="IND">Indiana Pacers</option>
+                  <option value="LAC">Los Angeles Clippers</option>
+                  <option value="LAL">Los Angeles Lakers</option>
+                  <option value="MEM">Memphis Grizzlies</option>
+                  <option value="MIA">Miami Heat</option>
+                  <option value="MIL">Milwaukee Bucks</option>
+                  <option value="MIN">Minnesota Timberwolves</option>
+                  <option value="NOP">New Orleans Pelicans</option>
+                  <option value="NYK">New York Knicks</option>
+                  <option value="OKC">Oklahoma City Thunder</option>
+                  <option value="ORL">Orlanda Magic</option>
+                  <option value="PHI">Philadelphia 76ers</option>
+                  <option value="PHX">Phoenix Suns</option>
+                  <option value="POR">Portland Trailblazers</option>
+                  <option value="SAC">Sacramento Kings</option>
+                  <option value="SAS">San Antonio Spurs</option>
+                  <option value="TOR">Toronto Raptors</option>
+                  <option value="UTA">Utah Jazz</option>
+                  <option value="WAS">Washington Wizards</option>
+                </Form.Select>
+
+                <Form.Select
+                  size="sm"
+                  aria-label="Default select example"
+                  onChange={handleHand}
+                  className="handinput"
+                  required
+                >
+                  <option>Are you...</option>
+                  <option value="true">Right Handed</option>
+                  <option value="false">Left Handed</option>
+                </Form.Select>
+                <div className="mobiledisclaimer">
+                  *This allows us to optimize your mobile experience
+                </div>
+                <div className="editsubmitbtns">
+                  <button className="submitbtn sb2" onClick={handleClose}>
+                    Close
+                  </button>
+                  <button className="submitbtn sb2" type="submit">
+                    Save Changes
+                  </button>
+                </div>
+              </Form>
+            </Modal.Body>
+          </Modal>
+        </div>
+      </section>
+      <section className="col-md-5 offset-md-1 col-10 offset-1 statbox">
+        <h2 className="mystatsheader">My Stats</h2>
+      </section>
+    </main>
   );
 }
 export default ProfileForm;
