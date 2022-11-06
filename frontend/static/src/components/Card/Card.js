@@ -165,7 +165,7 @@ function Card() {
         </button>
       </div>
       <div>
-        <button type="submit" className="gamesubmitbtn">
+        <button type="submit" className="submitbtn">
           Submit Pick
         </button>
       </div>

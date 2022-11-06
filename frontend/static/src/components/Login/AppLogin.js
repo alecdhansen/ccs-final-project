@@ -75,7 +75,7 @@ function AppLogin({ setIsAuth, setState }) {
             />
           </Form.Group>
           <div>
-            <button className="loginbtn" type="submit">
+            <button className="submitbtn" type="submit">
               Submit
             </button>
           </div>

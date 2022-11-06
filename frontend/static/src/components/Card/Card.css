@@ -100,7 +100,7 @@
 .winloss {
   font-size: 12px;
 }
-.gamesubmitbtn {
+.submitbtn {
   padding: 4px 52px;
   margin: 6px 0px 3px 0px;
   border: none;
@@ -111,11 +111,11 @@
   font-weight: 500;
   transition: 0.3s;
 }
-.gamesubmitbtn:hover {
+.submitbtn:hover {
   background-color: #123548;
   transition: 0.3s;
 }
-.gamesubmitbtn:disabled {
+.submitbtn:disabled {
   display: none;
 }
 

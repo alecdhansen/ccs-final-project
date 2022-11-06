@@ -99,7 +99,7 @@ function Register({ setIsAuth, setState }) {
             />
           </Form.Group>
           <button
-            className="loginbtn"
+            className="submitbtn"
             style={{ marginRight: "5px" }}
             onClick={() => {
               window.history.back();
@@ -107,7 +107,7 @@ function Register({ setIsAuth, setState }) {
           >
             Go Back
           </button>
-          <button className="loginbtn" type="submit">
+          <button className="submitbtn" type="submit">
             Submit
           </button>
         </Form>

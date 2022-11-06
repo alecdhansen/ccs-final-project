@@ -1,4 +1,9 @@
+.mainprofilepage {
+  margin-top: 10px;
+}
 .profilebox {
+  display: flex;
+  flex-direction: column;
 }
 .avatarsection {
   display: flex;
@@ -8,9 +13,46 @@
 .avatarbox {
   display: flex;
   justify-content: center;
-  max-width: 80px;
-  max-height: 80px;
+  max-width: 150px;
+  max-height: 150px;
   border-radius: 50%;
-  border: 2px solid #dc5a32;
+  border: 3px solid #dc5a32;
   background-color: #fff;
+  position: absolute;
+}
+.landscape {
+  height: 125px;
+  background-color: red;
+}
+.username {
+  display: flex;
+  justify-content: center;
+  margin-top: 85px;
+  color: #fff;
+  font-size: 40px;
+}
+.remindertag {
+  color: #fff;
+  font-size: 22px;
+  text-align: center;
+  margin-top: 75px;
+}
+.mobiledisclaimer {
+  color: #fff;
+  text-align: start;
+  font-size: 12px;
+}
+.avatarinput {
+  width: 70%;
+}
+.favteaminput {
+  margin-bottom: 30px;
+  width: 70%;
+}
+.handinput {
+  width: 70%;
+}
+.formbtn {
+  background-color: #fff;
+  color: #000;
 }
