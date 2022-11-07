@@ -14,6 +14,7 @@ function Card() {
   const [gameDate, setGameDate] = useState("");
   const [userPick, setUserPick] = useState("");
   const [firstGameTime, setFirstGameTime] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const day = new Date();
   const dd = String(day.getDate()).padStart(2, "0");
@@ -31,20 +32,31 @@ function Card() {
   }, []);
 
   const getTodaysGames = async () => {
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": process.env.REACT_APP_APIKEY,
-        "X-RapidAPI-Host": "nba-schedule.p.rapidapi.com",
-      },
-    };
-    const data = await fetch(
-      `https://nba-schedule.p.rapidapi.com/schedule?date=${currentDay}`,
-      options
-    ).then((response) => response.json());
-    setTodaysGames(data[0].games);
-    setFirstGameTime(data[0].games[0].gameDateTimeEst);
-    setGameDate(moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD"));
+    try {
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key": process.env.REACT_APP_APIKEY,
+          "X-RapidAPI-Host": "nba-schedule.p.rapidapi.com",
+        },
+      };
+      const data = await fetch(
+        `https://nba-schedule.p.rapidapi.com/schedule?date=${currentDay}`,
+        options
+      ).then((response) => response.json());
+      setTodaysGames(data[0].games);
+      setFirstGameTime(data[0].games[0].gameDateTimeEst);
+      setGameDate(
+        moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD")
+      );
+      todaysGames.map((game) => {
+        localStorage.getItem(game.id);
+      });
+    } catch (error) {
+      console.log("Error", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleAwayTeamInput = (e) => {
@@ -79,6 +91,7 @@ function Card() {
       throw new Error("Network response was not OK");
     } else {
       const data = await response.json();
+      localStorage.setItem(`00${gameID}`, userPick);
     }
     const Toast = Swal.mixin({
       toast: true,
@@ -111,6 +124,7 @@ function Card() {
       key={game.gameId}
       onSubmit={handleSubmit}
     >
+      {console.log(game.gameId)}
       <h4 className="gamestatus">{game.gameStatusText}</h4>
       <div className="spanbar"></div>
       <div className="gamebtnhouse">
@@ -165,13 +179,16 @@ function Card() {
         </button>
       </div>
       <div>
-        <button type="submit" className="submitbtn">
-          Submit Pick
-        </button>
+        {localStorage.getItem(game.gameId) ? (
+          "Hi THere"
+        ) : (
+          <button type="submit" className="submitbtn">
+            Submit Pick
+          </button>
+        )}
       </div>
     </form>
   ));
-
   const afterHoursGameListHtml = todaysGames.map((game) => (
     <form
       className="formbox"
@@ -248,19 +265,25 @@ function Card() {
 
   return (
     <>
-      <div className="carddiv">
-        <CountdownTimer targetDate={gameTimeCountDownInMS} />
-      </div>
-      {timeUntilEstGameInMS > 0 ? (
-        <div className="cards col-md-8 offset-md-2 col-10 offset-1 divlist">
-          {gameListHtml}
+      {!loading ? (
+        <div>
+          <div className="carddiv">
+            <CountdownTimer targetDate={gameTimeCountDownInMS} />
+          </div>
+          {timeUntilEstGameInMS > 0 ? (
+            <div className="cards col-md-8 offset-md-2 col-10 offset-1 divlist">
+              {gameListHtml}
+            </div>
+          ) : (
+            <div className="cards col-md-8 offset-md-2 col-10 offset-1 divlist">
+              {afterHoursGameListHtml}
+            </div>
+          )}
+          <div style={{ visibility: "hidden", height: "250px" }}></div>
         </div>
       ) : (
-        <div className="cards col-md-8 offset-md-2 col-10 offset-1 divlist">
-          {afterHoursGameListHtml}
-        </div>
+        <div>loading...</div>
       )}
-      <div style={{ visibility: "hidden", height: "250px" }}></div>
     </>
   );
 }

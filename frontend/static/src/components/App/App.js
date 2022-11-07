@@ -1,13 +1,14 @@
 import "./App.css";
-import { useNavigate, Routes, Route, Link } from "react-router-dom";
+import { useNavigate, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Card from "../Card/Card";
 import Layout from "../Layout/Layout";
 import LoginHome from "../Login/LoginHome";
+import Fof from "./Fof";
 import Register from "../Login/Register";
 import ProfileForm from "../Profile/ProfileForm";
-import Button from "react-bootstrap/Button";
-import ProtectedRoute from "./ProtectedRoute";
+import { ProtectedRoute } from "./ProtectedRoute";
+import { ProtectedLayout } from "./ProtectedLayout";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -22,6 +23,7 @@ function App() {
   useEffect(() => {
     const checkAuth = async () => {
       const response = await fetch("/dj-rest-auth/user/");
+      // debugger;
       if (!response.ok) {
         setIsAuth(false);
       } else {
@@ -35,7 +37,6 @@ function App() {
     <>
       <Routes>
         <Route
-          path="/"
           element={
             <Layout
               isAuth={isAuth}
@@ -46,48 +47,30 @@ function App() {
           }
         >
           <Route
-            index
+            path="/"
             element={<LoginHome setIsAuth={setIsAuth} setState={setState} />}
-          />
-          <Route
-            path="card"
-            element={
-              <ProtectedRoute isAuth={isAuth}>
-                <Card />
-              </ProtectedRoute>
-            }
           />
           <Route
             path="register"
             element={<Register setIsAuth={setIsAuth} setState={setState} />}
           />
+        </Route>
+
+        <Route path="/home/" element={<ProtectedLayout />}>
+          <Route path="card" element={<Card />} />
+
+          <Route path="profile" element={<ProfileForm state={state} />} />
           <Route
-            path="profile"
-            element={
-              <ProtectedRoute isAuth={isAuth}>
-                <ProfileForm state={state} />
-              </ProtectedRoute>
-            }
+            path="leaderboard"
+            element={<p>this will be the leaderboard</p>}
+          />
+          <Route
+            path="headtohead"
+            element={<p>this will be the headtohead</p>}
           />
         </Route>
 
-        <Route
-          path="*"
-          element={
-            <main>
-              <p>there is nothing here! try again! lol!</p>
-              <Link to="card">
-                <Button
-                  onClick={() => {
-                    window.history.back();
-                  }}
-                >
-                  Take me back
-                </Button>
-              </Link>
-            </main>
-          }
-        />
+        <Route path="*" element={<Fof />} />
       </Routes>
     </>
   );

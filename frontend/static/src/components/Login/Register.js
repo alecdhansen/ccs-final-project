@@ -43,7 +43,7 @@ function Register({ setIsAuth, setState }) {
       Cookies.set("Authorization", `Token ${data.key}`);
       await setIsAuth(true);
       localStorage.setItem("state", JSON.stringify(data));
-      navigate("/profile/");
+      navigate("/home/profile/");
     }
   };
   return (

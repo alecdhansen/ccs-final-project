@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
@@ -110,7 +109,7 @@ function ProfileForm({ state }) {
           </button>
         </div>
         <div className="formsbox">
-          <Modal show={show} onHide={handleClose}>
+          <Modal show={show} onHide={handleClose} centered>
             <Modal.Header>
               <Modal.Title>Edit Profile</Modal.Title>
             </Modal.Header>

@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
+import { useAuth } from "../../hooks/useAuth";
 import Form from "react-bootstrap/Form";
 import Cookies from "js-cookie";
 import "./Login.css";
 
-function AppLogin({ setIsAuth, setState }) {
+const AppLogin = () => {
+  const { login } = useAuth();
   const [user, setUser] = useState({ username: "", password: "" });
   const navigate = useNavigate();
 
@@ -43,10 +44,12 @@ function AppLogin({ setIsAuth, setState }) {
       const data = await response.json();
       Cookies.set("Authorization", `Token ${data.key}`);
       delete data.key;
-      await setIsAuth(true);
-      setState(data);
-      localStorage.setItem("state", JSON.stringify(data));
-      navigate("/card/");
+      login(data);
+      // await setIsAuth(true);
+      // setState(data);
+      // // debugger;
+      // localStorage.setItem("state", JSON.stringify(data));
+      // await navigate("/home/card/");
     }
   };
   return (
@@ -83,5 +86,5 @@ function AppLogin({ setIsAuth, setState }) {
       </div>
     </>
   );
-}
+};
 export default AppLogin;

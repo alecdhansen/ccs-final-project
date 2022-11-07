@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "ccs-final-project-alecdhansen.herokuapp.com",
+    "braggem.herokuapp.com",
 ]
 
 

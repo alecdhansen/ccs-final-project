@@ -51,7 +51,7 @@ def test_update_games(self):
                 # hello = game_date_time.strftime("%Y-%m-%d")
                 # print(hello)
 
-                new_game.date = "2022-11-03"
+                new_game.date = "2022-11-05"
                 new_game.home_team = nba_game["homeTeam"]["teamName"]
                 new_game.away_team = nba_game["awayTeam"]["teamName"]
                 new_game.home_team_score = nba_game["homeTeam"]["score"]

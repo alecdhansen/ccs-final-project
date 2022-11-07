@@ -3,7 +3,12 @@ from . import models
 from . import serializers
 
 
-class ProfileListAPIView(generics.RetrieveUpdateAPIView):
+class ProfileListAPIView(generics.ListAPIView):
+    queryset = models.Profile.objects.order_by("id")
+    serializer_class = serializers.ProfileSerializer
+
+
+class ProfileUpdateAPIView(generics.RetrieveUpdateAPIView):
     queryset = models.Profile.objects.order_by("id")
     serializer_class = serializers.ProfileSerializer
 
