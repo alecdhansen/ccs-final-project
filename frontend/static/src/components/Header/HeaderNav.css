@@ -1,6 +1,5 @@
 .mainheader {
   position: relative;
-  /* margin-bottom: 300px; */
 }
 .curvehead {
   height: 100px;
@@ -100,7 +99,9 @@
 .offcanvasheader {
   background-color: var(--navyblue);
 }
-
+.navbtn:focus {
+  outline: 0;
+}
 @media (max-width: 1160px) {
   .navbtn {
     padding: 6px 40px 3px 40px;
@@ -118,6 +119,7 @@
     display: flex;
     justify-content: center;
   }
+
   .navbtn {
     font-size: 40px;
   }

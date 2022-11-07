@@ -30,6 +30,24 @@ def _get_games_json():
         return None
 
 
+def _get_picks_json():
+    url = "/api_v1/picks/"
+    response = requests.request("GET", url)
+    try:
+        response.raise_for_status()
+    except:
+        return None
+
+
+def _get_yestedays_games_json():
+    url = "/api_v1/games/"
+    response = requests.request("GET", url)
+    try:
+        response.raise_for_status()
+    except:
+        return None
+
+
 @api_view(["POST"])
 def test_update_games(self):
     json = _get_games_json()
@@ -40,18 +58,7 @@ def test_update_games(self):
                 new_game = Game()
                 new_game.gameid = nba_game["gameId"]
 
-                # "2022-11-03T00:00:00Z"
-                # game_date = nba_game["gameDateEst"]
-                # datetime_obj = datetime.strptime(game_date, "%Y-%m-%d")
-                # hello = game_date.strftime("%Y-%m-%d")
-                # print(datetime_obj)
-                # split_game_date = game_date.split()
-                # split_game_date = split_game_date[:-1]
-                # game_date_time = " ".join(split_game_date)
-                # hello = game_date_time.strftime("%Y-%m-%d")
-                # print(hello)
-
-                new_game.date = "2022-11-05"
+                new_game.date = "2022-11-06"  # Change the date before posting games!
                 new_game.home_team = nba_game["homeTeam"]["teamName"]
                 new_game.away_team = nba_game["awayTeam"]["teamName"]
                 new_game.home_team_score = nba_game["homeTeam"]["score"]
@@ -67,3 +74,13 @@ def test_update_games(self):
             pass
 
     return Response({"message": "Games created successfully!"})
+
+
+# @api_view(["GET"])
+# def test_validate_picks(self):
+#     json = _get_yestedays_games_json()
+#     pick_json = _get_picks_json()
+#     if pick_json is not None:
+#         try:
+
+#     pass

@@ -30,4 +30,6 @@ class Pick(models.Model):
     gameid = models.IntegerField()
     user_pick = models.CharField(max_length=255)
     date = models.DateField(null=True)
-    pick_correct = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user} picked {self.user_pick} (#{self.gameid} on {self.date})"

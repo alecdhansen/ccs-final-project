@@ -46,7 +46,7 @@ function Register() {
       Cookies.set("Authorization", `Token ${data.key}`);
       // localStorage.setItem("state", JSON.stringify(data));
       login(data);
-      navigate("/home/profile/");
+      navigate("/home/games/");
     }
   };
   return (

@@ -30,6 +30,14 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
 const CountdownTimer = ({ targetDate }) => {
   const [days, hours, minutes, seconds] = useCountdown(targetDate);
 
+  if (!seconds) {
+    return (
+      <div style={{ marginBottom: "30px" }}>
+        calculating time until first game...
+      </div>
+    );
+  }
+
   if (days + hours + minutes + seconds <= 0) {
     return <ExpiredNotice />;
   } else {

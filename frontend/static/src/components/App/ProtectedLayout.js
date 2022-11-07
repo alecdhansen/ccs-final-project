@@ -113,7 +113,7 @@ export const ProtectedLayout = () => {
               </Link>
             </Nav.Item>
             <Nav.Item className="navlink">
-              <Link to={"/home/games/"}>
+              <Link to={"/home/games/"} className="linkto">
                 <button
                   type="button"
                   autoFocus

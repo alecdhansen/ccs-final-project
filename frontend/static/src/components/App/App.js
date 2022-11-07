@@ -7,7 +7,7 @@ import UnprotectedLayout from "./UnprotectedLayout";
 import LoginHome from "../Login/LoginHome";
 import Fof from "./Fof";
 import Register from "../Login/Register";
-import ProfileForm from "../Profile/ProfileForm";
+import ProfilePage from "../Profile/ProfilePage";
 import Leaderboard from "../Leaderboard/LeaderBoard";
 import HeadToHead from "../HeadToHead/HeadToHead";
 
@@ -44,7 +44,7 @@ function App() {
         <Route path="/home" element={<ProtectedLayout />}>
           <Route path="games" element={<Card />} />
 
-          <Route path="profile" element={<ProfileForm />} />
+          <Route path="profile" element={<ProfilePage />} />
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="headtohead" element={<HeadToHead />} />
         </Route>

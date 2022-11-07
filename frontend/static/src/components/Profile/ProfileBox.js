@@ -1,73 +1,26 @@
 import "./Profile.css";
 import "../Card/Card.css";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-//npm
-import Cookies from "js-cookie";
 //Bootstrap
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 //React Icons
 import { AiOutlineEdit } from "react-icons/ai";
 
-function ProfileForm({ state }) {
+function ProfileBox({
+  preview,
+  handleShow,
+  show,
+  handleClose,
+  handleSubmit,
+  handleImage,
+  handleFavoriteTeam,
+  handleHand,
+}) {
   const { user } = useAuth();
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [profile, setProfile] = useState({ avatar: null });
-  const [preview, setPreview] = useState("");
-  const [favoriteTeam, setFavoriteTeam] = useState("");
-  const [hand, setHand] = useState(true);
-  const navigate = useNavigate();
-
-  const handleImage = (e) => {
-    console.dir(e.target);
-    const file = e.target.files[0];
-    setProfile({ ...profile, avatar: file });
-
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreview(reader.result);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleFavoriteTeam = (e) => {
-    console.log(e);
-    setFavoriteTeam(e.target.value);
-  };
-  const handleHand = (e) => {
-    setHand(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("avatar", profile.avatar);
-    formData.append("favorite_team", favoriteTeam);
-    formData.append("right_handed", hand);
-    const options = {
-      method: "PUT",
-      headers: {
-        "X-CSRFToken": Cookies.get("csrftoken"),
-      },
-      body: formData,
-    };
-    const response = await fetch(`/api_v1/user/profile/${user.id}/`, options);
-    if (!response.ok) {
-      throw new Error("Network response was not OK");
-    } else {
-      const data = await response.json();
-      handleClose();
-      navigate("/home/games");
-    }
-  };
-
   return (
-    <main className="row mainprofilepage">
-      <section className="col-md-4 offset-md-1 col-10 offset-1 profilebox">
+    <>
+      <div>
         <div className={`landscape${user.favorite_team}`}>
           <div className="teamimgbox">
             <img
@@ -194,11 +147,8 @@ function ProfileForm({ state }) {
             </Modal.Body>
           </Modal>
         </div>
-      </section>
-      <section className="col-md-5 offset-md-1 col-10 offset-1 statbox">
-        <h2 className="mystatsheader">My Stats</h2>
-      </section>
-    </main>
+      </div>
+    </>
   );
 }
-export default ProfileForm;
+export default ProfileBox;

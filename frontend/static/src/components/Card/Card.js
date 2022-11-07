@@ -15,7 +15,6 @@ function Card() {
   const [gameDate, setGameDate] = useState("");
   const [userPick, setUserPick] = useState("");
   const [firstGameTime, setFirstGameTime] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const day = new Date();
   const dd = String(day.getDate()).padStart(2, "0");
@@ -33,31 +32,20 @@ function Card() {
   }, []);
 
   const getTodaysGames = async () => {
-    try {
-      const options = {
-        method: "GET",
-        headers: {
-          "X-RapidAPI-Key": process.env.REACT_APP_APIKEY,
-          "X-RapidAPI-Host": "nba-schedule.p.rapidapi.com",
-        },
-      };
-      const data = await fetch(
-        `https://nba-schedule.p.rapidapi.com/schedule?date=${currentDay}`,
-        options
-      ).then((response) => response.json());
-      setTodaysGames(data[0].games);
-      setFirstGameTime(data[0].games[0].gameDateTimeEst);
-      setGameDate(
-        moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD")
-      );
-      // todaysGames.map((game) => {
-      //   localStorage.getItem(game.id);
-      // });
-    } catch (error) {
-      console.log("Error", error);
-    } finally {
-      setLoading(false);
-    }
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": process.env.REACT_APP_APIKEY,
+        "X-RapidAPI-Host": "nba-schedule.p.rapidapi.com",
+      },
+    };
+    const data = await fetch(
+      `https://nba-schedule.p.rapidapi.com/schedule?date=${currentDay}`,
+      options
+    ).then((response) => response.json());
+    setTodaysGames(data[0].games);
+    setFirstGameTime(data[0].games[0].gameDateTimeEst);
+    setGameDate(moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD"));
   };
 
   const handleAwayTeamInput = (e) => {
@@ -265,25 +253,21 @@ function Card() {
 
   return (
     <>
-      {!loading ? (
-        <div>
-          <div className="carddiv">
-            <CountdownTimer targetDate={gameTimeCountDownInMS} />
-          </div>
-          {timeUntilEstGameInMS > 0 ? (
-            <div className="cards col-md-8 offset-md-2 col-10 offset-1 divlist">
-              {gameListHtml}
-            </div>
-          ) : (
-            <div className="cards col-md-8 offset-md-2 col-10 offset-1 divlist">
-              {afterHoursGameListHtml}
-            </div>
-          )}
-          <div style={{ visibility: "hidden", height: "250px" }}></div>
+      <div>
+        <div className="carddiv">
+          <CountdownTimer targetDate={gameTimeCountDownInMS} />
         </div>
-      ) : (
-        <div>loading...</div>
-      )}
+        {timeUntilEstGameInMS > 0 ? (
+          <div className="cards col-md-8 offset-md-2 col-10 offset-1 divlist">
+            {gameListHtml}
+          </div>
+        ) : (
+          <div className="cards col-md-8 offset-md-2 col-10 offset-1 divlist">
+            {afterHoursGameListHtml}
+          </div>
+        )}
+        <div style={{ visibility: "hidden", height: "250px" }}></div>
+      </div>
     </>
   );
 }
