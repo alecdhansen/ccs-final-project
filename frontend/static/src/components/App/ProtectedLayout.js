@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { HiOutlineMenu } from "react-icons/hi";
+import Header from "../Header/Header";
 
 export const ProtectedLayout = () => {
   const { user, logout } = useAuth();
@@ -81,6 +82,7 @@ export const ProtectedLayout = () => {
 
   return (
     <>
+      <Header />
       <div className={whoseHandIsItAnywayStyle()}>
         <button className="d-md-none offcanvasopenbtn" onClick={handleShow}>
           <HiOutlineMenu />
@@ -113,7 +115,7 @@ export const ProtectedLayout = () => {
               </Link>
             </Nav.Item>
             <Nav.Item className="navlink">
-              <Link to={"card"}>
+              <Link to={"/home/card/"}>
                 <button
                   type="button"
                   autoFocus

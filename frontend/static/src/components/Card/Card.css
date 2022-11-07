@@ -118,7 +118,10 @@
 .submitbtn:disabled {
   display: none;
 }
-
+.picksubmitted {
+  margin-top: 6px;
+  font-weight: 700;
+}
 .gamebtn:focus {
   border-style: outset;
   border: 5px solid var(--borderyellow);

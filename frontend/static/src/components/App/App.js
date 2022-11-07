@@ -51,21 +51,21 @@ function App() {
             element={<LoginHome setIsAuth={setIsAuth} setState={setState} />}
           />
           <Route
-            path="register"
+            path="/register/"
             element={<Register setIsAuth={setIsAuth} setState={setState} />}
           />
         </Route>
 
-        <Route path="/home/" element={<ProtectedLayout />}>
-          <Route path="card" element={<Card />} />
+        <Route path="home/" element={<ProtectedLayout />}>
+          <Route path="card/" element={<Card />} />
 
           <Route path="profile" element={<ProfileForm state={state} />} />
           <Route
-            path="leaderboard"
+            path="leaderboard/"
             element={<p>this will be the leaderboard</p>}
           />
           <Route
-            path="headtohead"
+            path="headtohead/"
             element={<p>this will be the headtohead</p>}
           />
         </Route>

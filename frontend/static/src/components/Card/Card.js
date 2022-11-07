@@ -49,9 +49,9 @@ function Card() {
       setGameDate(
         moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD")
       );
-      todaysGames.map((game) => {
-        localStorage.getItem(game.id);
-      });
+      // todaysGames.map((game) => {
+      //   localStorage.getItem(game.id);
+      // });
     } catch (error) {
       console.log("Error", error);
     } finally {
@@ -72,7 +72,6 @@ function Card() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("this", e.target);
-    // debugger;
     const formData = new FormData();
     formData.append("gameid", gameID);
     formData.append("date", gameDate);
@@ -180,7 +179,7 @@ function Card() {
       </div>
       <div>
         {localStorage.getItem(game.gameId) ? (
-          "Hi THere"
+          <div className="picksubmitted">Pick submitted!</div>
         ) : (
           <button type="submit" className="submitbtn">
             Submit Pick
