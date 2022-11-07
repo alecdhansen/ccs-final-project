@@ -1,11 +1,12 @@
 import "./Card.css";
 import "../Timer/timer.css";
+import "aos/dist/aos.css";
 import { useState, useEffect } from "react";
+import CountdownTimer from "../Timer/CountdownTimer";
+//npm
 import Cookies from "js-cookie";
 import moment from "moment";
-import CountdownTimer from "../Timer/CountdownTimer";
 import Aos from "aos";
-import "aos/dist/aos.css";
 import Swal from "sweetalert2";
 
 function Card() {

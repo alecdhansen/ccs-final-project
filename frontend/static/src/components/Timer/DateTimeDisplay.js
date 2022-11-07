@@ -1,5 +1,5 @@
-import React from "react";
 import "./timer.css";
+import React from "react";
 
 const DateTimeDisplay = ({ value, type, isDanger }) => {
   return (

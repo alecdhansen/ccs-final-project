@@ -1,10 +1,13 @@
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+//Bootstrap
+import Form from "react-bootstrap/Form";
+//npm
+import Cookies from "js-cookie";
 
-function Register({ setIsAuth, setState }) {
+function Register() {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
@@ -41,77 +44,79 @@ function Register({ setIsAuth, setState }) {
     } else {
       const data = await response.json();
       Cookies.set("Authorization", `Token ${data.key}`);
-      await setIsAuth(true);
-      localStorage.setItem("state", JSON.stringify(data));
+      // localStorage.setItem("state", JSON.stringify(data));
+      login(data);
       navigate("/home/profile/");
     }
   };
   return (
     <>
-      <div className="loginbox col-md-4 offset-md-4 col-10 offset-1">
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="username">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter username"
-              value={user.username}
-              onChange={handleInput}
-              name="username"
-            />
-          </Form.Group>
+      <main className="mainloginscreen">
+        <div className="loginbox col-md-4 offset-md-4 col-10 offset-1">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="username">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter username"
+                value={user.username}
+                onChange={handleInput}
+                name="username"
+              />
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="email">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={user.email}
-              onChange={handleInput}
-              name="email"
-            />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="email">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={user.email}
+                onChange={handleInput}
+                name="email"
+              />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="password1">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              value={user.password1}
-              onChange={handleInput}
-              required
-              name="password1"
-            />
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="password1">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={user.password1}
+                onChange={handleInput}
+                required
+                name="password1"
+              />
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="password2">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Confirm Password"
-              value={user.password2}
-              onChange={handleInput}
-              required
-              name="password2"
-            />
-          </Form.Group>
-          <button
-            className="submitbtn"
-            style={{ marginRight: "5px" }}
-            onClick={() => {
-              window.history.back();
-            }}
-          >
-            Go Back
-          </button>
-          <button className="submitbtn" type="submit">
-            Submit
-          </button>
-        </Form>
-      </div>
+            <Form.Group className="mb-3" controlId="password2">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Confirm Password"
+                value={user.password2}
+                onChange={handleInput}
+                required
+                name="password2"
+              />
+            </Form.Group>
+            <button
+              className="submitbtn"
+              style={{ marginRight: "5px" }}
+              onClick={() => {
+                window.history.back();
+              }}
+            >
+              Go Back
+            </button>
+            <button className="submitbtn" type="submit">
+              Submit
+            </button>
+          </Form>
+        </div>
+      </main>
     </>
   );
 }

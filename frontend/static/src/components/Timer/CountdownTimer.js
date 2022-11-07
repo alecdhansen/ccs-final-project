@@ -1,7 +1,7 @@
+import "./timer.css";
 import React from "react";
 import useCountdown from "./Countdown";
 import DateTimeDisplay from "./DateTimeDisplay";
-import "./timer.css";
 
 const ExpiredNotice = () => {
   return (

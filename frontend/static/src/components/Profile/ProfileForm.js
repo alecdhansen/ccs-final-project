@@ -1,13 +1,18 @@
-import { useState } from "react";
-import Cookies from "js-cookie";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
-import { useNavigate } from "react-router-dom";
-import { AiOutlineEdit } from "react-icons/ai";
 import "./Profile.css";
 import "../Card/Card.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+//npm
+import Cookies from "js-cookie";
+//Bootstrap
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+//React Icons
+import { AiOutlineEdit } from "react-icons/ai";
 
 function ProfileForm({ state }) {
+  const { user } = useAuth();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -50,23 +55,23 @@ function ProfileForm({ state }) {
       },
       body: formData,
     };
-    const response = await fetch(`/api_v1/user/profile/${state.id}/`, options);
+    const response = await fetch(`/api_v1/user/profile/${user.id}/`, options);
     if (!response.ok) {
       throw new Error("Network response was not OK");
     } else {
       const data = await response.json();
       handleClose();
-      navigate("/card");
+      navigate("/home/games");
     }
   };
 
   return (
     <main className="row mainprofilepage">
       <section className="col-md-4 offset-md-1 col-10 offset-1 profilebox">
-        <div className={`landscape${state?.favorite_team}`}>
+        <div className={`landscape${user.favorite_team}`}>
           <div className="teamimgbox">
             <img
-              src={require(`../../media/${state?.favorite_team}.png`)}
+              src={require(`../../media/${user.favorite_team}.png`)}
               style={{ width: "100%" }}
             ></img>
           </div>
@@ -90,7 +95,7 @@ function ProfileForm({ state }) {
           <div className="avatarsection">
             <div className="avatarbox">
               <img
-                src={state.avatar}
+                src={user.avatar}
                 alt=""
                 style={{
                   width: "100%",
@@ -103,7 +108,7 @@ function ProfileForm({ state }) {
           </div>
         )}
         <div className="usernameedit">
-          <h4 className="username">{state?.username}</h4>
+          <h4 className="username">{user.username}</h4>
           <button className="editbtn" onClick={handleShow}>
             <AiOutlineEdit />
           </button>

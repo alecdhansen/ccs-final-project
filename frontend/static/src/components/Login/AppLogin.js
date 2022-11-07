@@ -1,9 +1,11 @@
+import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+//Bootstrap
 import Form from "react-bootstrap/Form";
+//npm
 import Cookies from "js-cookie";
-import "./Login.css";
 
 const AppLogin = () => {
   const { login } = useAuth();
@@ -47,9 +49,8 @@ const AppLogin = () => {
       login(data);
       // await setIsAuth(true);
       // setState(data);
-      // // debugger;
       // localStorage.setItem("state", JSON.stringify(data));
-      // await navigate("/home/card/");
+      // await navigate("/home/games/");
     }
   };
   return (

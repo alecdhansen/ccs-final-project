@@ -4,7 +4,7 @@ function Header() {
   return (
     <div className="mainheader">
       <div className="curvehead col-10 offset-1">
-        <div className="circle">hello</div>
+        <div className="circle"></div>
         <h2 className="headertitle">Braggem</h2>
       </div>
     </div>

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import "./timer.css";
+import { useEffect, useState } from "react";
 
 const useCountdown = (targetDate) => {
   const countDownDate = new Date(targetDate).getTime();

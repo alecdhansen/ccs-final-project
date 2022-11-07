@@ -1,5 +1,6 @@
 .mainheader {
   position: relative;
+  /* margin-bottom: 300px; */
 }
 .curvehead {
   height: 100px;
@@ -137,10 +138,3 @@
     padding-bottom: 30px;
   }
 }
-/* const whoseHandIsItAnyway = () => {
-  if (state.right_handed) {
-    return "end";
-  } else {
-    return "start";
-  }
-}; */

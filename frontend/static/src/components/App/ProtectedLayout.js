@@ -1,13 +1,16 @@
-import { Link, Navigate, useOutlet, useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
-import Nav from "react-bootstrap/Nav";
-import Cookies from "js-cookie";
 import "../Header/HeaderNav.css";
-import Swal from "sweetalert2";
+import { Link, useOutlet, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
-import Offcanvas from "react-bootstrap/Offcanvas";
-import { HiOutlineMenu } from "react-icons/hi";
 import Header from "../Header/Header";
+//Bootstrap
+import Nav from "react-bootstrap/Nav";
+import Offcanvas from "react-bootstrap/Offcanvas";
+//Npm
+import Cookies from "js-cookie";
+import Swal from "sweetalert2";
+//React Icons
+import { HiOutlineMenu } from "react-icons/hi";
 
 export const ProtectedLayout = () => {
   const { user, logout } = useAuth();
@@ -15,7 +18,7 @@ export const ProtectedLayout = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const navigate = useNavigate();
+  const Navigate = useNavigate();
   const handleError = (err) => {
     console.warn(err);
   };
@@ -36,10 +39,6 @@ export const ProtectedLayout = () => {
     } else {
       const data = await response.json();
       Cookies.remove("Authorization", `Token${" "}${data.key}`);
-      //   document.cookie =
-      //     "sessionid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      //   localStorage.clear();
-      //   await setIsAuth(false);
       const Toast = Swal.mixin({
         toast: true,
         position: "bottom-end",
@@ -56,7 +55,6 @@ export const ProtectedLayout = () => {
         title: "You are now logged out.",
       });
       handleClose();
-      //   navigate("/");
     }
     logout();
   };
@@ -115,7 +113,7 @@ export const ProtectedLayout = () => {
               </Link>
             </Nav.Item>
             <Nav.Item className="navlink">
-              <Link to={"/home/card/"}>
+              <Link to={"/home/games/"}>
                 <button
                   type="button"
                   autoFocus

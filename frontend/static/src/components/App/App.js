@@ -1,14 +1,15 @@
 import "./App.css";
 import { useNavigate, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { ProtectedLayout } from "./ProtectedLayout";
 import Card from "../Card/Card";
-import Layout from "../Layout/Layout";
+import UnprotectedLayout from "./UnprotectedLayout";
 import LoginHome from "../Login/LoginHome";
 import Fof from "./Fof";
 import Register from "../Login/Register";
 import ProfileForm from "../Profile/ProfileForm";
-import { ProtectedRoute } from "./ProtectedRoute";
-import { ProtectedLayout } from "./ProtectedLayout";
+import Leaderboard from "../Leaderboard/LeaderBoard";
+import HeadToHead from "../HeadToHead/HeadToHead";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -23,7 +24,6 @@ function App() {
   useEffect(() => {
     const checkAuth = async () => {
       const response = await fetch("/dj-rest-auth/user/");
-      // debugger;
       if (!response.ok) {
         setIsAuth(false);
       } else {
@@ -36,38 +36,17 @@ function App() {
   return (
     <>
       <Routes>
-        <Route
-          element={
-            <Layout
-              isAuth={isAuth}
-              setIsAuth={setIsAuth}
-              state={state}
-              setState={setState}
-            />
-          }
-        >
-          <Route
-            path="/"
-            element={<LoginHome setIsAuth={setIsAuth} setState={setState} />}
-          />
-          <Route
-            path="/register/"
-            element={<Register setIsAuth={setIsAuth} setState={setState} />}
-          />
+        <Route element={<UnprotectedLayout />}>
+          <Route path="/" element={<LoginHome />} />
+          <Route path="/register" element={<Register />} />
         </Route>
 
-        <Route path="home/" element={<ProtectedLayout />}>
-          <Route path="card/" element={<Card />} />
+        <Route path="/home" element={<ProtectedLayout />}>
+          <Route path="games" element={<Card />} />
 
-          <Route path="profile" element={<ProfileForm state={state} />} />
-          <Route
-            path="leaderboard/"
-            element={<p>this will be the leaderboard</p>}
-          />
-          <Route
-            path="headtohead/"
-            element={<p>this will be the headtohead</p>}
-          />
+          <Route path="profile" element={<ProfileForm />} />
+          <Route path="leaderboard" element={<Leaderboard />} />
+          <Route path="headtohead" element={<HeadToHead />} />
         </Route>
 
         <Route path="*" element={<Fof />} />
