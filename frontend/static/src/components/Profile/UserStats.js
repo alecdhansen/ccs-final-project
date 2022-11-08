@@ -11,7 +11,7 @@ function UserStats() {
 
   useEffect(() => {
     getYesterdaysPicks();
-    // getLifetimePicks();
+    getLifetimePicks();
   }, []);
 
   const getYesterdaysPicks = async () => {
@@ -26,16 +26,16 @@ function UserStats() {
   };
   console.log({ yesterdaysPicks });
 
-  // const getLifetimePicks = async () => {
-  //   const response = await fetch("/api_v1/picks/lifetime/").catch(handleError);
-  //   if (!response.ok) {
-  //     throw new Error("Network response not OK");
-  //   } else {
-  //     const data = await response.json();
-  //     setLifetimePicks(data);
-  //     console.log(data);
-  //   }
-  // };
+  const getLifetimePicks = async () => {
+    const response = await fetch("/api_v1/picks/lifetime/").catch(handleError);
+    if (!response.ok) {
+      throw new Error("Network response not OK");
+    } else {
+      const data = await response.json();
+      setLifetimePicks(data);
+      console.log(data);
+    }
+  };
 
   const date = new Date();
   const yesterday = date.setDate(date.getDate() - 1);
@@ -52,12 +52,17 @@ function UserStats() {
   const incorrectGuesses = getOccurrence(yesterdayWinLoss, false);
   const totalGuesses = correctGuesses + incorrectGuesses;
   const guessPercentage = ((correctGuesses / totalGuesses) * 100).toFixed(0);
-  const correctGuessString = correctGuesses.toString();
-  const incorrectGuessString = incorrectGuesses.toString();
-  const totalGuessesString = totalGuesses.toString();
-  const guessPercentageString = guessPercentage.toString();
 
   // Lifetime Win/Loss
+  const lifetimeWinLoss = lifetimePicks.map((pick) => pick.is_correct);
+  const lifetimeCorrectGuesses = getOccurrence(lifetimeWinLoss, true);
+  const lifetimeIncorrectGuesses = getOccurrence(lifetimeWinLoss, false);
+  const lifetimeTotalGuesses =
+    lifetimeCorrectGuesses + lifetimeIncorrectGuesses;
+  const lifetimeGuessPercentage = (
+    (lifetimeCorrectGuesses / lifetimeTotalGuesses) *
+    100
+  ).toFixed(0);
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -65,27 +70,27 @@ function UserStats() {
         <h2 className="mystatsheader">Yesterday, {yesterdaysDate}</h2>
         <div className="yesterday">
           <div className="guesstitles">
-            <span className="spanlabels">Correct Guesses</span>
-            <span className="spanlabels">Total Guesses</span>
+            <span className="spanlabels">Correct Picks</span>
+            <span className="spanlabels">Games</span>
             <span className="spanlabels">Percentage Correct</span>
           </div>
           <div className="guessnumbers">
-            <span>{correctGuessString}</span>
-            <span>{totalGuessesString}</span>
+            <span>{correctGuesses}</span>
+            <span>{totalGuesses}</span>
             <span>{guessPercentage}%</span>
           </div>
         </div>
         <h2 className="mystatsheader">Lifetime Stats</h2>
         <div className="lifetime">
           <div className="guesstitles">
-            <span className="spanlabels">Correct Guesses</span>
-            <span className="spanlabels">Total Guesses</span>
+            <span className="spanlabels">Correct Picks</span>
+            <span className="spanlabels">Games</span>
             <span className="spanlabels">Percentage Correct</span>
           </div>
           <div className="guessnumbers">
-            <span>{correctGuessString}</span>
-            <span>{totalGuessesString}</span>
-            <span>{guessPercentage}%</span>
+            <span>{lifetimeCorrectGuesses}</span>
+            <span>{lifetimeTotalGuesses}</span>
+            <span>{lifetimeGuessPercentage}%</span>
           </div>
         </div>
       </div>

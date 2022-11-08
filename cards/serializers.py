@@ -31,9 +31,13 @@ class PickSerializer(serializers.ModelSerializer):
             return "No Game Result!"
 
 
-class UserSerializer(serializers.ModelSerializer):
+# after this!!!!!
+
+
+class PlayerSerializer(serializers.ModelSerializer):
     total_correct_picks = serializers.SerializerMethodField()
     total_picks = serializers.SerializerMethodField()
+    percentage = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -41,18 +45,8 @@ class UserSerializer(serializers.ModelSerializer):
             "username",
             "total_correct_picks",
             "total_picks",
+            "percentage",
         )
-
-    def get_total_picks(self, obj):
-        picks = Pick.objects.filter(user=obj)
-        pick_count = 0
-        for pick in picks:
-            try:
-                Game.objects.get(gameid=pick.gameid)
-                pick_count += 1
-            except:
-                None
-        return pick_count
 
     def get_total_correct_picks(self, obj):
         picks = Pick.objects.filter(user=obj)
@@ -65,3 +59,28 @@ class UserSerializer(serializers.ModelSerializer):
             except:
                 None
         return correct_count
+
+    def get_total_picks(self, obj):
+        picks = Pick.objects.filter(user=obj)
+        pick_count = 0
+        for pick in picks:
+            try:
+                Game.objects.get(gameid=pick.gameid)
+                pick_count += 1
+            except:
+                None
+        return pick_count
+
+    def get_percentage(self, obj):
+
+        correct_picks = PlayerSerializer.get_total_correct_picks(self, obj)
+        total_picks = PlayerSerializer.get_total_picks(self, obj)
+
+        if total_picks == 0 or total_picks == 0:
+            return None
+        else:
+            percentage = correct_picks / total_picks
+
+        print(percentage)
+
+        return percentage

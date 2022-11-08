@@ -3,11 +3,14 @@
 }
 .curvehead {
   height: 100px;
-  background-color: #dc5a32;
+  /* here */
+  background-color: #30618c;
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
   border-style: groove;
-  border: 3px solid #bd4a27;
+  /* here */
+  border: 3px solid #20425f;
+  border-top: none;
   top: 0;
   z-index: 20;
   padding: 0px;
@@ -23,6 +26,14 @@
   color: rgb(236, 236, 236);
   z-index: 20;
 }
+.courtlogo {
+  position: absolute;
+  z-index: 50;
+  width: 150px;
+  right: 18%;
+  top: -75%;
+  opacity: 0.8;
+}
 .circle {
   border: 3px solid #05192357;
   border-radius: 50%;
@@ -31,7 +42,8 @@
   width: 300px;
   z-index: 10;
   margin-bottom: 10px;
-  background-color: #af492a;
+  /* here */
+  background-color: #25374f;
 }
 .navheader {
   display: flex;
@@ -58,7 +70,8 @@
   border-bottom-right-radius: 5px;
 }
 .navbtn:focus {
-  border-bottom: 3px solid #dc5a32;
+  /* here */
+  border-bottom: 3px solid #30618c;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   border-bottom-left-radius: 0%;
@@ -139,4 +152,26 @@
     order: 5;
     padding-bottom: 30px;
   }
+}
+@media (max-width: 1080px) {
+  .courtlogo {
+    display: none;
+  }
+}
+/* NBA THEMES  */
+.curveheadCLE {
+  background-color: #860038;
+  border: 3px solid #5e0027;
+}
+.circleCLE {
+  border: 3px solid #5e0027;
+  background-color: #041e42;
+}
+.curveheadCHI {
+  background-color: #000000;
+  border: 3px solid #181818;
+}
+.circleCHI {
+  border: 3px solid #181818;
+  background-color: #ce1141;
 }

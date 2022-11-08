@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./useLocalStorage";
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children, setFavoriteTeam, setPreview }) => {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage("user", null);
   const navigate = useNavigate();
 
@@ -19,11 +19,17 @@ export const AuthProvider = ({ children, setFavoriteTeam, setPreview }) => {
     navigate("/", { replace: true });
   };
 
+  const refreshUser = (data) => {
+    setUser(data);
+    navigate("/home/profile");
+  };
+
   const value = useMemo(
     () => ({
       user,
       login,
       logout,
+      refreshUser,
     }),
     [user]
   );

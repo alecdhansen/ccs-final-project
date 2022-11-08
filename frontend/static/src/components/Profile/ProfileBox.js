@@ -13,7 +13,7 @@ import Cookies from "js-cookie";
 import moment from "moment";
 
 function ProfileBox() {
-  const { user } = useAuth();
+  const { user, refreshUser } = useAuth();
   const [profile, setProfile] = useState({ avatar: null });
   const [preview, setPreview] = useState("");
   const [favoriteTeam, setFavoriteTeam] = useState("");
@@ -49,6 +49,7 @@ function ProfileBox() {
     formData.append("avatar", profile.avatar);
     formData.append("favorite_team", favoriteTeam);
     formData.append("right_handed", hand);
+    formData.append("profile_id", user.profile_id);
     const options = {
       method: "PATCH",
       headers: {
@@ -56,17 +57,13 @@ function ProfileBox() {
       },
       body: formData,
     };
-
-    const response = await fetch(
-      `/api_v1/user/profile/${user.profile_id}/`,
-      options
-    );
+    const response = await fetch(`/api_v1/user/profile/${user.user}/`, options);
     if (!response.ok) {
       throw new Error("Network response was not OK");
     } else {
       const data = await response.json();
+      refreshUser(data);
       handleClose();
-      navigate("/home/games");
     }
   };
 
