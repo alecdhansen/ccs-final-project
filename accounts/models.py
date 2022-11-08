@@ -85,6 +85,8 @@ class Profile(models.Model):
         default=NBA,
     )
     right_handed = models.BooleanField(default=True)
+    correct_guesses = models.IntegerField(null=True)
+    incorrect_guesses = models.IntegerField(null=True)
 
     def __str__(self):
         return self.user.username

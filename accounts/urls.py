@@ -1,9 +1,14 @@
 from django.urls import path
-from .views import ProfileListAPIView, ProfileUpdateAPIView
+from . import views
 
 app_name = "accounts"
 
 urlpatterns = [
-    path("user/profile/", ProfileListAPIView.as_view(), name="all_profiles"),
-    path("user/profile/<int:pk>/", ProfileUpdateAPIView.as_view(), name="profile_list"),
+    path("user/", views.UserListAPIView.as_view(), name="all_profiles"),
+    path("user/profile/", views.ProfileListAPIView.as_view(), name="all_profiles"),
+    path(
+        "user/profile/<int:pk>/",
+        views.ProfileUpdateAPIView.as_view(),
+        name="profile_list",
+    ),
 ]

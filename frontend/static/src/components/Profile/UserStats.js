@@ -2,27 +2,40 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 
 function UserStats() {
-  const [userPicks, setUserPicks] = useState([]);
+  const [yesterdaysPicks, setYesterdaysPicks] = useState([]);
+  const [lifetimePicks, setLifetimePicks] = useState([]);
 
   const handleError = (err) => {
     console.warn(err);
   };
 
   useEffect(() => {
-    getUserPicks();
+    getYesterdaysPicks();
+    // getLifetimePicks();
   }, []);
 
-  const getUserPicks = async () => {
+  const getYesterdaysPicks = async () => {
     const response = await fetch("/api_v1/picks/").catch(handleError);
     if (!response.ok) {
       throw new Error("Network response not OK");
     } else {
       const data = await response.json();
-      setUserPicks(data);
+      setYesterdaysPicks(data);
       console.log(data);
     }
   };
-  console.log({ userPicks });
+  console.log({ yesterdaysPicks });
+
+  // const getLifetimePicks = async () => {
+  //   const response = await fetch("/api_v1/picks/lifetime/").catch(handleError);
+  //   if (!response.ok) {
+  //     throw new Error("Network response not OK");
+  //   } else {
+  //     const data = await response.json();
+  //     setLifetimePicks(data);
+  //     console.log(data);
+  //   }
+  // };
 
   const date = new Date();
   const yesterday = date.setDate(date.getDate() - 1);
@@ -31,18 +44,20 @@ function UserStats() {
   const getOccurrence = (array, value) => {
     return array.filter((v) => v === value).length;
   };
-  const winLoss = userPicks.map((pick) => pick.is_correct);
-  // console.log({ winLoss });
-  const correctGuesses = getOccurrence(winLoss, true);
-  const incorrectGuesses = getOccurrence(winLoss, false);
+
+  // Yesterday's Win/Loss
+  const yesterdayWinLoss = yesterdaysPicks.map((pick) => pick.is_correct);
+  console.log({ yesterdayWinLoss });
+  const correctGuesses = getOccurrence(yesterdayWinLoss, true);
+  const incorrectGuesses = getOccurrence(yesterdayWinLoss, false);
   const totalGuesses = correctGuesses + incorrectGuesses;
-  const guessPercentage = (correctGuesses / totalGuesses) * 100;
-  // console.log({ correctGuesses });
-  // console.log({ incorrectGuesses });
+  const guessPercentage = ((correctGuesses / totalGuesses) * 100).toFixed(0);
   const correctGuessString = correctGuesses.toString();
   const incorrectGuessString = incorrectGuesses.toString();
   const totalGuessesString = totalGuesses.toString();
   const guessPercentageString = guessPercentage.toString();
+
+  // Lifetime Win/Loss
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>

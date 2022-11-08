@@ -18,5 +18,15 @@ urlpatterns = [
         name="yesterdays_pick_list",
     ),
     path("picks/current/", views.CurrentDayPickAPIView.as_view(), name="pick_list"),
+    path(
+        "picks/lifetime/",
+        views.LifeTimePickAPIView.as_view(),
+        name="lifetime_pick_list",
+    ),
+    path(
+        "picks/stats/",
+        views.AllUsersPicksAPIView.as_view(),
+        name="all_users_pick_list",
+    ),
 ]
 # print(f'Hello {name}! This is {program}')

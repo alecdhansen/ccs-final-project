@@ -58,7 +58,7 @@ def test_update_games(self):
                 new_game = Game()
                 new_game.gameid = nba_game["gameId"]
 
-                new_game.date = "2022-11-06"  # Change the date before posting games!
+                new_game.date = "2022-11-07"  # Change the date to yesterday's date before posting games!
                 new_game.home_team = nba_game["homeTeam"]["teamName"]
                 new_game.away_team = nba_game["awayTeam"]["teamName"]
                 new_game.home_team_score = nba_game["homeTeam"]["score"]

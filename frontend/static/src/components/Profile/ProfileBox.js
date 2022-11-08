@@ -1,23 +1,78 @@
 import "./Profile.css";
 import "../Card/Card.css";
 import { useAuth } from "../../hooks/useAuth";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 //Bootstrap
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 //React Icons
 import { AiOutlineEdit } from "react-icons/ai";
+//npm
+import Cookies from "js-cookie";
+import moment from "moment";
 
-function ProfileBox({
-  preview,
-  handleShow,
-  show,
-  handleClose,
-  handleSubmit,
-  handleImage,
-  handleFavoriteTeam,
-  handleHand,
-}) {
+function ProfileBox() {
   const { user } = useAuth();
+  const [profile, setProfile] = useState({ avatar: null });
+  const [preview, setPreview] = useState("");
+  const [favoriteTeam, setFavoriteTeam] = useState("");
+  const [hand, setHand] = useState(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+
+  const handleImage = (e) => {
+    console.dir(e.target);
+    const file = e.target.files[0];
+    setProfile({ ...profile, avatar: file });
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreview(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleFavoriteTeam = (e) => {
+    console.log(e);
+    setFavoriteTeam(e.target.value);
+  };
+  const handleHand = (e) => {
+    setHand(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("avatar", profile.avatar);
+    formData.append("favorite_team", favoriteTeam);
+    formData.append("right_handed", hand);
+    const options = {
+      method: "PATCH",
+      headers: {
+        "X-CSRFToken": Cookies.get("csrftoken"),
+      },
+      body: formData,
+    };
+
+    const response = await fetch(
+      `/api_v1/user/profile/${user.profile_id}/`,
+      options
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not OK");
+    } else {
+      const data = await response.json();
+      handleClose();
+      navigate("/home/games");
+    }
+  };
+
+  const initialSignUpDate = user.date_joined;
+  const dateJoined = moment(initialSignUpDate).format("MMM YYYY");
+
   return (
     <>
       <div>
@@ -66,6 +121,7 @@ function ProfileBox({
             <AiOutlineEdit />
           </button>
         </div>
+        <span className="datejoined">User since {dateJoined}</span>
         <div className="formsbox">
           <Modal show={show} onHide={handleClose} centered>
             <Modal.Header>

@@ -49,14 +49,6 @@ function Card() {
     setGameDate(moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD"));
   };
 
-  if (!todaysGames) {
-    return (
-      <div style={{ color: "white" }}>
-        aw shit, there's no games today, check back tomorrow!
-      </div>
-    );
-  }
-
   const handleAwayTeamInput = (e) => {
     setUserPick(e.target.value);
     setGameID(parseInt(e.target.id));
@@ -110,14 +102,14 @@ function Card() {
     setUserPick("");
   };
 
-  // useEffect(() => {
-  //   Aos.init({ duration: 1000 });
-  // }, []);
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
 
   const gameListHtml = todaysGames.map((game) => (
     <form
       className="formbox"
-      // data-aos="zoom-in"
+      data-aos="zoom-in"
       key={game.gameId}
       onSubmit={handleSubmit}
     >
@@ -194,7 +186,7 @@ function Card() {
   const afterHoursGameListHtml = todaysGames.map((game) => (
     <form
       className="formbox"
-      // data-aos="zoom-in"
+      data-aos="zoom-in"
       key={game.gameId}
       onSubmit={handleSubmit}
     >
