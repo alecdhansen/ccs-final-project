@@ -17,6 +17,6 @@ urlpatterns = [
         views.PreviousDayPickAPIView.as_view(),
         name="yesterdays_pick_list",
     ),
-    # path("picks/current/", views.CurrentDayPickAPIView.as_view(), name="pick_list"),
+    path("picks/current/", views.CurrentDayPickAPIView.as_view(), name="pick_list"),
 ]
 # print(f'Hello {name}! This is {program}')

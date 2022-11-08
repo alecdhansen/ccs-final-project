@@ -136,7 +136,11 @@ function ProfileBox({
                   *This allows us to optimize your mobile experience
                 </div>
                 <div className="editsubmitbtns">
-                  <button className="submitbtn sb2" onClick={handleClose}>
+                  <button
+                    className="submitbtn sb2"
+                    type="button"
+                    onClick={handleClose}
+                  >
                     Close
                   </button>
                   <button className="submitbtn sb2" type="submit">

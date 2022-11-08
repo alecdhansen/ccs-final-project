@@ -8,6 +8,7 @@ from .models import Game, Pick
 from .serializers import GameSerializer, PickSerializer
 from datetime import date, datetime, timedelta
 import pytz
+import operator
 
 
 # Create your views here.
@@ -28,13 +29,13 @@ class GameAPIView(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
 
-# class CurrentDayPickAPIView(generics.ListCreateAPIView):
-#     serializer_class = PickSerializer
-#     permission_classes = (IsAuthenticated,)
-#     queryset = Pick.objects.filter(date=todays_date)
+class CurrentDayPickAPIView(generics.ListCreateAPIView):
+    serializer_class = PickSerializer
+    permission_classes = (IsAuthenticated,)
+    queryset = Pick.objects.filter(date=todays_date)
 
-#     def perform_create(self, serializer):
-#         serializer.save(user=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class PreviousDayPickAPIView(generics.ListAPIView):
@@ -45,7 +46,4 @@ class PreviousDayPickAPIView(generics.ListAPIView):
         return Pick.objects.filter(Q(date=yesterdays_date) & Q(user=self.request.user))
 
 
-# class UserPreviousDayPickAPIView(generics.ListAPIView):
-#     serializer_class = PickSerializer
-#     permission_classes = (IsAuthenticatedOrReadOnly,)
-#     queryset = Pick.objects.filter(date=yesterdays_date | user=self.request.user)
+# Q(date=operator.not_(todays_date)) & Q(user=self.request.user)

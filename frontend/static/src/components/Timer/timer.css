@@ -1,9 +1,10 @@
 .expired-notice {
   text-align: center;
-  padding: 2rem;
+  padding: 0px;
   border-radius: 0.25rem;
   margin: 0.5rem;
-  margin-top: 30px;
+  top: 0%;
+  position: absolute;
 }
 
 .expired-notice > span {

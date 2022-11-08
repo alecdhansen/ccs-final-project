@@ -21,6 +21,7 @@ function Card() {
   const mm = String(day.getMonth() + 1).padStart(2, "0");
   const yyyy = day.getFullYear();
   const currentDay = dd + "-" + mm + "-" + yyyy;
+
   console.log("today's date is", currentDay);
 
   const handleError = (err) => {
@@ -40,13 +41,21 @@ function Card() {
       },
     };
     const data = await fetch(
-      `https://nba-schedule.p.rapidapi.com/schedule?date=${currentDay}`,
+      "https://nba-schedule.p.rapidapi.com/schedule?date=09-11-2022",
       options
     ).then((response) => response.json());
     setTodaysGames(data[0].games);
     setFirstGameTime(data[0].games[0].gameDateTimeEst);
     setGameDate(moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD"));
   };
+
+  if (!todaysGames) {
+    return (
+      <div style={{ color: "white" }}>
+        aw shit, there's no games today, check back tomorrow!
+      </div>
+    );
+  }
 
   const handleAwayTeamInput = (e) => {
     setUserPick(e.target.value);
@@ -101,19 +110,21 @@ function Card() {
     setUserPick("");
   };
 
-  useEffect(() => {
-    Aos.init({ duration: 1000 });
-  }, []);
+  // useEffect(() => {
+  //   Aos.init({ duration: 1000 });
+  // }, []);
 
   const gameListHtml = todaysGames.map((game) => (
     <form
       className="formbox"
-      data-aos="zoom-in"
+      // data-aos="zoom-in"
       key={game.gameId}
       onSubmit={handleSubmit}
     >
       {console.log(game.gameId)}
-      <h4 className="gamestatus">{game.gameStatusText}</h4>
+      <h4 className="gamestatus">
+        {game.day}, {game.gameStatusText}
+      </h4>
       <div className="spanbar"></div>
       <div className="gamebtnhouse">
         <button
@@ -177,14 +188,19 @@ function Card() {
       </div>
     </form>
   ));
+
+  console.log({ todaysGames });
+
   const afterHoursGameListHtml = todaysGames.map((game) => (
     <form
       className="formbox"
-      data-aos="zoom-in"
+      // data-aos="zoom-in"
       key={game.gameId}
       onSubmit={handleSubmit}
     >
-      <h4 className="gamestatus">{game.gameStatusText}</h4>
+      <h4 className="gamestatus">
+        {game.day}, {game.gameStatusText}
+      </h4>
       <div className="spanbar"></div>
       <div className="gamebtnhouse">
         <button
