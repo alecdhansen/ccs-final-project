@@ -70,3 +70,26 @@
   position: sticky;
   top: 5%;
 }
+
+@media (max-width: 400px) {
+  .carddiv {
+    top: 8%;
+    padding: 0px;
+    justify-content: center;
+  }
+  .mobilenav {
+    height: 80px;
+    z-index: 20;
+  }
+}
+
+@media (max-width: 768px) {
+  .carddiv {
+    top: 8%;
+    padding: 0px;
+    justify-content: center;
+  }
+  .navheader {
+    margin: 0px;
+  }
+}

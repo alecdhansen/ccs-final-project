@@ -118,14 +118,14 @@ function Card() {
         {game.day}, {game.gameStatusText}
       </h4>
       <div className="spanbar"></div>
-      <div className="gamebtnhouse">
+      <div className="gamebtnhouse row">
         <button
           type="button"
           id={game.gameId}
           name="awayTeam"
           onClick={handleAwayTeamInput}
           value={game.awayTeam.teamName}
-          className={`gamebtn${game.awayTeam.teamTricode} gamebtn`}
+          className={`gamebtn${game.awayTeam.teamTricode} gamebtn col-12`}
         >
           <div className="imghouse">
             {" "}
@@ -150,7 +150,7 @@ function Card() {
           name="homeTeam"
           onClick={handleHomeTeamInput}
           value={game.homeTeam.teamName}
-          className={`gamebtn${game.homeTeam.teamTricode} gamebtn`}
+          className={`gamebtn${game.homeTeam.teamTricode} gamebtn col-12`}
         >
           <div className="imghouse">
             <img
@@ -194,7 +194,7 @@ function Card() {
         {game.day}, {game.gameStatusText}
       </h4>
       <div className="spanbar"></div>
-      <div className="gamebtnhouse">
+      <div className="gamebtnhouse row">
         <button
           disabled
           type="button"
@@ -202,7 +202,7 @@ function Card() {
           name="awayTeam"
           onClick={handleAwayTeamInput}
           value={game.awayTeam.teamName}
-          className={`gamebtn${game.awayTeam.teamTricode} gamebtn`}
+          className={`gamebtn${game.awayTeam.teamTricode} gamebtn col-12`}
         >
           <div className="imghouse">
             {" "}
@@ -228,7 +228,7 @@ function Card() {
           name="homeTeam"
           onClick={handleHomeTeamInput}
           value={game.homeTeam.teamName}
-          className={`gamebtn${game.homeTeam.teamTricode} gamebtn`}
+          className={`gamebtn${game.homeTeam.teamTricode} gamebtn col-12`}
         >
           <div className="imghouse">
             <img
@@ -261,20 +261,20 @@ function Card() {
 
   return (
     <>
-      <div>
+      <div className="row">
         <div className="carddiv">
           <CountdownTimer targetDate={gameTimeCountDownInMS} />
         </div>
         {timeUntilEstGameInMS > 0 ? (
-          <div className="cards col-md-8 offset-md-2 col-10 offset-1 divlist">
+          <div className="cards col-md-10 offset-md-1 col-12">
             {gameListHtml}
           </div>
         ) : (
-          <div className="cards col-md-8 offset-md-2 col-10 offset-1 divlist">
+          <div className="cards col-md-10 offset-md-1 col-12">
             {afterHoursGameListHtml}
           </div>
         )}
-        <div style={{ visibility: "hidden", height: "250px" }}></div>
+        <div className="hiddencarddiv"></div>
       </div>
     </>
   );

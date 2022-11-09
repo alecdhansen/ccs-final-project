@@ -94,9 +94,11 @@ export const ProtectedLayout = () => {
           onHide={handleClose}
           responsive="md"
         >
-          <Offcanvas.Header closeButton className="offcanvasheader">
-            {" "}
-          </Offcanvas.Header>
+          <Offcanvas.Header
+            closeButton
+            closeVariant="white"
+            className="offcanvasheader"
+          ></Offcanvas.Header>
           <Offcanvas.Body className="offcanvasbody">
             <Nav.Item className="navlink">
               <Link to={"/home/profile/"} className="link">

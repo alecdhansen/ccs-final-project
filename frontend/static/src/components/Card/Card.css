@@ -4,7 +4,6 @@
   list-style-type: none;
   margin-top: 100px;
 }
-
 .gamelist {
   list-style-type: none;
   display: flex;
@@ -37,10 +36,6 @@
 .radio-toolbar > input[type="radio"]:focus + label {
   border: 2px dashed #444;
 }
-.divlist {
-  padding: 0px;
-  margin: 30px 0px 0px 240px;
-}
 .maincard {
   background-color: var(--offwhite);
   border-radius: 8px;
@@ -68,8 +63,8 @@
   margin-bottom: 20px;
 }
 .gamebtnhouse {
-  height: 150px;
   width: 100%;
+  height: 150px;
   display: flex;
   justify-content: space-around;
 }
@@ -86,7 +81,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(208, 208, 208);
+  background-color: rgb(201, 201, 201);
   width: 100%;
   border-radius: 0px 0px 14px 14px;
   pointer-events: none;
@@ -102,7 +97,7 @@
 }
 .submitbtn {
   padding: 4px 52px;
-  margin: 6px 0px 3px 0px;
+  margin: 10px 0px 10px 0px;
   border: none;
   border-radius: 24px;
   background-color: var(--navyblue);
@@ -122,6 +117,11 @@
   margin-top: 6px;
   font-weight: 700;
 }
+.hiddencarddiv {
+  visibility: hidden;
+  height: 100px;
+}
+
 .gamebtn:focus {
   border-style: outset;
   border: 5px solid var(--borderyellow);
@@ -806,4 +806,43 @@
   border-radius: 20px;
   border: none;
   background-color: black;
+}
+.gamebtn {
+  width: 500px;
+}
+
+/* @media (max-width: 768px) { */
+@media (max-width: 1205px) {
+  .cards {
+    margin-top: 30px;
+    padding: 0px 30px;
+  }
+  .gamebtnhouse {
+    height: 325px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .formbox {
+    height: 450px;
+    margin-bottom: 60px;
+  }
+  .gamestatus {
+    margin: 14px 0px;
+  }
+  .gamebtn {
+    margin-bottom: 30px;
+    width: 450px;
+  }
+  .submitbtn {
+    margin-top: -20px;
+    margin-bottom: 5px;
+    padding: 20px 30px;
+  }
+  .hiddencarddiv {
+    display: none;
+  }
+  .picksubmitted {
+    margin: 0px 0px 30px 0px;
+  }
 }
