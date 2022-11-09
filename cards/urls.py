@@ -30,7 +30,7 @@ urlpatterns = [
     ),
     path(
         "picks/lifetime/<str:username>",
-        views.SpecificLifeTimePickAPIView.as_view(),
+        views.SpecificUserLifeTimePickAPIView.as_view(),
         name="specific_user_lifetime_pick_list",
     ),
 ]

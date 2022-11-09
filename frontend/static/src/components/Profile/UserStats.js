@@ -73,7 +73,11 @@ function UserStats() {
           <div className="guessnumbers">
             <span>{correctGuesses}</span>
             <span>{totalGuesses}</span>
-            <span>{guessPercentage}%</span>
+            {!guessPercentage === true ? (
+              <span>{guessPercentage}%</span>
+            ) : (
+              <span style={{ display: "none" }}>none</span>
+            )}
           </div>
         </div>
         <h2 className="mystatsheader">Lifetime Stats</h2>
@@ -86,7 +90,11 @@ function UserStats() {
           <div className="guessnumbers">
             <span>{lifetimeCorrectGuesses}</span>
             <span>{lifetimeTotalGuesses}</span>
-            <span>{lifetimeGuessPercentage}%</span>
+            {!lifetimeGuessPercentage == true ? (
+              <span style={{ display: "none" }}>none</span>
+            ) : (
+              <span>{lifetimeGuessPercentage}%</span>
+            )}
           </div>
         </div>
       </div>

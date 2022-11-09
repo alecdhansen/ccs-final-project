@@ -74,8 +74,8 @@ class PlayerSerializer(serializers.ModelSerializer):
         correct_picks = PlayerSerializer.get_total_correct_picks(self, obj)
         total_picks = PlayerSerializer.get_total_picks(self, obj)
 
-        if total_picks == 0 or total_picks == 0:
-            return None
+        if total_picks == 0:
+            return 0
         else:
             pre_percentage = correct_picks / total_picks
             percentage = pre_percentage * 100

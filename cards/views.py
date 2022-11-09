@@ -8,6 +8,7 @@ from .models import Game, Pick
 from .serializers import GameSerializer, PickSerializer, PlayerSerializer
 from datetime import datetime, timedelta
 import pytz
+from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -58,12 +59,19 @@ class LifeTimePickAPIView(generics.ListAPIView):
 class AllUsersPicksAPIView(generics.ListAPIView):
     serializer_class = PlayerSerializer
     queryset = User.objects.all()[:25]
-    # queryset = User.objects.order_by("percentage")
 
-    ordering_fields = ["-percentage"]
+    def list(self, request):
+        # queryset = User.objects.all()
+        queryset = self.filter_queryset(self.get_queryset())
+        # serializer = PlayerSerializer(queryset, many=True)
+        serializer = self.get_serializer(queryset, many=True)
+        serializer_data = sorted(
+            serializer.data, key=lambda k: k["percentage"], reverse=True
+        )
+        return Response(serializer_data)
 
 
-class SpecificLifeTimePickAPIView(generics.ListAPIView):
+class SpecificUserLifeTimePickAPIView(generics.ListAPIView):
     serializer_class = PickSerializer
     permission_classes = (permissions.IsUserOrReadOnly,)
 
