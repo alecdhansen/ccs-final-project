@@ -1,3 +1,4 @@
+import "./Leaderboard.css";
 import { useState, useEffect } from "react";
 
 function Leaderboard() {
@@ -18,13 +19,21 @@ function Leaderboard() {
     } else {
       const data = await response.json();
       setUserStats(data);
-      console.log(data);
     }
   };
+  console.log({ userStats });
+
+  const statList = userStats.map((stat) => (
+    <div className="main">
+      <div>{stat.username}</div>/<div>{stat.total_correct_picks}</div>total
+      guesses/
+      <div>{stat.total_picks}</div>total games/<div>{stat.percentage}</div>%
+    </div>
+  ));
 
   return (
     <main className="row">
-      <div className="col-md-8 offset-md-2 col-12">hello</div>
+      <div className="col-md-8 offset-md-2 col-12 ">{statList}</div>
     </main>
   );
 }

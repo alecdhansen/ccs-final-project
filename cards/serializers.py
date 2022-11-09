@@ -31,9 +31,6 @@ class PickSerializer(serializers.ModelSerializer):
             return "No Game Result!"
 
 
-# after this!!!!!
-
-
 class PlayerSerializer(serializers.ModelSerializer):
     total_correct_picks = serializers.SerializerMethodField()
     total_picks = serializers.SerializerMethodField()
@@ -79,8 +76,7 @@ class PlayerSerializer(serializers.ModelSerializer):
         if total_picks == 0 or total_picks == 0:
             return None
         else:
-            percentage = correct_picks / total_picks
+            pre_percentage = correct_picks / total_picks
+            percentage = pre_percentage * 100
 
-        print(percentage)
-
-        return percentage
+        return round(percentage, 1)

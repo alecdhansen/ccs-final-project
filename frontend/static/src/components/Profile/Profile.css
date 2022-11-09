@@ -18,8 +18,8 @@
 .avatarbox {
   display: flex;
   justify-content: center;
-  max-width: 150px;
-  max-height: 150px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   border: 3px solid var(--navyblue);
   background-color: #fff;

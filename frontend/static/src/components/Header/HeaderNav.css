@@ -114,11 +114,38 @@
 }
 .offcanvasheader {
   background-color: var(--navyblue);
+  width: 100%;
 }
 .navbtn:focus {
   outline: 0;
 }
 
+@media (max-width: 400px) {
+  .headertitle {
+    font-size: 65px;
+    font-stretch: expanded;
+    margin-bottom: -0px;
+  }
+  .circle {
+    height: 200px;
+    width: 200px;
+    margin-bottom: 30px;
+  }
+  .mobilenav {
+    margin-top: 0px;
+  }
+  .offcanvasopenbtn {
+    position: sticky;
+    top: 0;
+    background-color: var(--navyblue);
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    margin: 10px 10px 0px 0px;
+  }
+}
 @media (max-width: 768px) {
   .offcanvasbody {
     background-color: var(--navyblue);
@@ -158,6 +185,7 @@
   .headertitle {
     font-size: 80px;
     margin-bottom: 5px;
+    font-stretch: expanded;
   }
 }
 @media (max-width: 1080px) {

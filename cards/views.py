@@ -2,13 +2,12 @@ from urllib import request
 from django.shortcuts import render
 from rest_framework import generics
 from django.db.models import Q
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from . import permissions
 from .models import Game, Pick
 from .serializers import GameSerializer, PickSerializer, PlayerSerializer
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 import pytz
-import operator
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -59,4 +58,4 @@ class LifeTimePickAPIView(generics.ListAPIView):
 class AllUsersPicksAPIView(generics.ListAPIView):
     serializer_class = PlayerSerializer
     queryset = User.objects.all()
-    # queryset = User.objects.order_by("percentage") **need to add percentage field on the serializer**
+    # queryset = User.objects.order_by("percentage")
