@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
 
   const refreshUser = (data) => {
     setUser(data);
-    navigate("/home/profile");
+    navigate(`/home/${user.username}`);
   };
 
   const value = useMemo(

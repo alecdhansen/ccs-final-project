@@ -49,6 +49,7 @@ function ProfileBox() {
     formData.append("favorite_team", favoriteTeam);
     formData.append("right_handed", hand);
     formData.append("profile_id", user.profile_id);
+    formData.append("date_joined", user.date_joined);
     const options = {
       method: "PATCH",
       headers: {

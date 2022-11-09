@@ -54,15 +54,15 @@ function UserInfo() {
     100
   ).toFixed(0); //here
 
-  const initialSignUpDate = userData.date_joined;
+  const initialSignUpDate = userData?.date_joined;
   const dateJoined = moment(initialSignUpDate).format("MMM YYYY");
 
   return (
     <div className="col-md-6 offset-md-3 col-10 offset-1 userbox">
-      <div className={`landscape${userData.favorite_team}`}>
+      <div className={`landscape${userData?.favorite_team}`}>
         <div className="teamimgbox">
           <img
-            src={require(`../../media/${userData.favorite_team}.png`)}
+            src={require(`../../media/${userData?.favorite_team}.png`)}
             style={{ width: "100%" }}
           ></img>
         </div>
@@ -71,7 +71,7 @@ function UserInfo() {
       <div className="avatarsection">
         <div className="avatarbox">
           <img
-            src={userData.avatar}
+            src={userData?.avatar}
             alt=""
             style={{
               width: "100%",
@@ -83,7 +83,7 @@ function UserInfo() {
         </div>
       </div>
       <div className="usernameedit">
-        <h4 className="username hello">{userData.username}</h4>
+        <h4 className="username hello">{userData?.username}</h4>
       </div>
       <span className="datejoined">User since {dateJoined}</span>
       <div className="mainstats">

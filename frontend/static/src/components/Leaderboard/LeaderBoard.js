@@ -2,10 +2,15 @@ import "./Leaderboard.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+//npm
+import moment from "moment";
 
 function Leaderboard() {
   const { user } = useAuth();
   const [userStats, setUserStats] = useState([]);
+
+  const previousDay = new Date(Date.now() - 86400000);
+  const yesterday = moment(previousDay).format("MMM Do, YYYY");
 
   const handleError = (err) => {
     console.warn(err);
@@ -28,6 +33,10 @@ function Leaderboard() {
   console.log(userStats);
   return (
     <main className="mainleaderboard col-md-8 offset-md-2 col-12">
+      <header className="leaderboardtitles">
+        <h2 className="leaderboardh2">Leaderboard</h2>
+        <h3 className="leaderboardh3">*Stats as of {yesterday}</h3>
+      </header>
       <table className="table">
         <thead className="table-th">
           <tr className="align">
@@ -44,17 +53,20 @@ function Leaderboard() {
               <td className="a">{index + 1}</td>
               <td className="a">
                 {stat.username === user.username ? (
-                  <Link to={`/home/${user.username}`}>{stat.username}</Link>
+                  <Link className="linktoprofile" to={`/home/${user.username}`}>
+                    {stat.username}
+                  </Link>
                 ) : (
-                  <Link to={`/home/${stat.username}`}>{stat.username}</Link>
+                  <Link className="linktoprofile" to={`/home/${stat.username}`}>
+                    {stat.username}
+                  </Link>
                 )}
               </td>
               <td className="a">{stat.total_correct_picks}</td>
               <td className="a">{stat.total_picks}</td>
-              <td className="a">{stat.percentage}</td>
+              <td className="a">{stat.percentage}%</td>
             </tr>
           ))}
-          <tr style={{ visibility: "hidden" }}>last row</tr>
         </tbody>
       </table>
     </main>
