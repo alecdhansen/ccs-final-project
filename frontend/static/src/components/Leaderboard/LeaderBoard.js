@@ -1,7 +1,10 @@
 import "./Leaderboard.css";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 function Leaderboard() {
+  const { user } = useAuth();
   const [userStats, setUserStats] = useState([]);
 
   const handleError = (err) => {
@@ -21,19 +24,39 @@ function Leaderboard() {
       setUserStats(data);
     }
   };
-  console.log({ userStats });
 
-  const statList = userStats.map((stat) => (
-    <div className="main">
-      <div>{stat.username}</div>/<div>{stat.total_correct_picks}</div>total
-      guesses/
-      <div>{stat.total_picks}</div>total games/<div>{stat.percentage}</div>%
-    </div>
-  ));
-
+  console.log(userStats);
   return (
-    <main className="row">
-      <div className="col-md-8 offset-md-2 col-12 ">{statList}</div>
+    <main className="mainleaderboard col-md-8 offset-md-2 col-12">
+      <table className="table">
+        <thead className="table-th">
+          <tr className="align">
+            <th className="a">Rank</th>
+            <th className="a">User</th>
+            <th className="a">Correct Picks</th>
+            <th className="a">Total Games</th>
+            <th className="a">Percentage</th>
+          </tr>
+        </thead>
+        <tbody className="table-body">
+          {userStats.map((stat, index) => (
+            <tr className="tr align">
+              <td className="a">{index + 1}</td>
+              <td className="a">
+                {stat.username === user.username ? (
+                  <Link to={`/home/${user.username}`}>{stat.username}</Link>
+                ) : (
+                  <Link to={`/home/${stat.username}`}>{stat.username}</Link>
+                )}
+              </td>
+              <td className="a">{stat.total_correct_picks}</td>
+              <td className="a">{stat.total_picks}</td>
+              <td className="a">{stat.percentage}</td>
+            </tr>
+          ))}
+          <tr style={{ visibility: "hidden" }}>last row</tr>
+        </tbody>
+      </table>
     </main>
   );
 }

@@ -4,6 +4,13 @@
   list-style-type: none;
   margin-top: 100px;
 }
+.welcome {
+  text-align: center;
+  color: var(--offwhite);
+}
+.instructions {
+  font-size: 14px;
+}
 .gamelist {
   list-style-type: none;
   display: flex;
@@ -834,7 +841,7 @@
     margin-bottom: 30px;
     width: 450px;
   }
-  .submitbtn {
+  .submit {
     margin-top: -20px;
     margin-bottom: 5px;
     padding: 20px 30px;

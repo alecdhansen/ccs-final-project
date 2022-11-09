@@ -36,7 +36,6 @@ function ProfileBox() {
   };
 
   const handleFavoriteTeam = (e) => {
-    console.log(e);
     setFavoriteTeam(e.target.value);
   };
   const handleHand = (e) => {

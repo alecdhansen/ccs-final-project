@@ -28,5 +28,10 @@ urlpatterns = [
         views.AllUsersPicksAPIView.as_view(),
         name="all_users_pick_list",
     ),
+    path(
+        "picks/lifetime/<str:username>",
+        views.SpecificLifeTimePickAPIView.as_view(),
+        name="specific_user_lifetime_pick_list",
+    ),
 ]
 # print(f'Hello {name}! This is {program}')

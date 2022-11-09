@@ -2,6 +2,7 @@ import "./Card.css";
 import "../Timer/timer.css";
 import "aos/dist/aos.css";
 import { useState, useEffect } from "react";
+import { useAuth } from "../../hooks/useAuth";
 import CountdownTimer from "../Timer/CountdownTimer";
 //npm
 import Cookies from "js-cookie";
@@ -15,14 +16,13 @@ function Card() {
   const [gameDate, setGameDate] = useState("");
   const [userPick, setUserPick] = useState("");
   const [firstGameTime, setFirstGameTime] = useState("");
+  const { user, refreshUser } = useAuth();
 
   const day = new Date();
   const dd = String(day.getDate()).padStart(2, "0");
   const mm = String(day.getMonth() + 1).padStart(2, "0");
   const yyyy = day.getFullYear();
   const currentDay = dd + "-" + mm + "-" + yyyy;
-
-  console.log("today's date is", currentDay);
 
   const handleError = (err) => {
     console.warn(err);
@@ -41,7 +41,7 @@ function Card() {
       },
     };
     const data = await fetch(
-      "https://nba-schedule.p.rapidapi.com/schedule?date=09-11-2022",
+      `https://nba-schedule.p.rapidapi.com/schedule?date=${currentDay}`,
       options
     ).then((response) => response.json());
     setTodaysGames(data[0].games);
@@ -61,7 +61,6 @@ function Card() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("this", e.target);
     const formData = new FormData();
     formData.append("gameid", gameID);
     formData.append("date", gameDate);
@@ -113,7 +112,6 @@ function Card() {
       key={game.gameId}
       onSubmit={handleSubmit}
     >
-      {console.log(game.gameId)}
       <h4 className="gamestatus">
         {game.day}, {game.gameStatusText}
       </h4>
@@ -173,15 +171,13 @@ function Card() {
         {localStorage.getItem(game.gameId) ? (
           <div className="picksubmitted">Pick submitted!</div>
         ) : (
-          <button type="submit" className="submitbtn">
+          <button type="submit" className="submitbtn submit">
             Submit Pick
           </button>
         )}
       </div>
     </form>
   ));
-
-  console.log({ todaysGames });
 
   const afterHoursGameListHtml = todaysGames.map((game) => (
     <form
@@ -252,16 +248,27 @@ function Card() {
 
   const firstGameStartingTime = new Date(firstGameTime);
   const firstGameStartingTimeInMS = firstGameStartingTime.getTime();
+  const fiveHoursInMS = 18000000;
   const fourHoursInMS = 14400000; //use this line for production
   // const fourHoursInMS = 11114400000;
   const nowInMS = new Date().getTime();
   const timeUntilGameInMS = firstGameStartingTimeInMS - nowInMS;
-  const gameTimeCountDownInMS = nowInMS + timeUntilGameInMS + fourHoursInMS;
+  const gameTimeCountDownInMS = nowInMS + timeUntilGameInMS + fiveHoursInMS;
   const timeUntilEstGameInMS = timeUntilGameInMS + fourHoursInMS;
 
   return (
     <>
       <div className="row">
+        {timeUntilEstGameInMS > 0 ? (
+          <h4 className="welcome">
+            Welcome, {user.username}!{" "}
+            <p className="instructions">
+              Make sure to get your picks in before tip off!
+            </p>
+          </h4>
+        ) : (
+          <h4 className="welcome">Welcome, {user.username}!</h4>
+        )}
         <div className="carddiv">
           <CountdownTimer targetDate={gameTimeCountDownInMS} />
         </div>

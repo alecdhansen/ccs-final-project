@@ -124,7 +124,6 @@
   .headertitle {
     font-size: 65px;
     font-stretch: expanded;
-    margin-bottom: -0px;
   }
   .circle {
     height: 200px;
@@ -183,7 +182,7 @@
     margin-bottom: 30px;
   }
   .headertitle {
-    font-size: 80px;
+    font-size: 70px;
     margin-bottom: 5px;
     font-stretch: expanded;
   }

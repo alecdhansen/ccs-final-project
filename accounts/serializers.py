@@ -20,6 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.ReadOnlyField(source="user.username")
     profile_id = serializers.ReadOnlyField(source="user.profile.id")
+    date_joined = serializers.ReadOnlyField(source="user.date_joined")
 
     class Meta:
         model = models.Profile

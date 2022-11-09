@@ -57,5 +57,16 @@ class LifeTimePickAPIView(generics.ListAPIView):
 
 class AllUsersPicksAPIView(generics.ListAPIView):
     serializer_class = PlayerSerializer
-    queryset = User.objects.all()
+    queryset = User.objects.all()[:25]
     # queryset = User.objects.order_by("percentage")
+
+    ordering_fields = ["-percentage"]
+
+
+class SpecificLifeTimePickAPIView(generics.ListAPIView):
+    serializer_class = PickSerializer
+    permission_classes = (permissions.IsUserOrReadOnly,)
+
+    def get_queryset(self):
+        username = self.kwargs["username"]
+        return Pick.objects.exclude(date=todays_date).filter(user__username=username)

@@ -21,10 +21,8 @@ function UserStats() {
     } else {
       const data = await response.json();
       setYesterdaysPicks(data);
-      console.log(data);
     }
   };
-  console.log({ yesterdaysPicks });
 
   const getLifetimePicks = async () => {
     const response = await fetch("/api_v1/picks/lifetime/").catch(handleError);
@@ -33,7 +31,6 @@ function UserStats() {
     } else {
       const data = await response.json();
       setLifetimePicks(data);
-      console.log(data);
     }
   };
 
@@ -47,7 +44,6 @@ function UserStats() {
 
   // Yesterday's Win/Loss
   const yesterdayWinLoss = yesterdaysPicks.map((pick) => pick.is_correct);
-  console.log({ yesterdayWinLoss });
   const correctGuesses = getOccurrence(yesterdayWinLoss, true);
   const incorrectGuesses = getOccurrence(yesterdayWinLoss, false);
   const totalGuesses = correctGuesses + incorrectGuesses;

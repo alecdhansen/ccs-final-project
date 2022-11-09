@@ -11,4 +11,9 @@ urlpatterns = [
         views.ProfileUpdateAPIView.as_view(),
         name="profile_list",
     ),
+    path(
+        "user/profile/<str:username>/",
+        views.ProfileInfoAPIView.as_view(),
+        name="profile_list_per_username",
+    ),
 ]

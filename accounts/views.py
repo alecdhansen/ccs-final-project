@@ -21,3 +21,12 @@ class ProfileListAPIView(generics.ListAPIView):
 class ProfileUpdateAPIView(generics.RetrieveUpdateAPIView):
     queryset = models.Profile.objects.all()
     serializer_class = serializers.ProfileSerializer
+
+
+class ProfileInfoAPIView(generics.ListAPIView):
+    # queryset = models.Profile.objects.all()
+    serializer_class = serializers.ProfileSerializer
+
+    def get_queryset(self):
+        username = self.kwargs["username"]
+        return models.Profile.objects.filter(user__username=username)

@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 from .models import Game, Pick
+from accounts.models import Profile
 
 
 class GameSerializer(serializers.ModelSerializer):

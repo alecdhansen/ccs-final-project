@@ -2,6 +2,7 @@ import "./App.css";
 import { useNavigate, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ProtectedLayout } from "./ProtectedLayout";
+import { useAuth } from "../../hooks/useAuth";
 import Card from "../Card/Card";
 import UnprotectedLayout from "./UnprotectedLayout";
 import LoginHome from "../Login/LoginHome";
@@ -10,10 +11,12 @@ import Register from "../Login/Register";
 import ProfilePage from "../Profile/ProfilePage";
 import Leaderboard from "../Leaderboard/LeaderBoard";
 import HeadToHead from "../HeadToHead/HeadToHead";
+import UserInfo from "../Users/UserInfo";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [state, setState] = useState("");
+  const { user, refreshUser } = useAuth();
   const navigate = useNavigate();
   const newState = JSON.parse(window.localStorage.getItem("state"));
 
@@ -44,9 +47,10 @@ function App() {
         <Route path="/home" element={<ProtectedLayout />}>
           <Route path="games" element={<Card />} />
 
-          <Route path="profile" element={<ProfilePage />} />
+          <Route path={user?.username} element={<ProfilePage />} />
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="headtohead" element={<HeadToHead />} />
+          <Route path=":username" element={<UserInfo />} />
         </Route>
 
         <Route path="*" element={<Fof />} />

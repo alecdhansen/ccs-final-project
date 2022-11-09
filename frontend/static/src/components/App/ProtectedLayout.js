@@ -101,7 +101,7 @@ export const ProtectedLayout = () => {
           ></Offcanvas.Header>
           <Offcanvas.Body className="offcanvasbody">
             <Nav.Item className="navlink">
-              <Link to={"/home/profile/"} className="link">
+              <Link to={`/home/${user.username}/`} className="link">
                 <button className="navbtn" onClick={handleClose}>
                   Profile
                 </button>
