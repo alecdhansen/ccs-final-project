@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import moment from "moment";
 
-function UserStats() {
+function ProfileStats() {
   const [yesterdaysPicks, setYesterdaysPicks] = useState([]);
   const [lifetimePicks, setLifetimePicks] = useState([]);
 
@@ -62,38 +62,38 @@ function UserStats() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <div className="mainstats">
+      <div className="mainstats row">
         <h2 className="mystatsheader">Yesterday, {yesterdaysDate}</h2>
         <div className="yesterday">
-          <div className="guesstitles">
-            <span className="spanlabels">Correct Picks</span>
-            <span className="spanlabels">Games</span>
-            <span className="spanlabels">Percentage Correct</span>
+          <div className="guesstitles row">
+            <span className="spanlabels col-4">Correct Picks</span>
+            <span className="spanlabels col-4">Games</span>
+            <span className="spanlabels col-4">Percentage</span>
           </div>
-          <div className="guessnumbers">
-            <span>{correctGuesses}</span>
-            <span>{totalGuesses}</span>
-            {!guessPercentage === true ? (
-              <span>{guessPercentage}%</span>
+          <div className="guessnumbers row">
+            <span className="col-4">{correctGuesses}</span>
+            <span className="col-4">{totalGuesses}</span>
+            {guessPercentage === "NaN" ? (
+              <span className="col-4">0</span>
             ) : (
-              <span style={{ display: "none" }}>none</span>
+              <span className="col-4">{guessPercentage}%</span>
             )}
           </div>
         </div>
         <h2 className="mystatsheader">Lifetime Stats</h2>
         <div className="lifetime">
-          <div className="guesstitles">
-            <span className="spanlabels">Correct Picks</span>
-            <span className="spanlabels">Games</span>
-            <span className="spanlabels">Percentage Correct</span>
+          <div className="guesstitles row">
+            <span className="spanlabels col-4">Correct Picks</span>
+            <span className="spanlabels col-4">Games</span>
+            <span className="spanlabels col-4">Percentage</span>
           </div>
-          <div className="guessnumbers">
-            <span>{lifetimeCorrectGuesses}</span>
-            <span>{lifetimeTotalGuesses}</span>
-            {!lifetimeGuessPercentage == true ? (
-              <span style={{ display: "none" }}>none</span>
+          <div className="guessnumbers row">
+            <span className="col-4">{lifetimeCorrectGuesses}</span>
+            <span className="col-4">{lifetimeTotalGuesses}</span>
+            {lifetimeGuessPercentage === "NaN" ? (
+              <span className="col-4">0</span>
             ) : (
-              <span>{lifetimeGuessPercentage}%</span>
+              <span className="col-4">{lifetimeGuessPercentage}%</span>
             )}
           </div>
         </div>
@@ -101,4 +101,4 @@ function UserStats() {
     </div>
   );
 }
-export default UserStats;
+export default ProfileStats;

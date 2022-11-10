@@ -32,44 +32,52 @@ function Leaderboard() {
 
   console.log(userStats);
   return (
-    <main className="mainleaderboard col-md-8 offset-md-2 col-12">
-      <header className="leaderboardtitles">
-        <h2 className="leaderboardh2">Leaderboard</h2>
-        <h3 className="leaderboardh3">*Stats as of {yesterday}</h3>
-      </header>
-      <table className="table">
-        <thead className="table-th">
-          <tr className="align">
-            <th className="a">Rank</th>
-            <th className="a">User</th>
-            <th className="a">Correct Picks</th>
-            <th className="a">Total Games</th>
-            <th className="a">Percentage</th>
-          </tr>
-        </thead>
-        <tbody className="table-body">
-          {userStats.map((stat, index) => (
-            <tr className="tr align">
-              <td className="a">{index + 1}</td>
-              <td className="a">
-                {stat.username === user.username ? (
-                  <Link className="linktoprofile" to={`/home/${user.username}`}>
-                    {stat.username}
-                  </Link>
-                ) : (
-                  <Link className="linktoprofile" to={`/home/${stat.username}`}>
-                    {stat.username}
-                  </Link>
-                )}
-              </td>
-              <td className="a">{stat.total_correct_picks}</td>
-              <td className="a">{stat.total_picks}</td>
-              <td className="a">{stat.percentage}%</td>
+    <>
+      <main className="mainleaderboard col-md-8 offset-md-2 col-12">
+        <header className="leaderboardtitles">
+          <h2 className="leaderboardh2">Leaderboard</h2>
+          <h3 className="leaderboardh3">*Stats as of {yesterday}</h3>
+        </header>
+        <table className="table">
+          <thead className="table-th">
+            <tr className="align">
+              <th className="a b rank">Rank</th>
+              <th className="a b">User</th>
+              <th className="a b">Correct Picks</th>
+              <th className="a b">Total Games</th>
+              <th className="a b">Percentage</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </main>
+          </thead>
+          <tbody className="table-body">
+            {userStats.map((stat, index) => (
+              <tr className="tr align">
+                <td className="a rank">{index + 1}</td>
+                <td className="a">
+                  {stat.username === user.username ? (
+                    <Link
+                      className="linktoprofile"
+                      to={`/home/${user.username}`}
+                    >
+                      {stat.username}
+                    </Link>
+                  ) : (
+                    <Link
+                      className="linktoprofile"
+                      to={`/home/${stat.username}`}
+                    >
+                      {stat.username}
+                    </Link>
+                  )}
+                </td>
+                <td className="a">{stat.total_correct_picks}</td>
+                <td className="a">{stat.total_picks}</td>
+                <td className="a">{stat.percentage}%</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </main>
+    </>
   );
 }
 export default Leaderboard;

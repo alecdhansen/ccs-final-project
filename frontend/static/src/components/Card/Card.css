@@ -47,16 +47,36 @@
   background-color: var(--offwhite);
   border-radius: 8px;
 }
+.gameinfo {
+  display: flex;
+  flex-direction: column;
+}
 .gamestatus {
   display: flex;
   justify-content: center;
-  margin-top: 8px;
+  margin: 12px 0px 0px 0px;
   text-transform: uppercase;
   font-size: 12px;
+  font-weight: bold;
+}
+.gamescore {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.tricode {
+  font-size: 14px;
+}
+.score {
+  font-size: 14px;
+  font-weight: bold;
+}
+.gamelocation {
+  font-size: 12px;
+  margin-bottom: 15px;
 }
 .formbox {
   background-color: var(--offwhite);
-  height: 250px;
+  height: 300px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -816,9 +836,27 @@
 }
 .gamebtn {
   width: 500px;
+  height: 140px;
 }
 
-/* @media (max-width: 768px) { */
+@media (max-width: 768px) {
+  .gamestatus {
+    font-size: 16px;
+  }
+  .tricode {
+    font-size: 16px;
+  }
+  .score {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .gamelocation {
+    font-size: 16px;
+  }
+  .formbox {
+  }
+}
+
 @media (max-width: 1205px) {
   .cards {
     margin-top: 30px;
@@ -831,18 +869,21 @@
     justify-content: space-around;
   }
   .formbox {
-    height: 450px;
+    height: 550px;
     margin-bottom: 60px;
   }
   .gamestatus {
-    margin: 14px 0px;
+    margin: 0px 0px 10px 0px;
+  }
+  .gamelocation {
+    margin-bottom: 26px;
   }
   .gamebtn {
     margin-bottom: 30px;
     width: 450px;
   }
   .submit {
-    margin-top: -20px;
+    margin-top: 15px;
     margin-bottom: 5px;
     padding: 20px 30px;
   }

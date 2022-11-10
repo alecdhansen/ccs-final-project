@@ -1,10 +1,12 @@
 import "./UserInfo.css";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 //npm
 import moment from "moment";
 
 function UserInfo() {
+  const { user, refreshUser } = useAuth();
   let { username } = useParams();
   const [userData, setUserData] = useState("");
   const [lifetimePicks, setLifetimePicks] = useState([]);
@@ -58,60 +60,64 @@ function UserInfo() {
   const dateJoined = moment(initialSignUpDate).format("MMM YYYY");
 
   return (
-    <div className="col-md-6 offset-md-3 col-10 offset-1 userbox">
-      <div className={`landscape${userData?.favorite_team}`}>
-        <div className="teamimgbox">
-          <img
-            src={require(`../../media/${userData?.favorite_team}.png`)}
-            style={{ width: "100%" }}
-          ></img>
-        </div>
-      </div>
-
-      <div className="avatarsection">
-        <div className="avatarbox">
-          <img
-            src={userData?.avatar}
-            alt=""
-            style={{
-              width: "100%",
-              overflow: "hidden",
-              borderRadius: "50%",
-              objectFit: "cover",
-            }}
-          />
-        </div>
-      </div>
-      <div className="usernameedit">
-        <h4 className="username hello">{userData?.username}</h4>
-      </div>
-      <span className="datejoined">User since {dateJoined}</span>
-      <div className="mainstats">
-        <h2 className="mystatsheader">Lifetime Stats</h2>
-        <div className="lifetime">
-          <div className="guesstitles">
-            <span className="spanlabels">Correct Picks</span>
-            <span className="spanlabels">Games</span>
-            <span className="spanlabels">Percentage Correct</span>
-          </div>
-          <div className="guessnumbers">
-            <span>{lifetimeCorrectGuesses}</span>
-            <span>{lifetimeTotalGuesses}</span>
-            <span>{lifetimeGuessPercentage}%</span>
-          </div>
-        </div>
-      </div>
-      <section className="takemebackbtn">
-        <button
-          className="btn404"
-          onClick={() => {
-            window.history.back();
-          }}
-        >
-          Back to leaderboard
-        </button>
+    <>
+      <section className="takemebackbtnmobile">
+        <Link to="/home/leaderboard/">
+          <button className="btn404 backtoleaderboard">
+            Back to Leaderboard
+          </button>
+        </Link>
       </section>
-    </div>
+      <div className="col-md-6 offset-md-3 col-10 offset-1 userbox">
+        <div className={`landscape${userData?.favorite_team}`}>
+          <div className="teamimgboxuser">
+            <img
+              src={require(`../../media/${userData?.favorite_team}.png`)}
+              style={{ width: "100%" }}
+            ></img>
+          </div>
+        </div>
+
+        <div className="avatarsection">
+          <div className="avatarbox">
+            <img
+              src={userData?.avatar}
+              alt=""
+              style={{
+                width: "100%",
+                overflow: "hidden",
+                borderRadius: "50%",
+                objectFit: "cover",
+              }}
+            />
+          </div>
+        </div>
+        <div className="usernameedit">
+          <h4 className="username hello">{userData?.username}</h4>
+        </div>
+        <span className="datejoined dj2">User since {dateJoined}</span>
+        <div className="mainstats">
+          <div className="lifetime2">
+            <h2 className="mystatsheader2">Lifetime Stats</h2>
+            <div className="guesstitles row">
+              <span className="spanlabels2 col-4">Correct Picks</span>
+              <span className="spanlabels2 col-4">Games</span>
+              <span className="spanlabels2 col-4">Percentage</span>
+            </div>
+            <div className="guessnumbers row">
+              <span className="col-4">{lifetimeCorrectGuesses}</span>
+              <span className="col-4">{lifetimeTotalGuesses}</span>
+              <span className="col-4">{lifetimeGuessPercentage}%</span>
+            </div>
+          </div>
+        </div>
+        <section className="takemebackbtn">
+          <Link to="/home/leaderboard/">
+            <button className="btn404">Back to Leaderboard</button>
+          </Link>
+        </section>
+      </div>
+    </>
   );
 }
 export default UserInfo;

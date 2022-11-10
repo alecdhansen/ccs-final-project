@@ -66,13 +66,6 @@ export const ProtectedLayout = () => {
       return "start";
     }
   };
-  const whoseHandIsItAnywayStyle = () => {
-    if (user?.right_handed) {
-      return "d-md-none mobilenav";
-    } else {
-      return "lefthand";
-    }
-  };
 
   if (!user) {
     return <Navigate to="/" />;
@@ -81,11 +74,22 @@ export const ProtectedLayout = () => {
   return (
     <>
       <Header />
-      <div className={whoseHandIsItAnywayStyle()}>
-        <button className="d-md-none offcanvasopenbtn" onClick={handleShow}>
-          <HiOutlineMenu />
-        </button>
-      </div>
+
+      {user?.right_handed ? (
+        <div className="righthand">
+          <div></div>
+          <button className="offcanvasopenbtnright mobilemenu" onClick={handleShow}>
+            <HiOutlineMenu />
+          </button>
+        </div>
+      ) : (
+        <div className="lefthand">
+          <button className="offcanvasopenbtnleft mobilemenu" onClick={handleShow}>
+            <HiOutlineMenu />
+          </button>
+          <div></div>
+        </div>
+      )}
 
       <header className="col-12 navheader">
         <Offcanvas

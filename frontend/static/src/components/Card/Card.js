@@ -104,7 +104,7 @@ function Card() {
   useEffect(() => {
     Aos.init({ duration: 1000 });
   }, []);
-
+  console.log({ todaysGames });
   const gameListHtml = todaysGames.map((game) => (
     <form
       className="formbox"
@@ -115,6 +115,9 @@ function Card() {
       <h4 className="gamestatus">
         {game.day}, {game.gameStatusText}
       </h4>
+      <h5 className="gamelocation">
+        {game.arenaName} - {game.arenaCity}, {game.arenaState}
+      </h5>
       <div className="spanbar"></div>
       <div className="gamebtnhouse row">
         <button
@@ -186,9 +189,35 @@ function Card() {
       key={game.gameId}
       onSubmit={handleSubmit}
     >
-      <h4 className="gamestatus">
-        {game.day}, {game.gameStatusText}
-      </h4>
+      <div className="gameinfo">
+        {game.gameStatus === 1 ? (
+          <div>
+            <h4 className="gamestatus">
+              {game.day}, {game.gameStatusText}
+            </h4>
+            <h5 className="gamelocation">
+              {game.arenaName} - {game.arenaCity}, {game.arenaState}
+            </h5>
+          </div>
+        ) : game.gameStatus === 2 ? (
+          <div>
+            <h4 className="gamestatus">{game.gameStatusText}</h4>
+            <h5 className="gamelocation">
+              {game.arenaName} - {game.arenaCity}, {game.arenaState}
+            </h5>
+          </div>
+        ) : (
+          <div>
+            <h4 className="gamestatus">{game.gameStatusText}</h4>
+            <div className="gamescore">
+              <span className="tricode">{game.awayTeam.teamTricode}</span>{" "}
+              <span className="score">{game.awayTeam.score}</span> -{" "}
+              <span className="tricode">{game.homeTeam.teamTricode}</span>{" "}
+              <span className="score">{game.homeTeam.score}</span>
+            </div>
+          </div>
+        )}
+      </div>
       <div className="spanbar"></div>
       <div className="gamebtnhouse row">
         <button
