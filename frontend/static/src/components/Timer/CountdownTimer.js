@@ -34,8 +34,9 @@ const CountdownTimer = ({ targetDate }) => {
 
   if (!seconds) {
     return (
-      <div style={{ marginBottom: "30px" }}>
-        calculating time until first game...
+      <div style={{ marginBottom: "30px" }} className="color-range">
+        {/* calculating time until first game... */}
+        <div></div>
       </div>
     );
   }

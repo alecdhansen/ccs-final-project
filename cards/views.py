@@ -4,8 +4,13 @@ from rest_framework import generics
 from django.db.models import Q
 from rest_framework.permissions import IsAuthenticated
 from . import permissions
-from .models import Game, Pick
-from .serializers import GameSerializer, PickSerializer, PlayerSerializer
+from .models import Game, Pick, Competition
+from .serializers import (
+    GameSerializer,
+    PickSerializer,
+    PlayerSerializer,
+    CompetitionSerializer,
+)
 from datetime import datetime, timedelta
 import pytz
 from rest_framework.response import Response
@@ -78,3 +83,14 @@ class SpecificUserLifeTimePickAPIView(generics.ListAPIView):
     def get_queryset(self):
         username = self.kwargs["username"]
         return Pick.objects.exclude(date=todays_date).filter(user__username=username)
+
+
+class CompetitionsAPIView(generics.ListCreateAPIView):
+    serializer_class = CompetitionSerializer
+    permission_classes = (IsAuthenticated,)
+    # queryset = Competition.objects.all()
+
+    def get_queryset(self):
+        return Competition.objects.filter(
+            Q(challenger_id=self.request.user) | Q(opponent_id=self.request.user)
+        )

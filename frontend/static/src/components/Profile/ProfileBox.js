@@ -57,7 +57,10 @@ function ProfileBox() {
       },
       body: formData,
     };
-    const response = await fetch(`/api_v1/user/profile/${user.user}/`, options);
+    const response = await fetch(
+      `/api_v1/user/profile/${user.profile_id}/`,
+      options
+    );
     if (!response.ok) {
       throw new Error("Network response was not OK");
     } else {

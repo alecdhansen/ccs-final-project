@@ -9,7 +9,6 @@ function UnprotectedLayout() {
   if (user) {
     return <Navigate to="/home/games" replace />;
   }
-
   return (
     <div>
       <Header />

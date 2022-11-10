@@ -33,3 +33,19 @@ class Pick(models.Model):
 
     def __str__(self):
         return f"{self.user} picked {self.user_pick} (#{self.gameid} on {self.date})"
+
+
+class Competition(models.Model):
+    challenger = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        blank=True,
+        related_name="competitions_as_challenger",
+    )
+    opponent = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True
+    )
+    date = models.DateField(null=True)
+
+    def __str__(self):
+        return f"{self.challenger} vs {self.opponent} on {self.date}"

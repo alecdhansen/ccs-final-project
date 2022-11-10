@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-from .models import Game, Pick
+from .models import Game, Pick, Competition
 from accounts.models import Profile
 
 
@@ -30,6 +30,19 @@ class PickSerializer(serializers.ModelSerializer):
             return obj.user_pick == game.winning_team
         except:
             return "No Game Result!"
+
+
+class CompetitionSerializer(serializers.ModelSerializer):
+    winner = serializers.SerializerMethodField()
+    challenger_username = serializers.ReadOnlyField(source="challenger.username")
+    opponent_username = serializers.ReadOnlyField(source="opponent.username")
+
+    class Meta:
+        model = Competition
+        fields = "__all__"
+
+    def get_winner(self, obj):
+        pass
 
 
 class PlayerSerializer(serializers.ModelSerializer):

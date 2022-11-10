@@ -71,25 +71,111 @@
   top: 5%;
 }
 
-@media (max-width: 400px) {
-  .carddiv {
-    top: 8%;
-    padding: 0px;
-    justify-content: center;
+@-webkit-keyframes whirl-color-range {
+  0% {
+    -webkit-box-shadow: 0px 20px 0 0 #25374f, 15px 20px 0 0 #30618c,
+      30px 20px 0 0 #5f96c7, 45px 20px 0 0 #fdf9fe, 60px 20px 0 0 white;
+    box-shadow: 0px 20px 0 0 #25374f, 15px 20px 0 0 #30618c,
+      30px 20px 0 0 #5f96c7, 45px 20px 0 0 #fdf9fe, 60px 20px 0 0 white;
   }
-  .mobilenav {
-    height: 80px;
-    z-index: 20;
+  20% {
+    -webkit-box-shadow: 0px 20px 0 0 #30618c, 15px 20px 0 0 #5f96c7,
+      30px 20px 0 0 #fdf9fe, 45px 20px 0 0 white, 60px 20px 0 0 #25374f;
+    box-shadow: 0px 20px 0 0 #30618c, 15px 20px 0 0 #5f96c7,
+      30px 20px 0 0 #fdf9fe, 45px 20px 0 0 white, 60px 20px 0 0 #25374f;
   }
+  40% {
+    -webkit-box-shadow: 0px 20px 0 0 #5f96c7, 15px 20px 0 0 #fdf9fe,
+      30px 20px 0 0 white, 45px 20px 0 0 #25374f, 60px 20px 0 0 #30618c;
+    box-shadow: 0px 20px 0 0 #5f96c7, 15px 20px 0 0 #fdf9fe, 30px 20px 0 0 white,
+      45px 20px 0 0 #25374f, 60px 20px 0 0 #30618c;
+  }
+  60% {
+    -webkit-box-shadow: 0px 20px 0 0 #fdf9fe, 15px 20px 0 0 white,
+      30px 20px 0 0 #25374f, 45px 20px 0 0 #30618c, 60px 20px 0 0 #5f96c7;
+    box-shadow: 0px 20px 0 0 #fdf9fe, 15px 20px 0 0 white, 30px 20px 0 0 #25374f,
+      45px 20px 0 0 #30618c, 60px 20px 0 0 #5f96c7;
+  }
+  80% {
+    -webkit-box-shadow: 0px 20px 0 0 white, 15px 20px 0 0 #25374f,
+      30px 20px 0 0 #30618c, 45px 20px 0 0 #5f96c7, 60px 20px 0 0 #fdf9fe;
+    box-shadow: 0px 20px 0 0 white, 15px 20px 0 0 #25374f, 30px 20px 0 0 #30618c,
+      45px 20px 0 0 #5f96c7, 60px 20px 0 0 #fdf9fe;
+  }
+  100% {
+    -webkit-box-shadow: 0px 20px 0 0 #25374f, 15px 20px 0 0 #30618c,
+      30px 20px 0 0 #5f96c7, 45px 20px 0 0 #fdf9fe, 60px 20px 0 0 white;
+    box-shadow: 0px 20px 0 0 #25374f, 15px 20px 0 0 #30618c,
+      30px 20px 0 0 #5f96c7, 45px 20px 0 0 #fdf9fe, 60px 20px 0 0 white;
+  }
+}
+@keyframes whirl-color-range {
+  0% {
+    -webkit-box-shadow: 0px 20px 0 0 #25374f, 15px 20px 0 0 #30618c,
+      30px 20px 0 0 #5f96c7, 45px 20px 0 0 #fdf9fe, 60px 20px 0 0 white;
+    box-shadow: 0px 20px 0 0 #25374f, 15px 20px 0 0 #30618c,
+      30px 20px 0 0 #5f96c7, 45px 20px 0 0 #fdf9fe, 60px 20px 0 0 white;
+  }
+  20% {
+    -webkit-box-shadow: 0px 20px 0 0 #30618c, 15px 20px 0 0 #5f96c7,
+      30px 20px 0 0 #fdf9fe, 45px 20px 0 0 white, 60px 20px 0 0 #25374f;
+    box-shadow: 0px 20px 0 0 #30618c, 15px 20px 0 0 #5f96c7,
+      30px 20px 0 0 #fdf9fe, 45px 20px 0 0 white, 60px 20px 0 0 #25374f;
+  }
+  40% {
+    -webkit-box-shadow: 0px 20px 0 0 #5f96c7, 15px 20px 0 0 #fdf9fe,
+      30px 20px 0 0 white, 45px 20px 0 0 #25374f, 60px 20px 0 0 #30618c;
+    box-shadow: 0px 20px 0 0 #5f96c7, 15px 20px 0 0 #fdf9fe, 30px 20px 0 0 white,
+      45px 20px 0 0 #25374f, 60px 20px 0 0 #30618c;
+  }
+  60% {
+    -webkit-box-shadow: 0px 20px 0 0 #fdf9fe, 15px 20px 0 0 white,
+      30px 20px 0 0 #25374f, 45px 20px 0 0 #30618c, 60px 20px 0 0 #5f96c7;
+    box-shadow: 0px 20px 0 0 #fdf9fe, 15px 20px 0 0 white, 30px 20px 0 0 #25374f,
+      45px 20px 0 0 #30618c, 60px 20px 0 0 #5f96c7;
+  }
+  80% {
+    -webkit-box-shadow: 0px 20px 0 0 white, 15px 20px 0 0 #25374f,
+      30px 20px 0 0 #30618c, 45px 20px 0 0 #5f96c7, 60px 20px 0 0 #fdf9fe;
+    box-shadow: 0px 20px 0 0 white, 15px 20px 0 0 #25374f, 30px 20px 0 0 #30618c,
+      45px 20px 0 0 #5f96c7, 60px 20px 0 0 #fdf9fe;
+  }
+  100% {
+    -webkit-box-shadow: 0px 20px 0 0 #25374f, 15px 20px 0 0 #30618c,
+      30px 20px 0 0 #5f96c7, 45px 20px 0 0 #fdf9fe, 60px 20px 0 0 white;
+    box-shadow: 0px 20px 0 0 #25374f, 15px 20px 0 0 #30618c,
+      30px 20px 0 0 #5f96c7, 45px 20px 0 0 #fdf9fe, 60px 20px 0 0 white;
+  }
+}
+
+.color-range {
+  -webkit-animation: whirl-color-range 0.5s infinite ease;
+  animation: whirl-color-range 0.5s infinite ease;
+  content: "";
+  height: 20px;
+  -webkit-transform: translate(-30px, -20px);
+  transform: translate(-30px, -20px);
+  width: 10px;
 }
 
 @media (max-width: 768px) {
   .carddiv {
-    top: 8%;
+    top: 12%;
     padding: 0px;
     justify-content: center;
   }
   .navheader {
     margin: 0px;
+  }
+}
+@media (max-width: 400px) {
+  .carddiv {
+    top: 6%;
+    padding: 0px;
+    justify-content: flex-end;
+  }
+  .mobilenav {
+    height: 80px;
+    z-index: 20;
   }
 }

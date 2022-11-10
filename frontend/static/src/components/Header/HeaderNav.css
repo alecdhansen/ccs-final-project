@@ -121,13 +121,7 @@
   z-index: 50;
 }
 .righthand {
-  display: flex;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  align-items: center;
-  background-color: var(--navyblue);
-  z-index: 50;
+  display: none;
 }
 
 .offcanvasheader {
@@ -160,6 +154,15 @@
   .navlink {
     display: flex;
     justify-content: center;
+  }
+  .righthand {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    align-items: center;
+    background-color: var(--navyblue);
+    z-index: 50;
   }
   .navbtn {
     font-size: 40px;

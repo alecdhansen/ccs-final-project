@@ -7,7 +7,6 @@ from . import permissions
 class UserListAPIView(generics.ListAPIView):
     queryset = models.User.objects.order_by("id")
     serializer_class = serializers.UserSerializer
-    permission_classes = permissions.IsAdminUser
 
 
 class ProfileListAPIView(generics.ListAPIView):
