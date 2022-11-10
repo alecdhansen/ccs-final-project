@@ -7,3 +7,26 @@
   border-radius: 8px;
   box-shadow: 0px 3px 2px var(--mainorange);
 }
+.registersubmitbtn {
+  padding: 4px 52px;
+  margin: 10px 0px 10px 0px;
+  border: none;
+  border-radius: 24px;
+  background-color: var(--navyblue);
+  color: var(--offwhite);
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.registersubmitbtn:hover {
+  background-color: #123548;
+  transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .registersubmitbtns {
+    display: flex;
+    align-items: center;
+    /* width: 70%; */
+  }
+}

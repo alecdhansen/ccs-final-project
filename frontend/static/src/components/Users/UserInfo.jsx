@@ -72,8 +72,10 @@ function UserInfo() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("challenger", user.id);
+    formData.append("challenger", user.user);
     formData.append("opponent", userData.user);
+
+    console.log({ user });
 
     formData.append("date", today);
     const options = {

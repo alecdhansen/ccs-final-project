@@ -33,12 +33,8 @@ const CountdownTimer = ({ targetDate }) => {
   const [days, hours, minutes, seconds] = useCountdown(targetDate);
 
   if (!seconds) {
-    return (
-      <div style={{ marginBottom: "30px" }} className="color-range">
-        {/* calculating time until first game... */}
-        <div></div>
-      </div>
-    );
+    return <div className="color-range"></div>;
+    // "color-range" or "loader"
   }
 
   if (days + hours + minutes + seconds <= 0) {

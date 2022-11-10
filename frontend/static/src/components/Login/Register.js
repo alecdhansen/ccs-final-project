@@ -1,3 +1,4 @@
+import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
@@ -102,18 +103,20 @@ function Register() {
                 name="password2"
               />
             </Form.Group>
-            <button
-              className="submitbtn"
-              style={{ marginRight: "5px" }}
-              onClick={() => {
-                window.history.back();
-              }}
-            >
-              Go Back
-            </button>
-            <button className="submitbtn" type="submit">
-              Submit
-            </button>
+            <div className="registersubmitbtns">
+              <button
+                className="registersubmitbtn"
+                style={{ marginRight: "5px" }}
+                onClick={() => {
+                  window.history.back();
+                }}
+              >
+                Go Back
+              </button>
+              <button className="registersubmitbtn" type="submit">
+                Submit
+              </button>
+            </div>
           </Form>
         </div>
       </main>

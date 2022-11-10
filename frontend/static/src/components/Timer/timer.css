@@ -156,6 +156,34 @@
   -webkit-transform: translate(-30px, -20px);
   transform: translate(-30px, -20px);
   width: 10px;
+  margin-bottom: 30px;
+}
+
+@keyframes tick {
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.loader {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid #30618c;
+}
+
+.loader::after {
+  content: "";
+  position: absolute;
+  bottom: 29px;
+  left: 30px;
+  display: block;
+  transform-origin: 0% 100%;
+  width: 2px;
+  height: 24px;
+  background: var(--offwhite);
+  animation: tick 1s infinite linear;
 }
 
 @media (max-width: 768px) {
