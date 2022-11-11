@@ -58,7 +58,7 @@ def test_update_games(self):
                 new_game = Game()
                 new_game.gameid = nba_game["gameId"]
 
-                new_game.date = "2022-11-09"  # Change the date to yesterday's date before posting games!
+                new_game.date = "2022-11-10"  # Change the date to yesterday's date before posting games!
                 # Hit this endpoint ---> http://127.0.0.1:8000/game/testing/
                 new_game.home_team = nba_game["homeTeam"]["teamName"]
                 new_game.away_team = nba_game["awayTeam"]["teamName"]

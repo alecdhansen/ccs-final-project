@@ -17,7 +17,7 @@
   margin-bottom: 10px;
 }
 .filterbtns {
-  /* padding: 4px 52px; */
+  margin-bottom: 50px;
   border: none;
   background-color: var(--offwhite);
   color: var(--navyblue);
@@ -28,18 +28,87 @@
   background-color: #b3b3b3;
   transition: 0.3s;
 }
-.previous {
+.yesterdaych {
   padding: 4px 25px 4px 25px;
   border-radius: 24px 0px 0px 24px;
 }
-.today {
-  border-radius: 0px 24px 24px 0px;
+.todaych {
   padding: 4px 25px 4px 25px;
+}
+.allch {
+  padding: 4px 25px 4px 25px;
+  border-radius: 0px 24px 24px 0px;
+}
+.yesterdaych:focus {
+  background-color: #b3b3b3;
+}
+.todaych:focus {
+  background-color: #b3b3b3;
+}
+.allch:focus {
+  background-color: #b3b3b3;
+}
+.challengesbox {
+  height: 800px;
+  overflow: scroll;
 }
 .challenges {
   margin-top: 100px;
 }
 .challengecard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--offwhite);
+  height: 50px;
   margin-bottom: 30px;
+  border-radius: 12px 10px 10px 12px;
+}
+.challengedate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  background-color: #1c293e;
+  height: 100%;
+  border-radius: 10px 0px 0px 10px;
+  color: var(--offwhite);
+}
+.challengeinfo {
+}
+.matchup {
+  font-weight: 800;
+  margin: 0px 20px;
+}
+.result {
+  margin-left: 20px;
+  font-weight: 800;
+}
+.winner {
+  margin-left: 20px;
+}
+.findanopponentsection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.nochallenges {
+  text-align: center;
+  color: var(--offwhite);
+  font-size: 40px;
+  font-weight: 600;
+  margin-top: 100px;
+}
+.findopponentbtn {
+  padding: 4px 52px;
+  border: none;
+  background-color: var(--offwhite);
+  color: var(--navyblue);
+  font-weight: 500;
+  transition: 0.3s;
+  border-radius: 24px;
+}
+.findopponentbtn:hover {
+  background-color: #b3b3b3;
+  transition: 0.3s;
 }

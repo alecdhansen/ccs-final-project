@@ -35,12 +35,12 @@ class Pick(models.Model):
         return f"{self.user} picked {self.user_pick} (#{self.gameid} on {self.date})"
 
 
-class Competition(models.Model):
+class Challenge(models.Model):
     challenger = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         blank=True,
-        related_name="competitions_as_challenger",
+        related_name="challenges_as_challenger",
     )
     opponent = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True

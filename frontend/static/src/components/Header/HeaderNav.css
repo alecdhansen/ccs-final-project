@@ -112,13 +112,7 @@
   visibility: hidden;
 }
 .lefthand {
-  display: flex;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  align-items: center;
-  background-color: var(--navyblue);
-  z-index: 50;
+  display: none;
 }
 .righthand {
   display: none;
@@ -156,6 +150,15 @@
     justify-content: center;
   }
   .righthand {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    align-items: center;
+    background-color: var(--navyblue);
+    z-index: 50;
+  }
+  .lefthand {
     display: flex;
     justify-content: space-between;
     position: sticky;

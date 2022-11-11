@@ -33,7 +33,5 @@ urlpatterns = [
         views.SpecificUserLifeTimePickAPIView.as_view(),
         name="specific_user_lifetime_pick_list",
     ),
-    path(
-        "competitions/", views.CompetitionsAPIView.as_view(), name="competitions_list"
-    ),
+    path("challenges/", views.ChallengesAPIView.as_view(), name="challenges"),
 ]

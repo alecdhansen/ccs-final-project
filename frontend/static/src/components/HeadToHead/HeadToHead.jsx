@@ -1,11 +1,25 @@
 import "./HeadToHead.css";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
+//npm
+import moment from "moment";
 
 function HeadToHead() {
   const [challenges, setChallenges] = useState([]);
-  const [filter, setFilter] = useState("");
-  const { user, refreshUser } = useAuth();
+  const [selectedChallenges, setSelectedChallenges] = useState([challenges]);
+  const { user } = useAuth();
+
+  const day = new Date();
+  const dd = String(day.getDate()).padStart(2, "0");
+  const mm = String(day.getMonth() + 1).padStart(2, "0");
+  const yyyy = day.getFullYear();
+  const currentDay = yyyy + "-" + mm + "-" + dd;
+
+  const previousDay = new Date(Date.now() - 86400000);
+  const yesterday = moment(previousDay).format("YYYY-MM-DD");
+
+  console.log({ yesterday });
 
   const handleError = (err) => {
     console.warn(err);
@@ -16,67 +30,103 @@ function HeadToHead() {
   }, []);
 
   const getChallenges = async () => {
-    const response = await fetch(`/api_v1/competitions/`).catch(handleError);
+    const response = await fetch(`/api_v1/challenges/`).catch(handleError);
     if (!response.ok) {
       throw new Error("Network response not OK");
     } else {
       const data = await response.json();
       setChallenges(data);
+      setSelectedChallenges(data);
     }
   };
 
-  const filterList = [
-    ...new Set(challenges.map((challenge) => challenge.date)),
-  ];
-  console.log({ filterList });
-  const filterListHTML = filterList.map((date, index) => (
-    <button
-      className="filterbtns previous"
-      key={index}
-      onClick={(e) => setFilter(date)}
-    >
-      {date} (previous)
-    </button>
-  ));
+  const yesterdaysChallenges = challenges.filter(
+    (challenge) => challenge.date === yesterday
+  );
+  const todaysChallenges = challenges.filter(
+    (challenge) => challenge.date === currentDay
+  );
 
+  console.log({ yesterdaysChallenges });
+  console.log({ todaysChallenges });
   console.log({ challenges });
 
   return (
     <>
-      <header className="titles col-8 offset-2">
+      <header className="titles col-md-8 offset-md-2 col-10 offset-1">
         <h2>Let's Go Head To Head!</h2>
         <h3 style={{ textDecoration: "underline" }}>The Rules</h3>
         <p>Challenge another user</p>
       </header>
-      <section className="col-8 offset-2 challenges">
-        <h3 className="mychallengestitle">My Challenges</h3>
-        <div className="filters">
-          {filterListHTML}
-          <button className="filterbtns today" onClick={(e) => setFilter(null)}>
-            Today
-          </button>
-        </div>
-        {challenges
-          .filter((challenge) =>
-            filter ? challenge.date == filter : challenge
-          )
-          .map((challenge) => (
-            <section className="challengecard">
-              {user.username === challenge.challenger_username ? (
-                <div>
-                  {challenge.challenger_username} vs{" "}
-                  {challenge.opponent_username}
+      {challenges.length === 0 ? (
+        <section className="findanopponentsection">
+          <h4 className="nochallenges">No challenges yet!</h4>
+          <Link to="/home/leaderboard">
+            <button className="findopponentbtn">Find an opponent</button>
+          </Link>
+        </section>
+      ) : (
+        <section className="col-md-8 offset-md-2 col-10 offset-1 challenges">
+          <h3 className="mychallengestitle">My Challenges</h3>
+          <div className="filters">
+            <button
+              className="filterbtns yesterdaych"
+              onClick={() => setSelectedChallenges(yesterdaysChallenges)}
+            >
+              Yesterday
+            </button>
+            <button
+              className="filterbtns todaych"
+              onClick={() => setSelectedChallenges(todaysChallenges)}
+            >
+              Today
+            </button>
+            <button
+              className="filterbtns allch"
+              onClick={() => setSelectedChallenges(challenges)}
+              autoFocus
+            >
+              All
+            </button>
+          </div>
+          <div className="challengesbox">
+            {selectedChallenges.map((challenge) => (
+              <section className="challengecard">
+                <time className="challengedate col-4">
+                  {moment(challenge.date).format("MMM DD, YYYY")}
+                </time>
+                <div className="challengeinfo col-8">
+                  {user?.username === challenge.challenger_username ? (
+                    <div>
+                      <span className="matchup">Opponent:</span>
+                      {/* {challenge.challenger_username} vs{" "} */}
+                      {challenge.opponent_username}
+                      <span className="result">Result:</span>
+                      {challenge.winner === null ? (
+                        <span className="winner">Challenge in progress...</span>
+                      ) : (
+                        <span className="winner">{challenge.winner}</span>
+                      )}
+                    </div>
+                  ) : (
+                    <div>
+                      <span className="matchup">Opponent:</span>
+                      {/* {challenge.opponent_username} vs{" "} */}
+                      {challenge.challenger_username}
+                      <span className="result">Result:</span>
+                      {challenge.winner === null ? (
+                        <span className="winner">Challenge in progress...</span>
+                      ) : (
+                        <span className="winner">{challenge.winner}</span>
+                      )}
+                    </div>
+                  )}
                 </div>
-              ) : (
-                <div>
-                  {challenge.opponent_username} vs{" "}
-                  {challenge.challenger_username}
-                </div>
-              )}
-              <time>{challenge.date}</time>
-            </section>
-          ))}
-      </section>
+              </section>
+            ))}
+          </div>
+        </section>
+      )}
     </>
   );
 }

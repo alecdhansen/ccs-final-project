@@ -188,7 +188,7 @@
 
 @media (max-width: 768px) {
   .carddiv {
-    top: 12%;
+    top: 10%;
     padding: 0px;
     justify-content: center;
   }
@@ -198,7 +198,7 @@
 }
 @media (max-width: 400px) {
   .carddiv {
-    top: 6%;
+    top: 7%;
     padding: 0px;
     justify-content: flex-end;
   }

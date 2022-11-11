@@ -76,7 +76,7 @@ function ProfileBox() {
   return (
     <>
       {/* <div className="profilebox"> */}
-      <div className={`landscape${user.favorite_team}`}>
+      <div className={`landscape${user.favorite_team} landscape`}>
         <div className="teamimgbox">
           <img
             src={require(`../../media/${user.favorite_team}.png`)}
@@ -207,7 +207,6 @@ function ProfileBox() {
           </Modal.Body>
         </Modal>
       </div>
-      {/* {/* </div> */}
     </>
   );
 }

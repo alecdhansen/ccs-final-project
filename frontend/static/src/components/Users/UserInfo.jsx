@@ -85,7 +85,7 @@ function UserInfo() {
       },
       body: formData,
     };
-    const response = await fetch("/api_v1/competitions/", options).catch(
+    const response = await fetch("/api_v1/challenges/", options).catch(
       handleError
     );
     if (!response.ok) {

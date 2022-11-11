@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-from .models import Game, Pick, Competition
+from .models import Game, Pick, Challenge
 from accounts.models import Profile
 
 
@@ -32,23 +32,13 @@ class PickSerializer(serializers.ModelSerializer):
             return "No Game Result!"
 
 
-class CompetitionSerializer(serializers.ModelSerializer):
-    winner = serializers.SerializerMethodField()
-    challenger_username = serializers.ReadOnlyField(source="challenger.username")
-    opponent_username = serializers.ReadOnlyField(source="opponent.username")
-
-    class Meta:
-        model = Competition
-        fields = "__all__"
-
-    def get_winner(self, obj):
-        pass
-
-
 class PlayerSerializer(serializers.ModelSerializer):
     total_correct_picks = serializers.SerializerMethodField()
     total_picks = serializers.SerializerMethodField()
     percentage = serializers.SerializerMethodField()
+    badge = serializers.SerializerMethodField()
+    # wins_vs_opponents = serializers.SerializerMethodField()
+    # competitions = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -57,6 +47,7 @@ class PlayerSerializer(serializers.ModelSerializer):
             "total_correct_picks",
             "total_picks",
             "percentage",
+            "badge",
         )
 
     def get_total_correct_picks(self, obj):
@@ -94,3 +85,48 @@ class PlayerSerializer(serializers.ModelSerializer):
             percentage = pre_percentage * 100
 
         return round(percentage, 1)
+
+    def get_badge(self, obj):
+        correct_picks = PlayerSerializer.get_total_correct_picks(self, obj)
+        if 49 > correct_picks >= 15:
+            return "Rookie"
+        elif 99 > correct_picks > 50:
+            return "Pro"
+        elif 200 > correct_picks > 100:
+            return "Legend"
+        elif correct_picks > 200:
+            return "HOFer"
+
+    # def get_wins_vs_opponents(self, obj):
+    #     pass
+
+    # def get_competitions(self, obj):
+    #     pass
+
+
+class ChallengeSerializer(serializers.ModelSerializer):
+    winner = serializers.SerializerMethodField()
+    challenger_username = serializers.ReadOnlyField(source="challenger.username")
+    opponent_username = serializers.ReadOnlyField(source="opponent.username")
+
+    class Meta:
+        model = Challenge
+        fields = "__all__"
+
+    def get_winner(self, obj):
+        pass
+        # challenger = CompetitionSerializer.challenger_username
+        # opponent = CompetitionSerializer.opponent_username
+        # challenger_picks_correct = PlayerSerializer.total_correct_picks(self, obj)
+        # opponent_picks_correct = PlayerSerializer.total_correct_picks
+        # if challenger_picks_correct > opponent_picks_correct:
+        #     return challenger
+        # elif challenger_picks_correct < opponent_picks_correct:
+        #     return opponent
+        # else:
+        #     return "Tie"
+
+
+# get the winner
+# add win or loss to the player
+# if a challenge exists between two users on that particular day prevent another challenge from being created

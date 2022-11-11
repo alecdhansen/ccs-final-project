@@ -63,6 +63,10 @@
   text-align: center;
   margin-bottom: 10px;
 }
+.gamescore3 {
+  text-align: center;
+  margin-bottom: 30px;
+}
 .tricode {
   font-size: 14px;
 }
@@ -853,7 +857,8 @@
   .gamelocation {
     font-size: 16px;
   }
-  .formbox {
+  .gamescore3 {
+    margin-bottom: 40px;
   }
 }
 
