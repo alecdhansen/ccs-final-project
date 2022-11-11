@@ -66,9 +66,7 @@ class AllUsersPicksAPIView(generics.ListAPIView):
     queryset = User.objects.all()[:25]
 
     def list(self, request):
-        # queryset = User.objects.all()
         queryset = self.filter_queryset(self.get_queryset())
-        # serializer = PlayerSerializer(queryset, many=True)
         serializer = self.get_serializer(queryset, many=True)
         serializer_data = sorted(
             serializer.data, key=lambda k: k["percentage"], reverse=True
@@ -88,7 +86,7 @@ class SpecificUserLifeTimePickAPIView(generics.ListAPIView):
 class ChallengesAPIView(generics.ListCreateAPIView):
     serializer_class = ChallengeSerializer
     permission_classes = (IsAuthenticated,)
-    # queryset = Challenge.objects.all()
+    queryset = Challenge.objects.all()
 
     def get_queryset(self):
         return Challenge.objects.filter(

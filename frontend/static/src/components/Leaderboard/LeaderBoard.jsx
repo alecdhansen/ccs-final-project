@@ -30,7 +30,8 @@ function Leaderboard() {
     }
   };
 
-  console.log(userStats);
+  console.log({ userStats });
+
   return (
     <>
       <main className="mainleaderboard col-md-8 offset-md-2 col-12">

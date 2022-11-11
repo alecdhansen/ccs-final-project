@@ -38,7 +38,7 @@ class PlayerSerializer(serializers.ModelSerializer):
     percentage = serializers.SerializerMethodField()
     badge = serializers.SerializerMethodField()
     # wins_vs_opponents = serializers.SerializerMethodField()
-    # competitions = serializers.SerializerMethodField()
+    # total_challenges = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -114,19 +114,36 @@ class ChallengeSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_winner(self, obj):
-        pass
-        # challenger = CompetitionSerializer.challenger_username
-        # opponent = CompetitionSerializer.opponent_username
-        # challenger_picks_correct = PlayerSerializer.total_correct_picks(self, obj)
-        # opponent_picks_correct = PlayerSerializer.total_correct_picks
-        # if challenger_picks_correct > opponent_picks_correct:
-        #     return challenger
-        # elif challenger_picks_correct < opponent_picks_correct:
-        #     return opponent
-        # else:
-        #     return "Tie"
+
+        challenger = obj.challenger
+        opponent = obj.opponent
+
+        challenger_picks = Pick.objects.filter(date=obj.date, user=challenger)
+        opponent_picks = Pick.objects.filter(date=obj.date, user=opponent)
+
+        challenger_picks_correct = 0
+        for pick in challenger_picks:
+            data = PickSerializer(pick)
+
+            if data["is_correct"].value == True:
+                challenger_picks_correct += 1
+
+        opponent_picks_correct = 0
+        for pick in opponent_picks:
+            data = PickSerializer(pick)
+            if data["is_correct"] == True:
+                opponent_picks_correct += 1
+
+        print(challenger_picks_correct)
+        print(opponent_picks_correct)
+
+        if challenger_picks_correct > opponent_picks_correct:
+            return challenger.username
+        elif challenger_picks_correct < opponent_picks_correct:
+            return opponent.username
+        else:
+            return "Tie"
 
 
-# get the winner
 # add win or loss to the player
 # if a challenge exists between two users on that particular day prevent another challenge from being created

@@ -97,27 +97,41 @@ function HeadToHead() {
                 </time>
                 <div className="challengeinfo col-8">
                   {user?.username === challenge.challenger_username ? (
-                    <div>
+                    <div style={{ display: "flex" }}>
                       <span className="matchup">Opponent:</span>
-                      {/* {challenge.challenger_username} vs{" "} */}
                       {challenge.opponent_username}
                       <span className="result">Result:</span>
-                      {challenge.winner === null ? (
+                      {(challenge.winner === "Tie") &
+                      (challenge.date === currentDay) ? (
                         <span className="winner">Challenge in progress...</span>
                       ) : (
-                        <span className="winner">{challenge.winner}</span>
+                        <div>
+                          {(!challenge.date === currentDay) &
+                          (challenge.winner === "Tie") ? (
+                            <span className="winner">You Tied!</span>
+                          ) : (
+                            <span className="winner">{challenge.winner}</span>
+                          )}
+                        </div>
                       )}
                     </div>
                   ) : (
-                    <div>
+                    <div style={{ display: "flex" }}>
                       <span className="matchup">Opponent:</span>
-                      {/* {challenge.opponent_username} vs{" "} */}
                       {challenge.challenger_username}
                       <span className="result">Result:</span>
-                      {challenge.winner === null ? (
+                      {(challenge.winner === "Tie") &
+                      (challenge.date === currentDay) ? (
                         <span className="winner">Challenge in progress...</span>
                       ) : (
-                        <span className="winner">{challenge.winner}</span>
+                        <div>
+                          {(!challenge.date === currentDay) &
+                          (challenge.winner === "Tie") ? (
+                            <span className="winner">You Tied!</span>
+                          ) : (
+                            <span className="winner">{challenge.winner}</span>
+                          )}
+                        </div>
                       )}
                     </div>
                   )}

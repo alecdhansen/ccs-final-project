@@ -21,13 +21,13 @@
 }
 .leaderboardh3 {
   text-align: center;
-  font-size: 16px;
+  font-size: 12px;
   color: var(--offwhite);
   margin-bottom: 14px;
 }
 .leaderboardh4 {
   text-align: center;
-  font-size: 12px;
+  font-size: 15px;
   color: var(--offwhite);
   margin-bottom: 3px;
 }
@@ -45,8 +45,8 @@
   font-size: 10px;
   color: var(--offwhite);
   background-color: rgb(9, 36, 173);
-  border-radius: 5px;
-  padding: 2px 4px;
+  border-radius: 8px;
+  padding: 2px 5px;
   font-weight: bold;
   margin-left: 5px;
 }
@@ -54,8 +54,8 @@
   font-size: 10px;
   color: var(--offwhite);
   background-color: rgb(207, 82, 63);
-  border-radius: 5px;
-  padding: 2px 4px;
+  border-radius: 8px;
+  padding: 2px 5px;
   font-weight: bold;
   margin-left: 5px;
 }
@@ -63,8 +63,8 @@
   font-size: 10px;
   color: var(--offwhite);
   background-color: rgb(147, 63, 207);
-  border-radius: 5px;
-  padding: 2px 4px;
+  border-radius: 8px;
+  padding: 2px 5px;
   font-weight: bold;
   margin-left: 5px;
 }
@@ -72,8 +72,8 @@
   font-size: 10px;
   color: rgb(235, 228, 228);
   background-color: rgb(190, 148, 32);
-  border-radius: 5px;
-  padding: 2px 4px;
+  border-radius: 8px;
+  padding: 2px 5px;
   font-weight: bold;
   margin-left: 5px;
 }
