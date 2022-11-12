@@ -50,6 +50,10 @@ def _get_yestedays_games_json():
 
 @api_view(["POST"])
 def test_update_games(self):
+    est_time = datetime.now(pytz.timezone("US/Eastern"))
+    yesterday = est_time - timedelta(days=1)
+    yesterdays_date = yesterday.strftime("%Y-%m-%d")
+
     json = _get_games_json()
 
     if json is not None:
@@ -58,7 +62,7 @@ def test_update_games(self):
                 new_game = Game()
                 new_game.gameid = nba_game["gameId"]
 
-                new_game.date = "2022-11-10"  # Change the date to yesterday's date before posting games!
+                new_game.date = yesterdays_date  # Change the date to yesterday's date before posting games!
                 # Hit this endpoint ---> http://127.0.0.1:8000/game/testing/
                 new_game.home_team = nba_game["homeTeam"]["teamName"]
                 new_game.away_team = nba_game["awayTeam"]["teamName"]
@@ -74,7 +78,7 @@ def test_update_games(self):
         except:
             pass
 
-    return Response({"message": "Games created successfully!"})
+    return Response({"message": f"Games created successfully for {yesterdays_date}!"})
 
 
 # @api_view(["GET"])

@@ -12,9 +12,11 @@ import Swal from "sweetalert2";
 
 function Card() {
   const [todaysGames, setTodaysGames] = useState([]);
+  const [todaysPicks, setTodaysPicks] = useState([]);
   const [gameID, setGameID] = useState("");
   const [gameDate, setGameDate] = useState("");
   const [userPick, setUserPick] = useState("");
+  const [opponent, setOpponent] = useState("");
   const [firstGameTime, setFirstGameTime] = useState("");
   const { user } = useAuth();
 
@@ -31,7 +33,25 @@ function Card() {
 
   useEffect(() => {
     getTodaysGames();
+    getTodaysPicks();
   }, []);
+
+  useEffect(() => {
+    getTodaysPicks();
+  }, [userPick]);
+
+  const getTodaysPicks = async () => {
+    const response = await fetch(`/api_v1/picks/current/${user.id}`).catch(
+      handleError
+    );
+    if (!response.ok) {
+      throw new Error("Network response not OK");
+    } else {
+      const data = await response.json();
+      setTodaysPicks(data);
+    }
+  };
+  console.log({ todaysPicks });
 
   const getTodaysGames = async () => {
     const options = {
@@ -51,12 +71,16 @@ function Card() {
   };
 
   const handleAwayTeamInput = (e) => {
+    console.log("opponent is", e.target.name);
     setUserPick(e.target.value);
+    setOpponent(e.target.name);
     setGameID(parseInt(e.target.id));
   };
 
   const handleHomeTeamInput = (e) => {
+    console.log("opponent is", e.target.name);
     setUserPick(e.target.value);
+    setOpponent(e.target.name);
     setGameID(parseInt(e.target.id));
   };
 
@@ -66,6 +90,7 @@ function Card() {
     formData.append("gameid", gameID);
     formData.append("date", gameDate);
     formData.append("user_pick", userPick);
+    formData.append("opponent", opponent);
     const options = {
       method: "POST",
       headers: {
@@ -124,7 +149,7 @@ function Card() {
         <button
           type="button"
           id={game.gameId}
-          name="awayTeam"
+          name={game.homeTeam.teamName}
           onClick={handleAwayTeamInput}
           value={game.awayTeam.teamName}
           className={`gamebtn${game.awayTeam.teamTricode} gamebtn col-12`}
@@ -149,7 +174,7 @@ function Card() {
         <button
           type="button"
           id={game.gameId}
-          name="homeTeam"
+          name={game.awayTeam.teamName}
           onClick={handleHomeTeamInput}
           value={game.homeTeam.teamName}
           className={`gamebtn${game.homeTeam.teamTricode} gamebtn col-12`}
@@ -182,7 +207,6 @@ function Card() {
       </div>
     </form>
   ));
-
   const afterHoursGameListHtml = todaysGames.map((game) => (
     <form
       className="formbox"
@@ -275,12 +299,11 @@ function Card() {
       </div>
     </form>
   ));
-
+  // const fourHoursInMS = 14400000; //delete?
   const firstGameStartingTime = new Date(firstGameTime);
   const firstGameStartingTimeInMS = firstGameStartingTime.getTime();
-  const fiveHoursInMS = 18000000; //use this line for production
-  // const fourHoursInMS = 14400000; //delete?
-  // const fourHoursInMS = 1111440000000; //use this for testing
+  // const fiveHoursInMS = 18000000; //use this line for production
+  const fiveHoursInMS = 111144000000; //use this for testing
   const nowInMS = new Date().getTime();
   const timeUntilGameInMS = firstGameStartingTimeInMS - nowInMS;
   const gameTimeCountDownInMS = nowInMS + timeUntilGameInMS + fiveHoursInMS;
@@ -311,7 +334,19 @@ function Card() {
             {afterHoursGameListHtml}
           </div>
         )}
-        <div className="hiddencarddiv"></div>
+        {todaysPicks.length > 0 ? (
+          <footer className="gamesfooter row">
+            <h2 className="col-2 offset-2 footerh2">Your Picks</h2>
+            <div className="col-6" style={{ color: "white", display: "flex" }}>
+              {todaysPicks.map((pick) => (
+                <div>
+                  {pick.user_pick} to beat {pick.opponent}
+                </div>
+              ))}
+            </div>
+          </footer>
+        ) : null}
+        {/* <div className="hiddencarddiv"></div> */}
       </div>
     </>
   );

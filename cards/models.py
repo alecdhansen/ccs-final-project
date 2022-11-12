@@ -29,6 +29,7 @@ class Pick(models.Model):
     )
     gameid = models.IntegerField()
     user_pick = models.CharField(max_length=255)
+    opponent = models.CharField(max_length=255, null=True)
     date = models.DateField(null=True)
 
     def __str__(self):

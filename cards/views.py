@@ -44,13 +44,21 @@ class PreviousDayPickAPIView(generics.ListAPIView):
         return Pick.objects.filter(Q(date=yesterdays_date) & Q(user=self.request.user))
 
 
-class CurrentDayPickAPIView(generics.ListCreateAPIView):
+class AllCurrentDayPicksAPIView(generics.ListCreateAPIView):
     serializer_class = PickSerializer
     permission_classes = (IsAuthenticated,)
     queryset = Pick.objects.filter(date=todays_date)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class UserCurrentDayPicksAPIView(generics.ListAPIView):
+    serializer_class = PickSerializer
+    permission_classes = (permissions.IsUserOrReadOnly,)
+
+    def get_queryset(self):
+        return Pick.objects.filter(Q(date=todays_date) & Q(user=self.request.user))
 
 
 class LifeTimePickAPIView(generics.ListAPIView):

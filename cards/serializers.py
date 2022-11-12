@@ -1,10 +1,18 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from datetime import datetime, timedelta
+import pytz
 
 User = get_user_model()
 
 from .models import Game, Pick, Challenge
 from accounts.models import Profile
+
+# est_time = datetime.now(pytz.timezone("US/Eastern"))
+# yesterday = est_time - timedelta(days=1)
+# todays_date = est_time.strftime("%Y-%m-%d")
+# yesterdays_date = yesterday.strftime("%Y-%m-%d")
+# print(yesterdays_date, todays_date)
 
 
 class GameSerializer(serializers.ModelSerializer):
@@ -24,7 +32,6 @@ class PickSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_is_correct(self, obj):
-
         try:
             game = Game.objects.get(gameid=obj.gameid)
             return obj.user_pick == game.winning_team
@@ -105,13 +112,44 @@ class PlayerSerializer(serializers.ModelSerializer):
 
 
 class ChallengeSerializer(serializers.ModelSerializer):
-    winner = serializers.SerializerMethodField()
     challenger_username = serializers.ReadOnlyField(source="challenger.username")
+    challenger_picks_correct = serializers.SerializerMethodField()
     opponent_username = serializers.ReadOnlyField(source="opponent.username")
+    opponent_picks_correct = serializers.SerializerMethodField()
+    games = serializers.SerializerMethodField()
+    winner = serializers.SerializerMethodField()
 
     class Meta:
         model = Challenge
         fields = "__all__"
+
+    def get_challenger_picks_correct(self, obj):
+        challenger = obj.challenger
+        challenger_picks = Pick.objects.filter(date=obj.date, user=challenger)
+        challenger_picks_correct = 0
+        for pick in challenger_picks:
+            data = PickSerializer(pick)
+
+            if data["is_correct"].value == True:
+                challenger_picks_correct += 1
+        return challenger_picks_correct
+
+    def get_opponent_picks_correct(self, obj):
+        opponent = obj.opponent
+        opponent_picks = Pick.objects.filter(date=obj.date, user=opponent)
+        opponent_picks_correct = 0
+        for pick in opponent_picks:
+            data = PickSerializer(pick)
+
+            if data["is_correct"].value == True:
+                opponent_picks_correct += 1
+        return opponent_picks_correct
+
+    def get_games(self, obj):
+        games = Game.objects.filter(date=obj.date)
+        total_games = len(games)
+        print("total games", total_games)
+        return total_games
 
     def get_winner(self, obj):
 
@@ -131,15 +169,15 @@ class ChallengeSerializer(serializers.ModelSerializer):
         opponent_picks_correct = 0
         for pick in opponent_picks:
             data = PickSerializer(pick)
-            if data["is_correct"] == True:
+            if data["is_correct"].value == True:
                 opponent_picks_correct += 1
 
-        print(challenger_picks_correct)
-        print(opponent_picks_correct)
+        print("ChPC", challenger_picks_correct)
+        print("OPC", opponent_picks_correct)
 
         if challenger_picks_correct > opponent_picks_correct:
             return challenger.username
-        elif challenger_picks_correct < opponent_picks_correct:
+        elif opponent_picks_correct > challenger_picks_correct:
             return opponent.username
         else:
             return "Tie"

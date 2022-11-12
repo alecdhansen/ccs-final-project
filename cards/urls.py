@@ -17,7 +17,12 @@ urlpatterns = [
         views.PreviousDayPickAPIView.as_view(),
         name="yesterdays_pick_list",
     ),
-    path("picks/current/", views.CurrentDayPickAPIView.as_view(), name="pick_list"),
+    path("picks/current/", views.AllCurrentDayPicksAPIView.as_view(), name="pick_list"),
+    path(
+        "picks/current/<int:pk>/",
+        views.UserCurrentDayPicksAPIView.as_view(),
+        name="pick_list",
+    ),
     path(
         "picks/lifetime/",
         views.LifeTimePickAPIView.as_view(),
@@ -29,7 +34,7 @@ urlpatterns = [
         name="all_users_pick_list",
     ),
     path(
-        "picks/lifetime/<str:username>",
+        "picks/lifetime/<str:username>/",  # if somethign is broken check this. i put in a / at the end on saturday at 4:45pm
         views.SpecificUserLifeTimePickAPIView.as_view(),
         name="specific_user_lifetime_pick_list",
     ),
