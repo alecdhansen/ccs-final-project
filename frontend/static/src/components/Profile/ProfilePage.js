@@ -1,5 +1,5 @@
 import "./Profile.css";
-import "../Card/Card.css";
+import "../Card/CardStyles/Card.css";
 import UserStats from "./ProfileStats";
 import ProfileBox from "./ProfileBox";
 

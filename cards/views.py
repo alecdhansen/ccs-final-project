@@ -53,7 +53,7 @@ class AllCurrentDayPicksAPIView(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
 
-class UserCurrentDayPicksAPIView(generics.ListAPIView):
+class UserCurrentDayPicksAPIView(generics.ListCreateAPIView):
     serializer_class = PickSerializer
     permission_classes = (permissions.IsUserOrReadOnly,)
 

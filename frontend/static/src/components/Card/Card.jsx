@@ -1,9 +1,10 @@
-import "./Card.css";
+import "./CardStyles/Card.css";
 import "../Timer/timer.css";
 import "aos/dist/aos.css";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import CountdownTimer from "../Timer/CountdownTimer";
+import CardFooter from "./CardFooter";
 //npm
 import Cookies from "js-cookie";
 import moment from "moment";
@@ -346,31 +347,11 @@ function Card() {
             {afterHoursGameListHtml}
           </div>
         )}
-        {todaysPicks.length > 0 ? (
-          <footer className="gamesfooter row">
-            <h2 className="col-2 offset-2 footerh2">
-              Your Picks
-              <h3 className="pickprogress">
-                ({todaysPicks.length}/{todaysGames.length})
-              </h3>
-              <div className="backbar">
-                <div
-                  style={{ width: `${picksCompletedPercentage}%` }}
-                  className="frontbar"
-                ></div>
-              </div>
-            </h2>
-
-            <div className="col-6" style={{ color: "white", display: "flex" }}>
-              {todaysPicks.map((pick) => (
-                <div>
-                  {pick.user_pick} to beat {pick.opponent}
-                </div>
-              ))}
-            </div>
-          </footer>
-        ) : null}
-        {/* <div className="hiddencarddiv"></div> */}
+        <CardFooter
+          todaysPicks={todaysPicks}
+          picksCompletedPercentage={picksCompletedPercentage}
+          todaysGames={todaysGames}
+        />
       </div>
     </>
   );

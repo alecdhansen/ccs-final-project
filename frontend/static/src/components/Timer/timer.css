@@ -69,6 +69,7 @@
   z-index: 30;
   position: sticky;
   top: 5%;
+  padding: 0px;
 }
 
 @-webkit-keyframes whirl-color-range {

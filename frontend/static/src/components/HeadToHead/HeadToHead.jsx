@@ -66,7 +66,7 @@ function HeadToHead() {
           </Link>
         </section>
       ) : (
-        <section className="col-md-8 offset-md-2 col-10 offset-1 challenges">
+        <section className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-md-12 col-12 challenges">
           <h3 className="mychallengestitle">My Challenges</h3>
           <div className="filters">
             <button
@@ -92,47 +92,102 @@ function HeadToHead() {
           <div className="challengesbox">
             {selectedChallenges.map((challenge) => (
               <section className="challengecard">
-                <time className="challengedate col-4">
+                <time className="challengedate col-2">
                   {moment(challenge.date).format("MMM DD, YYYY")}
                 </time>
-                <div className="challengeinfo col-8">
+                <div className="challengeinfo col-10">
                   {user?.username === challenge.challenger_username ? (
-                    <div style={{ display: "flex" }}>
-                      <span className="matchup">Opponent:</span>
-                      {challenge.opponent_username}
-                      <span className="result">Result:</span>
-                      {(challenge.winner === "Tie") &
-                      (challenge.date === currentDay) ? (
-                        <span className="winner">Challenge in progress...</span>
-                      ) : (
-                        <div>
-                          {(!challenge.date === currentDay) &
-                          (challenge.winner === "Tie") ? (
-                            <span className="winner">You Tied!</span>
-                          ) : (
-                            <span className="winner">{challenge.winner}</span>
-                          )}
+                    <div
+                      className="resultcontentbox"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div className="h2hdetails">
+                        <div className="matchup">Your picks:</div>
+                        {challenge.challenger_picks_correct}/{challenge.games}
+                      </div>
+                      <div className="h2hdetails">
+                        <span className="matchup">Opponent:</span>
+                        <div className="userplusavatarplusscore">
+                          <div className="avatarboxh2h">
+                            <img
+                              style={{ width: "100%", verticalAlign: "top" }}
+                              src={challenge.opponent_avatar}
+                            />
+                          </div>
+                          {challenge.opponent_username} (
+                          {challenge.opponent_picks_correct}/{challenge.games})
                         </div>
-                      )}
+                      </div>
+                      <div className="h2hdetails">
+                        <span className="result">Game Winner/Result:</span>
+                        {(challenge.winner === "Tie") &
+                        (challenge.date === currentDay) ? (
+                          <div>
+                            <span className="winner cip">
+                              Challenge in progress...
+                            </span>
+                          </div>
+                        ) : (
+                          <div>
+                            {(!challenge.date === currentDay) &
+                            (challenge.winner === "Tie") ? (
+                              <span className="winner">You Tied!</span>
+                            ) : (
+                              <span className="winner">{challenge.winner}</span>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   ) : (
-                    <div style={{ display: "flex" }}>
-                      <span className="matchup">Opponent:</span>
-                      {challenge.challenger_username}
-                      <span className="result">Result:</span>
-                      {(challenge.winner === "Tie") &
-                      (challenge.date === currentDay) ? (
-                        <span className="winner">Challenge in progress...</span>
-                      ) : (
-                        <div>
-                          {(!challenge.date === currentDay) &
-                          (challenge.winner === "Tie") ? (
-                            <span className="winner">You Tied!</span>
-                          ) : (
-                            <span className="winner">{challenge.winner}</span>
-                          )}
+                    <div
+                      className="resultcontentbox"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div className="h2hdetails">
+                        <div className="matchup">Your picks:</div>
+                        {challenge.opponent_picks_correct}/{challenge.games}
+                      </div>
+                      <div className="h2hdetails">
+                        <span className="matchup">Opponent:</span>
+                        <div className="userplusavatarplusscore">
+                          <div className="avatarboxh2h">
+                            <img
+                              style={{ width: "100%", verticalAlign: "top" }}
+                              src={challenge.challenger_avatar}
+                            />
+                          </div>
+                          {challenge.challenger_username} (
+                          {challenge.challenger_picks_correct}/{challenge.games}
+                          )
                         </div>
-                      )}
+                      </div>
+                      <div className="h2hdetails">
+                        <span className="result">Game Winner/Result:</span>
+                        {(challenge.winner === "Tie") &
+                        (challenge.date === currentDay) ? (
+                          <div>
+                            <span className="winner">
+                              Challenge in progress...
+                            </span>
+                          </div>
+                        ) : (
+                          <div>
+                            {(!challenge.date === currentDay) &
+                            (challenge.winner === "Tie") ? (
+                              <span className="winner">You Tied!</span>
+                            ) : (
+                              <span className="winner">{challenge.winner}</span>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>

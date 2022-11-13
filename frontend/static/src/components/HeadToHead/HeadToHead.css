@@ -78,10 +78,10 @@
 }
 .matchup {
   font-weight: 800;
-  margin: 0px 20px;
+  margin: 0px 15px 0px 20px;
 }
 .result {
-  margin-left: 20px;
+  margin-left: 15px;
   font-weight: 800;
 }
 .winner {
@@ -111,4 +111,71 @@
 .findopponentbtn:hover {
   background-color: #b3b3b3;
   transition: 0.3s;
+}
+.avatarboxh2h {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: fill;
+  border: 0.5px solid var(--navyblue);
+  margin-right: 3px;
+}
+.cip {
+  font-weight: 700;
+  font-style: italic;
+}
+.h2hdetails {
+  display: flex;
+  align-items: center;
+}
+.userplusavatarplusscore {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .challengecard {
+    height: 100px;
+  }
+  .resultcontentbox {
+    display: flex;
+    justify-content: space-around;
+  }
+  .h2hdetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .userplusavatarplusscore {
+    display: flex;
+    align-items: center;
+  }
+  .challengedate {
+    text-align: center;
+  }
+  .matchup {
+    text-align: center;
+  }
+  .result {
+    text-align: center;
+  }
+}
+@media (max-width: 520px) {
+  .matchup {
+    margin: 0px;
+    font-size: 13px;
+  }
+  .result {
+    margin: 0px;
+    font-size: 13px;
+  }
+  .resultcontentbox {
+    justify-content: center;
+  }
+  .h2hdetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }

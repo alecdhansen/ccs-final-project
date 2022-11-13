@@ -1,5 +1,5 @@
 import "./Profile.css";
-import "../Card/Card.css";
+import "../Card/CardStyles/Card.css";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

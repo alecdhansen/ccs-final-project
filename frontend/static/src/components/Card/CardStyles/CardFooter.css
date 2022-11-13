@@ -1,0 +1,129 @@
+.gamesfooter {
+  position: fixed;
+  bottom: -1%;
+  background-color: var(--navyblue);
+  height: 120px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0px;
+}
+.footerh2 {
+  color: var(--offwhite);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  /* padding-bottom: 20px; */
+}
+.picksubmitted {
+  margin-top: 6px;
+  font-weight: 700;
+}
+.pickprogress {
+  margin: 0px 0px 0px 8px;
+}
+.backbar {
+  width: 175px;
+  height: 15px;
+  border-radius: 20px;
+  border: 2px solid var(--offwhite);
+}
+.frontbar {
+  height: 100%;
+  background-color: var(--offwhite);
+  display: flex;
+  align-items: center;
+  border-radius: 0px 5px 5px 0px;
+
+  color: var(--navyblue);
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+}
+.pickbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 1px solid rgba(214, 214, 214, 0.505);
+  border-right: 1px solid rgba(209, 209, 209, 0.463);
+  margin-left: 7px;
+  background-color: var(--offwhite);
+  height: 90px;
+  border-radius: 3px;
+}
+
+.footerimgdivtowin {
+  width: 62px;
+}
+.footerimgdivtolose {
+  width: 25px;
+  opacity: 0.8;
+}
+.pickedteams {
+  padding-bottom: 6px;
+}
+
+@media (min-width: 768px) and (max-width: 968px) {
+  .footerh2 {
+    font-size: 20px;
+  }
+  .backbar {
+    margin-top: 3px;
+    width: 125px;
+    height: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--offwhite);
+  }
+  .frontbar {
+    border-radius: 5px;
+    color: var(--navyblue);
+    font-size: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .mobilefooterimglose {
+    display: none;
+  }
+  .pickbox {
+    justify-content: center;
+  }
+  .gamesfooter {
+    overflow: scroll;
+    min-width: 105%;
+    height: 127px;
+  }
+  .footerh2 {
+    font-size: 18px;
+    padding: 0px;
+    /* margin-left: 40px; */
+  }
+  .backbar {
+    margin-top: 3px;
+
+    width: 75px;
+    height: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--offwhite);
+  }
+  .frontbar {
+    border-radius: 5px;
+    color: var(--navyblue);
+    font-size: 14px;
+  }
+  .pickedteams {
+    padding: 0px;
+    margin-left: 5px;
+  }
+}
+
+@media (max-width: 450px) {
+  .gamesfooter {
+    height: 120px;
+  }
+  .pickedteams {
+    margin-bottom: 10px;
+  }
+}
