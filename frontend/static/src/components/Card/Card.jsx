@@ -130,7 +130,10 @@ function Card() {
   useEffect(() => {
     Aos.init({ duration: 1000 });
   }, []);
+
   console.log({ todaysGames });
+  const numberOfGamesToday = todaysGames.length;
+  console.log({ numberOfGamesToday });
 
   //Before Tip Off//
   const gameListHtml = todaysGames.map((game) => (
@@ -148,114 +151,58 @@ function Card() {
       </h5>
       <div className="spanbar"></div>
       <div className="gamebtnhouse row">
-        {localStorage.getItem(game.gameId) ? (
-          <button
-            type="button"
-            id={game.gameId}
-            name={game.homeTeam.teamName}
-            onClick={handleAwayTeamInput}
-            value={game.awayTeam.teamName}
-            className={`gamebtn${game.awayTeam.teamTricode} gamebtn col-12`}
-            disabled="true"
-          >
-            <div className="imghouse">
-              {" "}
-              <img
-                src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
-                alt=""
-                className="teamlogo"
-              ></img>
+        <button
+          type="button"
+          id={game.gameId}
+          name={game.homeTeam.teamName}
+          onClick={handleAwayTeamInput}
+          value={game.awayTeam.teamName}
+          className={`gamebtn${game.awayTeam.teamTricode} gamebtn col-12`}
+          disabled={localStorage.getItem(game.gameId) ? true : false}
+        >
+          <div className="imghouse">
+            {" "}
+            <img
+              src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
+              alt=""
+              className="teamlogo"
+            ></img>
+          </div>
+          <div className="gamedetails">
+            <div className="cityteam">
+              {game.awayTeam.teamCity} {game.awayTeam.teamName}
             </div>
-            <div className="gamedetails">
-              <div className="cityteam">
-                {game.awayTeam.teamCity} {game.awayTeam.teamName}
-              </div>
-              <div div className="winloss">
-                {game.awayTeam.wins}-{game.awayTeam.losses}
-              </div>
+            <div div className="winloss">
+              {game.awayTeam.wins}-{game.awayTeam.losses}
             </div>
-          </button>
-        ) : (
-          <button
-            type="button"
-            id={game.gameId}
-            name={game.homeTeam.teamName}
-            onClick={handleAwayTeamInput}
-            value={game.awayTeam.teamName}
-            className={`gamebtn${game.awayTeam.teamTricode} gamebtn col-12`}
-            disabled="false"
-          >
-            <div className="imghouse">
-              {" "}
-              <img
-                src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
-                alt=""
-                className="teamlogo"
-              ></img>
+          </div>
+        </button>
+
+        <button
+          type="button"
+          id={game.gameId}
+          name={game.awayTeam.teamName}
+          onClick={handleHomeTeamInput}
+          value={game.homeTeam.teamName}
+          className={`gamebtn${game.homeTeam.teamTricode} gamebtn col-12`}
+          disabled={localStorage.getItem(game.gameId) ? true : false}
+        >
+          <div className="imghouse">
+            <img
+              src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
+              alt=""
+              className="teamlogo"
+            ></img>
+          </div>
+          <div className="gamedetails">
+            <div className="cityteam">
+              {game.homeTeam.teamCity} {game.homeTeam.teamName}
             </div>
-            <div className="gamedetails">
-              <div className="cityteam">
-                {game.awayTeam.teamCity} {game.awayTeam.teamName}
-              </div>
-              <div div className="winloss">
-                {game.awayTeam.wins}-{game.awayTeam.losses}
-              </div>
+            <div className="winloss">
+              {game.homeTeam.wins}-{game.homeTeam.losses}
             </div>
-          </button>
-        )}
-        {localStorage.getItem(game.gameId) ? (
-          <button
-            type="button"
-            id={game.gameId}
-            name={game.awayTeam.teamName}
-            onClick={handleHomeTeamInput}
-            value={game.homeTeam.teamName}
-            className={`gamebtn${game.homeTeam.teamTricode} gamebtn col-12`}
-            disabled="true"
-          >
-            <div className="imghouse">
-              <img
-                src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
-                alt=""
-                className="teamlogo"
-              ></img>
-            </div>
-            <div className="gamedetails">
-              <div className="cityteam">
-                {game.homeTeam.teamCity} {game.homeTeam.teamName}
-              </div>
-              <div className="winloss">
-                {game.homeTeam.wins}-{game.homeTeam.losses}
-              </div>
-            </div>
-          </button>
-        ) : (
-          <button
-            type="button"
-            id={game.gameId}
-            name={game.awayTeam.teamName}
-            onClick={handleHomeTeamInput}
-            value={game.homeTeam.teamName}
-            className={`gamebtn${game.homeTeam.teamTricode} gamebtn col-12`}
-            disabled="false"
-          >
-            <div className="imghouse">
-              <img
-                src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
-                alt=""
-                className="teamlogo"
-              ></img>
-            </div>
-            <div className="gamedetails">
-              <div className="cityteam">
-                {game.homeTeam.teamCity} {game.homeTeam.teamName}
-              </div>
-              <div className="winloss">
-                {game.homeTeam.wins}-{game.homeTeam.losses}
-              </div>
-            </div>
-          </button>
-        )}
+          </div>
+        </button>
       </div>
       <div>
         {localStorage.getItem(game.gameId) ? (
@@ -268,6 +215,10 @@ function Card() {
       </div>
     </form>
   ));
+
+  const picksCompletedPercentage =
+    (todaysPicks.length / todaysGames.length) * 100;
+
   const afterHoursGameListHtml = todaysGames.map((game) => (
     <form
       className="formboxah"
@@ -287,14 +238,14 @@ function Card() {
           </div>
         ) : game.gameStatus === 2 ? (
           <div>
-            <h4 className="gamestatus">{game.gameStatusText}</h4>
+            <h4 className="gamestatusah">{game.gameStatusText}</h4>
             <h5 className="gamelocationah">
               {game.arenaName} - {game.arenaCity}, {game.arenaState}
             </h5>
           </div>
         ) : (
           <div>
-            <h4 className="gamestatus">{game.gameStatusText}</h4>
+            <h4 className="gamestatusah">{game.gameStatusText}</h4>
             <div className="gamescore3">
               <span className="tricode">{game.awayTeam.teamTricode}</span>{" "}
               <span className="score">{game.awayTeam.score}</span> -{" "}
@@ -397,7 +348,19 @@ function Card() {
         )}
         {todaysPicks.length > 0 ? (
           <footer className="gamesfooter row">
-            <h2 className="col-2 offset-2 footerh2">Your Picks</h2>
+            <h2 className="col-2 offset-2 footerh2">
+              Your Picks
+              <h3 className="pickprogress">
+                ({todaysPicks.length}/{todaysGames.length})
+              </h3>
+              <div className="backbar">
+                <div
+                  style={{ width: `${picksCompletedPercentage}%` }}
+                  className="frontbar"
+                ></div>
+              </div>
+            </h2>
+
             <div className="col-6" style={{ color: "white", display: "flex" }}>
               {todaysPicks.map((pick) => (
                 <div>

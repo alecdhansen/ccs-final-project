@@ -55,6 +55,14 @@
 .gamestatus {
   display: flex;
   justify-content: center;
+  margin: 25px 0px 2px 0px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+}
+.gamestatusah {
+  display: flex;
+  justify-content: center;
   margin: 12px 0px 0px 0px;
   text-transform: uppercase;
   font-size: 14px;
@@ -70,7 +78,7 @@
 }
 .gamelocation {
   font-size: 12px;
-  margin-bottom: 25px;
+  margin: 2px 0px 25px 0px;
 }
 .gamelocationah {
   font-size: 12px;
@@ -131,13 +139,14 @@
   background-color: rgb(201, 201, 201);
   width: 100%;
   border-radius: 0px 0px 14px 14px;
+  border: 0.5px solid rgb(201, 201, 201);
   pointer-events: none;
   font-family: "Maven Pro", sans-serif;
   font-weight: 600;
   text-transform: uppercase;
 }
 .gamedetails:hover {
-  background-color: rgb(80, 26, 26);
+  /* background-color: rgb(80, 26, 26); */
 }
 .cityteam {
   font-size: 18px;
@@ -167,9 +176,21 @@
   margin-top: 6px;
   font-weight: 700;
 }
-.hiddencarddiv {
-  visibility: hidden;
-  height: 100px;
+.pickprogress {
+  margin: 0px 0px 0px 8px;
+}
+.backbar {
+  width: 200px;
+  height: 15px;
+  border-radius: 20px;
+  border: 2px solid var(--offwhite);
+}
+.frontbar {
+  height: 100%;
+  background-color: var(--offwhite);
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
 }
 
 .gamebtnATL {
@@ -878,6 +899,21 @@
   padding-bottom: 20px;
 }
 
+@media (min-width: 1128px) and (max-width: 1205px) {
+  .formbox {
+    height: 375px;
+  }
+  .formboxah {
+    height: 300px;
+  }
+  .gamestatus {
+    margin-top: 30px;
+  }
+  .gamestatusah {
+    margin-top: 30px;
+  }
+}
+
 @media (max-width: 1205px) {
   .cards {
     margin-top: 30px;
@@ -898,6 +934,9 @@
     margin-bottom: 60px;
   }
   .gamestatus {
+    margin: 0px;
+  }
+  .gamestatusah {
     margin: 0px 0px 10px 0px;
   }
   .gamelocation {
@@ -920,17 +959,6 @@
   }
 }
 
-@media (min-width: 1128px) and (max-width: 1205px) {
-  .formbox {
-    height: 375px;
-  }
-  .formboxah {
-    height: 300px;
-  }
-  .gamestatus {
-    margin-top: 30px;
-  }
-}
 @media (min-width: 768px) and (max-width: 1128px) {
   .formbox {
     height: 550px;
@@ -955,5 +983,11 @@
   }
   .gamescore3 {
     margin-bottom: 40px;
+  }
+  .picksubmitted {
+    margin: 0px 0px 00px 0px;
+  }
+  .formbox {
+    height: 525px;
   }
 }

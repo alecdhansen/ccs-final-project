@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-
+//React Icons
+import { BsTwitter } from "react-icons/bs";
 function TwitterLogin() {
   //   const redirectURI = "http://localhost:3000/card/";
 
@@ -70,7 +71,19 @@ function TwitterLogin() {
 
   return (
     <a style={{ textDecoration: "none" }} href={twitterSignIn}>
-      <button className="twitterloginbox">Login with Twitter</button>
+      <button className="twitterloginbox" style={{ position: "relative" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <BsTwitter
+            style={{ left: "20", position: "absolute", fontSize: "20px" }}
+          />
+          Login with Twitter{" "}
+        </div>
+      </button>
     </a>
   );
 }
