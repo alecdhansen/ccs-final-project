@@ -58,7 +58,7 @@ const AppLogin = () => {
       <div>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="username">
-            <Form.Label>username</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter username"
@@ -79,8 +79,12 @@ const AppLogin = () => {
             />
           </Form.Group>
           <div>
-            <button className="submitbtn" type="submit">
-              Submit
+            <button
+              className="submitbtn"
+              type="submit"
+              style={{ width: "100%", borderRadius: "8px" }}
+            >
+              Login
             </button>
           </div>
         </Form>

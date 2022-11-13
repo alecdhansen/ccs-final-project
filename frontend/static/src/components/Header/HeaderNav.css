@@ -63,26 +63,29 @@
   color: #fff;
 }
 .navbtn:hover {
-  background-color: #5f899e2a;
+  /* background-color: #5f899e2a; */
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom: 3px solid #30618c;
+  -webkit-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-in-out;
 }
 .navbtn:focus {
   /* here */
   border-bottom: 3px solid #30618c;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  border-bottom-left-radius: 0%;
-  border-bottom-right-radius: 0%;
+  -webkit-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-in-out;
 }
 .navbtn:active {
+  border-bottom: 3px solid #30618c;
   background-color: #5f899e2a;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  -webkit-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 .offcanvasopenbtnleft {
   position: sticky;
@@ -125,16 +128,14 @@
 .navbtn:focus {
   outline: 0;
 }
-
-@media (max-width: 400px) {
-  .headertitle {
-    font-size: 65px;
-    font-stretch: expanded;
+@media (max-width: 1160px) {
+  .navbtn {
+    padding: 6px 40px 3px 40px;
   }
-  .circle {
-    height: 200px;
-    width: 200px;
-    margin-bottom: 30px;
+}
+@media (max-width: 1080px) {
+  .courtlogo {
+    display: none;
   }
 }
 @media (max-width: 768px) {
@@ -200,13 +201,15 @@
     visibility: visible;
   }
 }
-@media (max-width: 1080px) {
-  .courtlogo {
-    display: none;
+
+@media (max-width: 400px) {
+  .headertitle {
+    font-size: 65px;
+    font-stretch: expanded;
   }
-}
-@media (max-width: 1160px) {
-  .navbtn {
-    padding: 6px 40px 3px 40px;
+  .circle {
+    height: 200px;
+    width: 200px;
+    margin-bottom: 30px;
   }
 }

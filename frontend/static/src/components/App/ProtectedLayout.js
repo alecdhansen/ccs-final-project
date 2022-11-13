@@ -1,5 +1,5 @@
 import "../Header/HeaderNav.css";
-import { Link, useOutlet, useNavigate } from "react-router-dom";
+import { Link, useOutlet, useNavigate, redirect } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 import Header from "../Header/Header";
@@ -18,7 +18,7 @@ export const ProtectedLayout = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const handleError = (err) => {
     console.warn(err);
   };
@@ -68,7 +68,8 @@ export const ProtectedLayout = () => {
   };
 
   if (!user) {
-    return <Navigate to="/" />;
+    console.log({ user });
+    navigate("/");
   }
 
   return (
@@ -78,13 +79,19 @@ export const ProtectedLayout = () => {
       {user?.right_handed ? (
         <div className="righthand">
           <div></div>
-          <button className="offcanvasopenbtnright mobilemenu" onClick={handleShow}>
+          <button
+            className="offcanvasopenbtnright mobilemenu"
+            onClick={handleShow}
+          >
             <HiOutlineMenu />
           </button>
         </div>
       ) : (
         <div className="lefthand">
-          <button className="offcanvasopenbtnleft mobilemenu" onClick={handleShow}>
+          <button
+            className="offcanvasopenbtnleft mobilemenu"
+            onClick={handleShow}
+          >
             <HiOutlineMenu />
           </button>
           <div></div>
@@ -105,7 +112,7 @@ export const ProtectedLayout = () => {
           ></Offcanvas.Header>
           <Offcanvas.Body className="offcanvasbody">
             <Nav.Item className="navlink">
-              <Link to={`/home/${user.username}/`} className="link">
+              <Link to={`/home/${user?.username}/`} className="link">
                 <button className="navbtn" onClick={handleClose}>
                   Profile
                 </button>

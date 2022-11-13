@@ -69,9 +69,9 @@ function TwitterLogin() {
   // check out allauth docs! ---> https://django-allauth.readthedocs.io/en/latest/providers.html
 
   return (
-    <div>
-      <a href={twitterSignIn}>Login with Twitter</a>
-    </div>
+    <a style={{ textDecoration: "none" }} href={twitterSignIn}>
+      <button className="twitterloginbox">Login with Twitter</button>
+    </a>
   );
 }
 export default TwitterLogin;

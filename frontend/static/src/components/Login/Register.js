@@ -6,6 +6,8 @@ import { useAuth } from "../../hooks/useAuth";
 import Form from "react-bootstrap/Form";
 //npm
 import Cookies from "js-cookie";
+//React Icons
+import { MdArrowBackIosNew } from "react-icons/md";
 
 function Register() {
   const { login } = useAuth();
@@ -52,7 +54,15 @@ function Register() {
   };
   return (
     <>
-      <main className="mainloginscreen">
+      <main className="mainloginscreenregister">
+        <button
+          className="registergobackbtn"
+          onClick={() => {
+            window.history.back();
+          }}
+        >
+          <MdArrowBackIosNew />
+        </button>
         <div className="loginbox col-md-4 offset-md-4 col-10 offset-1">
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="username">
@@ -103,20 +113,9 @@ function Register() {
                 name="password2"
               />
             </Form.Group>
-            <div className="registersubmitbtns">
-              <button
-                className="registersubmitbtn"
-                style={{ marginRight: "5px" }}
-                onClick={() => {
-                  window.history.back();
-                }}
-              >
-                Go Back
-              </button>
-              <button className="registersubmitbtn" type="submit">
-                Submit
-              </button>
-            </div>
+            <button className="registersubmitbtn" type="submit">
+              Submit
+            </button>
           </Form>
         </div>
       </main>
