@@ -4,6 +4,8 @@ import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 //npm
 import moment from "moment";
+//React Icons
+import { HiUsers } from "react-icons/hi";
 
 function HeadToHead() {
   const [challenges, setChallenges] = useState([]);
@@ -57,7 +59,16 @@ function HeadToHead() {
         <h2>Let's Go Head To Head!</h2>
         <h3 style={{ textDecoration: "underline" }}>The Rules</h3>
         <p>Challenge another user</p>
+        <p>Get paid</p>
       </header>
+      <section className="findanopponentsection">
+        <h2 className="mychallengestitle findanopponent">Find An Opponent</h2>
+        <Link to="/home/leaderboard" style={{ textDecoration: "none" }}>
+          <button className="findopponentbtn userlistbtn">
+            User List <HiUsers style={{ marginLeft: "5px" }} />
+          </button>
+        </Link>
+      </section>
       {challenges.length === 0 ? (
         <section className="findanopponentsection">
           <h4 className="nochallenges">No challenges yet!</h4>

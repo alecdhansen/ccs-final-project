@@ -5,11 +5,12 @@
   color: var(--offwhite);
   background-color: #1c293e;
   border-radius: 10px;
+  margin-bottom: 30px;
 }
 .mychallengestitle {
   text-align: center;
   color: var(--offwhite);
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 .filters {
   display: flex;
@@ -111,6 +112,13 @@
 .findopponentbtn:hover {
   background-color: #b3b3b3;
   transition: 0.3s;
+}
+.findanopponent {
+  margin-bottom: 10px;
+}
+.userlistbtn {
+  display: flex;
+  align-items: center;
 }
 .avatarboxh2h {
   width: 20px;
