@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
-from gameupdates.views import test_update_games
+from gameupdates.views import test_update_games, index
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,5 +28,6 @@ urlpatterns = [
     path("dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
     path("accounts/", include("allauth.urls")),
     path("game/testing/", test_update_games),
+    path("celery-test/", index, name="celery_test_url"),
     path("", include("frontend.urls", namespace="frontend")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

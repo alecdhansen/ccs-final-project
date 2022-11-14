@@ -5,8 +5,13 @@ from rest_framework.response import Response
 from cards.models import Game
 from datetime import timedelta, datetime, date
 import pytz
+from conf.celery import my_first_task
+from django.http import HttpResponse
 
-# Create your views here.
+
+def index(request):
+    my_first_task.delay(10)
+    return HttpResponse("response done")
 
 
 def _get_games_json():
@@ -30,22 +35,22 @@ def _get_games_json():
         return None
 
 
-def _get_picks_json():
-    url = "/api_v1/picks/"
-    response = requests.request("GET", url)
-    try:
-        response.raise_for_status()
-    except:
-        return None
+# def _get_picks_json():
+#     url = "/api_v1/picks/"
+#     response = requests.request("GET", url)
+#     try:
+#         response.raise_for_status()
+#     except:
+#         return None
 
 
-def _get_yestedays_games_json():
-    url = "/api_v1/games/"
-    response = requests.request("GET", url)
-    try:
-        response.raise_for_status()
-    except:
-        return None
+# def _get_yestedays_games_json():
+#     url = "/api_v1/games/"
+#     response = requests.request("GET", url)
+#     try:
+#         response.raise_for_status()
+#     except:
+#         return None
 
 
 @api_view(["POST"])
@@ -79,13 +84,3 @@ def test_update_games(self):
             pass
 
     return Response({"message": f"Games created successfully for {yesterdays_date}!"})
-
-
-# @api_view(["GET"])
-# def test_validate_picks(self):
-#     json = _get_yestedays_games_json()
-#     pick_json = _get_picks_json()
-#     if pick_json is not None:
-#         try:
-
-#     pass
