@@ -73,6 +73,7 @@ function Register() {
                 value={user.username}
                 onChange={handleInput}
                 name="username"
+                required
               />
             </Form.Group>
 
@@ -84,6 +85,7 @@ function Register() {
                 value={user.email}
                 onChange={handleInput}
                 name="email"
+                required
               />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.

@@ -69,7 +69,7 @@ class LifeTimePickAPIView(generics.ListAPIView):
         return Pick.objects.exclude(date=todays_date).filter(user=self.request.user)
 
 
-class AllUsersPicksAPIView(generics.ListAPIView):
+class AllUsersStatsAPIView(generics.ListAPIView):
     serializer_class = PlayerSerializer
     queryset = User.objects.all()[:25]
 

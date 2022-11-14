@@ -65,6 +65,7 @@ const AppLogin = () => {
               value={user.username}
               onChange={handleUsernameInput}
               name="username"
+              required
             />
           </Form.Group>
 
@@ -76,6 +77,7 @@ const AppLogin = () => {
               value={user.password}
               onChange={handlePasswordInput}
               name="password"
+              required
             />
           </Form.Group>
           <div>

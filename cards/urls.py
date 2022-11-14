@@ -30,8 +30,8 @@ urlpatterns = [
     ),
     path(
         "picks/stats/",
-        views.AllUsersPicksAPIView.as_view(),
-        name="all_users_pick_list",
+        views.AllUsersStatsAPIView.as_view(),
+        name="all_users_stats_list",
     ),
     path(
         "picks/lifetime/<str:username>/",  # if somethign is broken check this. i put in a / at the end on saturday at 4:45pm
