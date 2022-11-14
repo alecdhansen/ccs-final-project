@@ -100,3 +100,9 @@ class ChallengesAPIView(generics.ListCreateAPIView):
         return Challenge.objects.filter(
             Q(challenger_id=self.request.user) | Q(opponent_id=self.request.user)
         )
+
+    def list(self, request):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        serializer_data = sorted(serializer.data, key=lambda k: k["date"], reverse=True)
+        return Response(serializer_data)
