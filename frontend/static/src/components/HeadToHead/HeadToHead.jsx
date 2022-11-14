@@ -126,6 +126,7 @@ function HeadToHead() {
                             <img
                               style={{ width: "100%", verticalAlign: "top" }}
                               src={challenge.opponent_avatar}
+                              alt=""
                             />
                           </div>
                           {challenge.opponent_username} (
@@ -172,6 +173,7 @@ function HeadToHead() {
                             <img
                               style={{ width: "100%", verticalAlign: "top" }}
                               src={challenge.challenger_avatar}
+                              alt=""
                             />
                           </div>
                           {challenge.challenger_username} (

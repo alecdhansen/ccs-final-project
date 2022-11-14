@@ -1,5 +1,5 @@
 import "../Header/HeaderNav.css";
-import { Link, useOutlet, useNavigate, redirect } from "react-router-dom";
+import { Link, useOutlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 import Header from "../Header/Header";
@@ -146,7 +146,7 @@ export const ProtectedLayout = () => {
             </Nav.Item>
             <Nav.Item className="navlink">
               <button className="navbtn" onClick={() => logoutUser()}>
-                <a>Logout</a>
+                Logout
               </button>
             </Nav.Item>
           </Offcanvas.Body>

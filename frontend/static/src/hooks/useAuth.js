@@ -24,12 +24,17 @@ export const AuthProvider = ({ children }) => {
     navigate(`/home/${user.username}`);
   };
 
+  const refreshUserPicks = (data) => {
+    setUser(data);
+  };
+
   const value = useMemo(
     () => ({
       user,
       login,
       logout,
       refreshUser,
+      refreshUserPicks,
     }),
     [user]
   );

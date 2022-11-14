@@ -1,8 +1,7 @@
 import "./Profile.css";
-import "../Card/CardStyles/Card.css";
+// import "../Card/CardStyles/Card.css";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 //Bootstrap
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -21,7 +20,6 @@ function ProfileBox() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [show, setShow] = useState(false);
-  const navigate = useNavigate();
 
   const handleImage = (e) => {
     console.dir(e.target);
@@ -81,6 +79,7 @@ function ProfileBox() {
           <img
             src={require(`../../media/${user.favorite_team}.png`)}
             style={{ width: "100%" }}
+            alt=""
           ></img>
         </div>
       </div>
@@ -192,14 +191,10 @@ function ProfileBox() {
                 *This allows us to optimize your mobile experience
               </div>
               <div className="editsubmitbtns">
-                <button
-                  className="submitbtn sb2"
-                  type="button"
-                  onClick={handleClose}
-                >
+                <button className="sb2" type="button" onClick={handleClose}>
                   Close
                 </button>
-                <button className="submitbtn sb2" type="submit">
+                <button className="sb2" type="submit">
                   Save Changes
                 </button>
               </div>

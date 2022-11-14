@@ -2,7 +2,7 @@ import "./HeaderNav.css";
 import { useAuth } from "../../hooks/useAuth";
 
 function Header() {
-  const { user, refreshUser } = useAuth();
+  const { user } = useAuth();
   return (
     <div className="mainheader">
       <div className="curvehead col-10 offset-1">
@@ -13,6 +13,7 @@ function Header() {
             <img
               style={{ width: "100%" }}
               src={require(`../../media/${user?.favorite_team}.png`)}
+              alt=""
             ></img>
           </div>
         ) : null}

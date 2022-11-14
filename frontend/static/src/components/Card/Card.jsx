@@ -10,6 +10,8 @@ import Cookies from "js-cookie";
 import moment from "moment";
 import Aos from "aos";
 import Swal from "sweetalert2";
+//React Icons
+import { BsPatchCheckFill } from "react-icons/bs";
 
 function Card() {
   const [todaysGames, setTodaysGames] = useState([]);
@@ -26,7 +28,7 @@ function Card() {
   const mm = String(day.getMonth() + 1).padStart(2, "0");
   const yyyy = day.getFullYear();
   const currentDay = dd + "-" + mm + "-" + yyyy;
-  const formattedCurrentDay = yyyy + "-" + mm + "-" + dd;
+  // const formattedCurrentDay = yyyy + "-" + mm + "-" + dd;
 
   const handleError = (err) => {
     console.warn(err);
@@ -84,6 +86,8 @@ function Card() {
     setOpponent(e.target.name);
     setGameID(parseInt(e.target.id));
   };
+
+  console.log({ userPick });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -207,9 +211,18 @@ function Card() {
       </div>
       <div>
         {localStorage.getItem(game.gameId) ? (
-          <div className="picksubmitted">Pick submitted!</div>
+          <div className="picksubmitted">
+            <BsPatchCheckFill />
+          </div>
         ) : (
-          <button type="submit" className="submitbtn submit">
+          <button
+            type="submit"
+            className={
+              gameID == game.gameId
+                ? "submitbtn submit"
+                : "submitbtn submit btnhidden"
+            }
+          >
             Submit Pick
           </button>
         )}
@@ -349,8 +362,11 @@ function Card() {
         )}
         <CardFooter
           todaysPicks={todaysPicks}
+          setTodaysPicks={setTodaysPicks}
           picksCompletedPercentage={picksCompletedPercentage}
           todaysGames={todaysGames}
+          getTodaysPicks={getTodaysPicks}
+          timeUntilEstGameInMS={timeUntilEstGameInMS}
         />
       </div>
     </>

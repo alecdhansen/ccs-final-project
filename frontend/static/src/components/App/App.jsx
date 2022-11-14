@@ -16,7 +16,7 @@ import UserInfo from "../Users/UserInfo";
 function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [state, setState] = useState("");
-  const { user, refreshUser } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const newState = JSON.parse(window.localStorage.getItem("state"));
 

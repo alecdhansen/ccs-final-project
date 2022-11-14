@@ -14,16 +14,13 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-
-  /* padding-bottom: 20px; */
+  margin-bottom: 40px;
 }
 .picksubmitted {
   margin-top: 6px;
   font-weight: 700;
 }
-.pickprogress {
-  margin: 0px 0px 0px 8px;
-}
+
 .backbar {
   width: 175px;
   height: 15px;
@@ -47,6 +44,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: none;
   border-left: 1px solid rgba(214, 214, 214, 0.505);
   border-right: 1px solid rgba(209, 209, 209, 0.463);
   margin-left: 7px;
@@ -54,7 +52,25 @@
   height: 90px;
   border-radius: 3px;
 }
-
+.pickboxlocked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  border-left: 1px solid rgba(214, 214, 214, 0.505);
+  border-right: 1px solid rgba(209, 209, 209, 0.463);
+  margin-left: 7px;
+  background-color: var(--offwhite);
+  height: 90px;
+  border-radius: 3px;
+  opacity: 0.5;
+}
+.lock {
+  font-size: 20px;
+}
+.nolock {
+  display: none;
+}
 .footerimgdivtowin {
   width: 62px;
 }
@@ -65,7 +81,73 @@
 .pickedteams {
   padding-bottom: 6px;
 }
-
+.edit-pick-modal .modal-content {
+  opacity: 1 !important;
+}
+.edit-pick-backdrop {
+  opacity: 0.25 !important;
+}
+.pickeditbtnhouse {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.pickeditbtn {
+  padding: 4px 52px;
+  margin: 5px 3px 5px 3px;
+  border: none;
+  border-radius: 24px;
+  background-color: var(--navyblue);
+  color: var(--offwhite);
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.pickeditbtn:hover {
+  background-color: #123548;
+  transition: 0.3s;
+}
+.modal-header {
+  border: none;
+  text-align: center;
+  align-items: stretch;
+}
+.change-pick {
+  margin-bottom: 25px;
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--navyblue);
+}
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none !important;
+  padding-top: 0px;
+  padding-bottom: 45px;
+}
+.scrappick {
+  color: rgb(224, 21, 21);
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+.newpick {
+  color: rgb(64, 128, 46);
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+.clicktext {
+  width: 100%;
+  height: 30px;
+}
+.clicktext::before {
+  font-size: 12px;
+  content: "Click team to edit";
+}
 @media (min-width: 768px) and (max-width: 968px) {
   .footerh2 {
     font-size: 20px;
@@ -125,5 +207,9 @@
   }
   .pickedteams {
     margin-bottom: 10px;
+  }
+  .clicktext::before {
+    font-size: 12px;
+    content: "Tap to edit";
   }
 }

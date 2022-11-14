@@ -1,5 +1,4 @@
 import "./Login.css";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 //Bootstrap
@@ -10,7 +9,6 @@ import Cookies from "js-cookie";
 const AppLogin = () => {
   const { login } = useAuth();
   const [user, setUser] = useState({ username: "", password: "" });
-  const navigate = useNavigate();
 
   const handleUsernameInput = (e) => {
     const value = e.target.value;
@@ -36,7 +34,6 @@ const AppLogin = () => {
       },
       body: JSON.stringify(user),
     };
-
     const response = await fetch("/dj-rest-auth/login/", options).catch(
       handleError
     );
@@ -47,10 +44,6 @@ const AppLogin = () => {
       Cookies.set("Authorization", `Token ${data.key}`);
       delete data.key;
       login(data);
-      // await setIsAuth(true);
-      // setState(data);
-      // localStorage.setItem("state", JSON.stringify(data));
-      // await navigate("/home/games/");
     }
   };
   return (

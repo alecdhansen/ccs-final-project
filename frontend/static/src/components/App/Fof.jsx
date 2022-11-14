@@ -8,60 +8,70 @@ function Fof() {
           <img
             src={require("../../media/basketball.png")}
             style={{ width: "100%", borderRadius: "50%" }}
+            alt=""
           ></img>
         </div>
         <div class="ball2">
           <img
             src={require("../../media/basketball.png")}
             style={{ width: "100%", borderRadius: "50%" }}
+            alt=""
           ></img>
         </div>
         <div class="ball3">
           <img
             src={require("../../media/basketball.png")}
             style={{ width: "100%", borderRadius: "50%" }}
+            alt=""
           ></img>
         </div>
         <div class="ball4">
           <img
             src={require("../../media/basketball.png")}
             style={{ width: "100%", borderRadius: "50%" }}
+            alt=""
           ></img>
         </div>
         <div class="ball5">
           <img
             src={require("../../media/basketball.png")}
             style={{ width: "100%", borderRadius: "50%" }}
+            alt=""
           ></img>
         </div>
         <div class="ball6">
           <img
             src={require("../../media/basketball.png")}
             style={{ width: "100%", borderRadius: "50%" }}
+            alt=""
           ></img>
         </div>
         <div class="ball7">
           <img
             src={require("../../media/basketball.png")}
             style={{ width: "100%", borderRadius: "50%" }}
+            alt=""
           ></img>
         </div>
         <div class="ball8">
           <img
             src={require("../../media/basketball.png")}
             style={{ width: "100%", borderRadius: "50%" }}
+            alt=""
           ></img>
         </div>
         <div class="ball9">
           <img
             src={require("../../media/basketball.png")}
             style={{ width: "100%", borderRadius: "50%" }}
+            alt=""
           ></img>
         </div>
         <div class="ball10">
           <img
             src={require("../../media/basketball.png")}
             style={{ width: "100%", borderRadius: "50%" }}
+            alt=""
           ></img>
         </div>
       </div>

@@ -866,6 +866,16 @@
 .gamebtn:disabled {
   color: rgb(114, 114, 114);
 }
+.picksubmitted {
+  position: absolute;
+  top: 0%;
+  right: 3%;
+  font-size: 50px;
+  color: rgb(22, 124, 22);
+}
+.btnhidden {
+  visibility: hidden;
+}
 
 @media (min-width: 1128px) and (max-width: 1205px) {
   .formbox {
@@ -924,6 +934,7 @@
   }
   .picksubmitted {
     margin: 0px 0px 30px 0px;
+    /* position: absolute; */
   }
 }
 
@@ -953,7 +964,7 @@
     margin-bottom: 40px;
   }
   .picksubmitted {
-    margin: 0px 0px 00px 0px;
+    margin: 0px 0px 0px 0px;
   }
   .formbox {
     height: 525px;

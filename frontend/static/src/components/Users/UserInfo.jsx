@@ -11,7 +11,7 @@ import { MdOutlinePersonAddAlt } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 
 function UserInfo() {
-  const { user, refreshUser } = useAuth();
+  const { user } = useAuth();
   const [userData, setUserData] = useState("");
   const [lifetimePicks, setLifetimePicks] = useState([]);
   const navigate = useNavigate();
@@ -125,6 +125,7 @@ function UserInfo() {
             <img
               src={require(`../../media/${userData?.favorite_team}.png`)}
               style={{ width: "100%" }}
+              alt=""
             ></img>
           </div>
         </div>

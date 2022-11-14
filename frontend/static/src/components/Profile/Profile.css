@@ -57,9 +57,21 @@
   justify-content: space-around;
 }
 .sb2 {
-  padding: 6px 30px;
+  padding: 6px 24px;
   margin: 0px 5px;
+  border: none;
+  border-radius: 24px;
+  background-color: var(--navyblue);
+  color: var(--offwhite);
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
 }
+.sb2:hover {
+  background-color: #123548;
+  transition: 0.3s;
+}
+
 .editbtn {
   font-size: 24px;
   border: none;

@@ -24,6 +24,11 @@ urlpatterns = [
         name="pick_list",
     ),
     path(
+        "picks/current/<int:user>/<int:pk>/",
+        views.UserCurrentDaySpecificPickAPIView.as_view(),
+        name="specific_pick",
+    ),
+    path(
         "picks/lifetime/",
         views.LifeTimePickAPIView.as_view(),
         name="lifetime_pick_list",
