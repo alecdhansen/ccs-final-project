@@ -9,6 +9,7 @@ import Modal from "react-bootstrap/Modal";
 import { BsCheckLg } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 import { AiFillLock } from "react-icons/ai";
+import { IoIosArrowForward } from "react-icons/io";
 
 function CardFooter({
   todaysGames,
@@ -64,7 +65,14 @@ function CardFooter({
                     style={{ width: `${picksCompletedPercentage}%` }}
                     className="frontbar"
                   ></div>
-                  <div className="clicktext" />
+                  {timeUntilEstGameInMS > 0 ? (
+                    <div className="clicktext">
+                      Tap team to change pick
+                      <IoIosArrowForward style={{ fontSize: "12px" }} />
+                    </div>
+                  ) : (
+                    <AiFillLock />
+                  )}
                 </>
               ) : (
                 <>
@@ -74,7 +82,12 @@ function CardFooter({
                   >
                     {todaysPicks.length}/{todaysGames.length}
                   </div>
-                  <div className="clicktext" />
+                  {timeUntilEstGameInMS > 0 ? (
+                    <div className="clicktext">
+                      Tap team to change pick
+                      <IoIosArrowForward style={{ fontSize: "12px" }} />
+                    </div>
+                  ) : null}
                 </>
               )}
             </div>
@@ -103,11 +116,13 @@ function CardFooter({
                     </div>
 
                     <div className="footerimgdivtolose mobilefooterimglose">
-                      <img
-                        style={{ width: "100%" }}
-                        src={require(`../../media/${pick.opponent}.png`)}
-                        alt=""
-                      />
+                      {timeUntilEstGameInMS > 0 ? (
+                        <img
+                          style={{ width: "100%" }}
+                          src={require(`../../media/${pick.opponent}.png`)}
+                          alt=""
+                        />
+                      ) : null}
                     </div>
                     <div
                       className={timeUntilEstGameInMS > 0 ? "nolock" : "lock"}

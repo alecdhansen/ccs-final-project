@@ -77,7 +77,7 @@ function HeadToHead() {
           </Link>
         </section>
       ) : (
-        <section className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-md-12 col-12 challenges">
+        <section className="col-10 offset-1 challenges">
           <h3 className="mychallengestitle">My Challenges</h3>
           <div className="filters">
             <button
@@ -102,25 +102,30 @@ function HeadToHead() {
           </div>
           <div className="challengesbox">
             {selectedChallenges.map((challenge) => (
-              <section className="challengecard">
-                <time className="challengedate col-2">
-                  {moment(challenge.date).format("MMM DD, YYYY")}
-                </time>
-                <div className="challengeinfo col-10">
-                  {user?.username === challenge.challenger_username ? (
-                    <div
-                      className="resultcontentbox"
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div className="h2hdetails">
-                        <div className="matchup">Your picks:</div>
-                        {challenge.challenger_picks_correct}/{challenge.games}
+              <section className="challengecard row">
+                <div className="challengedate col-3">
+                  <span>{moment(challenge.date).format("MMM DD, YYYY")}</span>
+                  <div style={{ display: "flex" }}>
+                    <div style={{ maxWidth: "25px" }}>
+                      <img
+                        src={require("../../media/NBA.png")}
+                        style={{ width: "100%" }}
+                        alt=""
+                      />
+                    </div>
+                    {challenge.games} Games
+                  </div>
+                </div>
+
+                {user?.username === challenge.challenger_username ? (
+                  <div className="side3 col-9">
+                    <div className="row">
+                      <div className="h2hdetails col-4">
+                        <div className="matchup"> Correct Picks</div>
+                        {challenge.challenger_picks_correct}
                       </div>
-                      <div className="h2hdetails">
-                        <span className="matchup">Opponent:</span>
+                      <div className="h2hdetails col-4">
+                        <span className="matchup">Opponent</span>
                         <div className="userplusavatarplusscore">
                           <div className="avatarboxh2h">
                             <img
@@ -129,12 +134,12 @@ function HeadToHead() {
                               alt=""
                             />
                           </div>
-                          {challenge.opponent_username} (
-                          {challenge.opponent_picks_correct}/{challenge.games})
+                          {challenge.opponent_username}
+                          {challenge.opponent_picks_correct}
                         </div>
                       </div>
-                      <div className="h2hdetails">
-                        <span className="result">Game Winner/Result:</span>
+                      <div className="h2hdetails col-4">
+                        <span className="result">Game Winner/Result</span>
                         {(challenge.winner === "Tie") &
                         (challenge.date === currentDay) ? (
                           <div>
@@ -154,20 +159,16 @@ function HeadToHead() {
                         )}
                       </div>
                     </div>
-                  ) : (
-                    <div
-                      className="resultcontentbox"
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div className="h2hdetails">
-                        <div className="matchup">Your picks:</div>
-                        {challenge.opponent_picks_correct}/{challenge.games}
+                  </div>
+                ) : (
+                  <div className="side3 col-9">
+                    <div className="row">
+                      <div className="h2hdetails col-4">
+                        <div className="matchup">Correct Picks</div>
+                        {challenge.opponent_picks_correct}
                       </div>
-                      <div className="h2hdetails">
-                        <span className="matchup">Opponent:</span>
+                      <div className="h2hdetails col-4">
+                        <span className="matchup">Opponent</span>
                         <div className="userplusavatarplusscore">
                           <div className="avatarboxh2h">
                             <img
@@ -177,12 +178,11 @@ function HeadToHead() {
                             />
                           </div>
                           {challenge.challenger_username} (
-                          {challenge.challenger_picks_correct}/{challenge.games}
-                          )
+                          {challenge.challenger_picks_correct})
                         </div>
                       </div>
-                      <div className="h2hdetails">
-                        <span className="result">Game Winner/Result:</span>
+                      <div className="h2hdetails col-4">
+                        <span className="result">Game Winner/Result</span>
                         {(challenge.winner === "Tie") &
                         (challenge.date === currentDay) ? (
                           <div>
@@ -202,8 +202,8 @@ function HeadToHead() {
                         )}
                       </div>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </section>
             ))}
           </div>

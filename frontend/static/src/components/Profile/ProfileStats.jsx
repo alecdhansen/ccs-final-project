@@ -36,7 +36,7 @@ function ProfileStats() {
 
   const date = new Date();
   const yesterday = date.setDate(date.getDate() - 1);
-  const yesterdaysDate = moment(yesterday).format("MMMM Do YYYY");
+  const yesterdaysDate = moment(yesterday).format("MMM Do, YYYY");
 
   const getOccurrence = (array, value) => {
     return array.filter((v) => v === value).length;
@@ -63,7 +63,7 @@ function ProfileStats() {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <div className="mainstats row">
-        <h2 className="mystatsheader">Yesterday, {yesterdaysDate}</h2>
+        <h2 className="mystatsheader">Yesterday - {yesterdaysDate}</h2>
         <div className="yesterday">
           <div className="guesstitles row">
             <span className="spanlabels col-4">Correct Picks</span>
