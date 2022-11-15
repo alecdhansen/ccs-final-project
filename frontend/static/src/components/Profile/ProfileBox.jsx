@@ -71,6 +71,8 @@ function ProfileBox() {
   const initialSignUpDate = user.date_joined;
   const dateJoined = moment(initialSignUpDate).format("MMM YYYY");
 
+  console.log({ user });
+
   return (
     <>
       {/* <div className="profilebox"> */}
@@ -195,7 +197,7 @@ function ProfileBox() {
                   Close
                 </button>
                 <button className="sb2" type="submit">
-                  Save Changes
+                  Save
                 </button>
               </div>
             </Form>
