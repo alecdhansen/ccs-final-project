@@ -74,6 +74,8 @@ function UserInfo() {
     const formData = new FormData();
     formData.append("challenger", user.user);
     formData.append("opponent", userData.user);
+    // formData.append("challenger_avatar", user.avatar);
+    // formData.append("opponent_avatar", userData.avatar);
 
     console.log({ user });
 

@@ -20,21 +20,21 @@ function App() {
   const navigate = useNavigate();
   const newState = JSON.parse(window.localStorage.getItem("state"));
 
-  useEffect(() => {
-    setState(newState);
-  }, [navigate]);
+  // useEffect(() => {
+  //   setState(newState);
+  // }, [navigate]);
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      const response = await fetch("/dj-rest-auth/user/");
-      if (!response.ok) {
-        setIsAuth(false);
-      } else {
-        setIsAuth(true);
-      }
-    };
-    checkAuth();
-  }, []);
+  // useEffect(() => {
+  //   const checkAuth = async () => {
+  //     const response = await fetch("/dj-rest-auth/user/");
+  //     if (!response.ok) {
+  //       setIsAuth(false);
+  //     } else {
+  //       setIsAuth(true);
+  //     }
+  //   };
+  //   checkAuth();
+  // }, []);
 
   return (
     <>

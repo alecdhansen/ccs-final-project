@@ -10,7 +10,8 @@
 .mychallengestitle {
   text-align: center;
   color: var(--offwhite);
-  margin-bottom: 25px;
+  margin-bottom: 10px;
+  font-size: 30px;
 }
 .filters {
   display: flex;
@@ -18,7 +19,7 @@
   margin-bottom: 10px;
 }
 .filterbtns {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   border: none;
   background-color: var(--offwhite);
   color: var(--navyblue);
@@ -51,7 +52,7 @@
 }
 
 .challenges {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .challengesbox {
   height: 100vh;

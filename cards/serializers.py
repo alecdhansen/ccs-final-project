@@ -113,10 +113,14 @@ class PlayerSerializer(serializers.ModelSerializer):
 
 class ChallengeSerializer(serializers.ModelSerializer):
     challenger_username = serializers.ReadOnlyField(source="challenger.username")
-    challenger_avatar = serializers.ImageField(source="challenger.profile.avatar")
+    challenger_avatar = serializers.ImageField(
+        source="challenger.profile.avatar", read_only=True
+    )
     challenger_picks_correct = serializers.SerializerMethodField()
     opponent_username = serializers.ReadOnlyField(source="opponent.username")
-    opponent_avatar = serializers.ImageField(source="opponent.profile.avatar")
+    opponent_avatar = serializers.ImageField(
+        source="opponent.profile.avatar", read_only=True
+    )
     opponent_picks_correct = serializers.SerializerMethodField()
     games = serializers.SerializerMethodField()
     winner = serializers.SerializerMethodField()

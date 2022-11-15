@@ -18,7 +18,7 @@ function LoginHome() {
             </Link>
           </div>
 
-          <TwitterLogin />
+          {/* <TwitterLogin /> */}
         </div>
       </main>
     </>

@@ -128,10 +128,6 @@ function Card() {
     Aos.init({ duration: 1000 });
   }, []);
 
-  console.log({ todaysGames });
-  const numberOfGamesToday = todaysGames.length;
-  console.log({ numberOfGamesToday });
-
   //Before Tip Off//
   const gameListHtml = todaysGames.map((game) => (
     <form
@@ -148,12 +144,6 @@ function Card() {
       </h5>
       <div className="spanbar"></div>
       <div className="gamebtnhouse row">
-        {/* 
-        className=
-        {gameID == game.gameId && homeTeamFocus == game.homeTeam.teamName
-          ? "submitbtn submit"
-          : "submitbtn submit selected-border"} */}
-
         <button
           type="button"
           id={game.gameId}
@@ -235,6 +225,7 @@ function Card() {
   const picksCompletedPercentage =
     (todaysPicks.length / todaysGames.length) * 100;
 
+  //After Tip Off//
   const afterHoursGameListHtml = todaysGames.map((game) => (
     <form
       className="formboxah"
@@ -328,11 +319,10 @@ function Card() {
     </form>
   ));
 
-  // const fourHoursInMS = 14400000; //delete?
   const firstGameStartingTime = new Date(firstGameTime);
   const firstGameStartingTimeInMS = firstGameStartingTime.getTime();
   const fiveHoursInMS = 18000000; //use this line for production
-  // const fiveHoursInMS = 111144000000; //use this for testing
+  // const fiveHoursInMS = 111144000000; //use this for evening testing
   const nowInMS = new Date().getTime();
   const timeUntilGameInMS = firstGameStartingTimeInMS - nowInMS;
   const gameTimeCountDownInMS = nowInMS + timeUntilGameInMS + fiveHoursInMS;

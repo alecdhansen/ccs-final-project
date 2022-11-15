@@ -102,7 +102,7 @@ function HeadToHead() {
           </div>
           <div className="challengesbox">
             {selectedChallenges.map((challenge) => (
-              <section className="challengecard row">
+              <section className="challengecard">
                 <div className="challengedate col-3">
                   <span>{moment(challenge.date).format("MMM DD, YYYY")}</span>
                   <div style={{ display: "flex" }}>
