@@ -105,16 +105,18 @@ function HeadToHead() {
               <section className="challengecard">
                 <div className="challengedate col-3">
                   <span>{moment(challenge.date).format("MMM DD, YYYY")}</span>
-                  <div style={{ display: "flex" }}>
-                    <div style={{ maxWidth: "25px" }}>
-                      <img
-                        src={require("../../media/NBA.png")}
-                        style={{ width: "100%" }}
-                        alt=""
-                      />
+                  {challenge.games >= 1 ? (
+                    <div style={{ display: "flex" }}>
+                      <div style={{ maxWidth: "25px" }}>
+                        <img
+                          src={require("../../media/NBA.png")}
+                          style={{ width: "100%" }}
+                          alt=""
+                        />
+                      </div>
+                      {challenge.games} Games
                     </div>
-                    {challenge.games} Games
-                  </div>
+                  ) : null}
                 </div>
 
                 {user?.username === challenge.challenger_username ? (
