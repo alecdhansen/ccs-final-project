@@ -171,7 +171,10 @@
   transition: 0.3s;
 }
 .submitbtn:disabled {
-  display: none;
+  pointer-events: none;
+  opacity: 0.6;
+  padding: 4px 40px;
+  transition: 0.3s;
 }
 
 .gamebtnATL {
@@ -855,13 +858,13 @@
   border: none;
   background-color: black;
 }
+.selected-border {
+  border-style: inset;
+  border: 5px solid var(--borderyellow);
+}
 .gamebtn {
   width: 500px;
   height: 140px;
-}
-.gamebtn:focus {
-  border-style: inset;
-  border: 5px solid var(--borderyellow);
 }
 .gamebtn:disabled {
   color: rgb(114, 114, 114);

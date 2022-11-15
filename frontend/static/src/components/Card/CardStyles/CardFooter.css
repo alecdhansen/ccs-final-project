@@ -40,7 +40,16 @@
   display: flex;
   justify-content: center;
 }
+@keyframes createBox {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 .pickbox {
+  animation: createBox 0.75s;
   display: flex;
   flex-direction: column;
   align-items: center;

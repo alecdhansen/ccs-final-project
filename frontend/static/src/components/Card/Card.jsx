@@ -9,7 +9,6 @@ import CardFooter from "./CardFooter";
 import Cookies from "js-cookie";
 import moment from "moment";
 import Aos from "aos";
-import Swal from "sweetalert2";
 //React Icons
 import { BsPatchCheckFill } from "react-icons/bs";
 
@@ -20,6 +19,8 @@ function Card() {
   const [gameDate, setGameDate] = useState("");
   const [userPick, setUserPick] = useState("");
   const [opponent, setOpponent] = useState("");
+  const [awayTeamFocus, setAwayTeamFocus] = useState(false);
+  const [homeTeamFocus, setHomeTeamFocus] = useState(false);
   const [firstGameTime, setFirstGameTime] = useState("");
   const { user } = useAuth();
 
@@ -78,6 +79,8 @@ function Card() {
     setUserPick(e.target.value);
     setOpponent(e.target.name);
     setGameID(parseInt(e.target.id));
+    setAwayTeamFocus(true);
+    setHomeTeamFocus(false);
   };
 
   const handleHomeTeamInput = (e) => {
@@ -85,6 +88,8 @@ function Card() {
     setUserPick(e.target.value);
     setOpponent(e.target.name);
     setGameID(parseInt(e.target.id));
+    setHomeTeamFocus(true);
+    setAwayTeamFocus(false);
   };
 
   console.log({ userPick });
@@ -112,24 +117,11 @@ function Card() {
       const data = await response.json();
       localStorage.setItem(`00${gameID}`, userPick);
     }
-    const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 2000,
-      didOpen: (toast) => {
-        toast.addEventListener("mouseenter", Swal.stopTimer);
-        toast.addEventListener("mouseleave", Swal.resumeTimer);
-      },
-    });
-
-    Toast.fire({
-      icon: "success",
-      title: "Pick Submitted!",
-    });
     e.target.children[3].children[0].disabled = true;
     window.scrollBy(0, 290);
     setUserPick("");
+    setHomeTeamFocus(false);
+    setAwayTeamFocus(false);
   };
 
   useEffect(() => {
@@ -156,13 +148,23 @@ function Card() {
       </h5>
       <div className="spanbar"></div>
       <div className="gamebtnhouse row">
+        {/* 
+        className=
+        {gameID == game.gameId && homeTeamFocus == game.homeTeam.teamName
+          ? "submitbtn submit"
+          : "submitbtn submit selected-border"} */}
+
         <button
           type="button"
           id={game.gameId}
           name={game.homeTeam.teamName}
           onClick={handleAwayTeamInput}
           value={game.awayTeam.teamName}
-          className={`gamebtn${game.awayTeam.teamTricode} gamebtn col-12`}
+          className={
+            gameID == game.gameId && awayTeamFocus
+              ? `gamebtn${game.awayTeam.teamTricode} gamebtn col-12 selected-border`
+              : `gamebtn${game.awayTeam.teamTricode} gamebtn col-12`
+          }
           disabled={localStorage.getItem(game.gameId) ? true : false}
         >
           <div className="imghouse">
@@ -182,14 +184,17 @@ function Card() {
             </div>
           </div>
         </button>
-
         <button
           type="button"
           id={game.gameId}
           name={game.awayTeam.teamName}
           onClick={handleHomeTeamInput}
           value={game.homeTeam.teamName}
-          className={`gamebtn${game.homeTeam.teamTricode} gamebtn col-12`}
+          className={
+            gameID == game.gameId && homeTeamFocus
+              ? `gamebtn${game.homeTeam.teamTricode} gamebtn col-12 selected-border`
+              : `gamebtn${game.homeTeam.teamTricode} gamebtn col-12`
+          }
           disabled={localStorage.getItem(game.gameId) ? true : false}
         >
           <div className="imghouse">
@@ -217,13 +222,10 @@ function Card() {
         ) : (
           <button
             type="submit"
-            className={
-              gameID == game.gameId
-                ? "submitbtn submit"
-                : "submitbtn submit btnhidden"
-            }
+            disabled={gameID == game.gameId ? false : true}
+            className="submitbtn submit"
           >
-            Submit Pick
+            {gameID == game.gameId ? "Submit Pick" : "Choose a team!"}
           </button>
         )}
       </div>
@@ -325,6 +327,7 @@ function Card() {
       </div>
     </form>
   ));
+
   // const fourHoursInMS = 14400000; //delete?
   const firstGameStartingTime = new Date(firstGameTime);
   const firstGameStartingTimeInMS = firstGameStartingTime.getTime();
