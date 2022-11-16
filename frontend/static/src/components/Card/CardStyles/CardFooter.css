@@ -92,9 +92,11 @@
 }
 .edit-pick-modal .modal-content {
   opacity: 1 !important;
+  border: none;
+  border-radius: 10px;
 }
-.edit-pick-backdrop {
-  opacity: 0.25 !important;
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.179);
 }
 .pickeditbtnhouse {
   display: flex;
