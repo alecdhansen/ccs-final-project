@@ -95,9 +95,7 @@
   color: #fff;
   display: flex;
   font-size: 40px;
-  padding-top: 30px;
-  padding-left: 20px;
-  padding-bottom: 10px;
+  padding: 20px 0px 10px 20px;
 }
 .offcanvasopenbtnright {
   position: sticky;
@@ -107,9 +105,7 @@
   color: #fff;
   display: flex;
   font-size: 40px;
-  padding-top: 30px;
-  padding-right: 20px;
-  padding-bottom: 10px;
+  padding: 20px 20px 10px 0px;
 }
 .mobilemenu {
   visibility: hidden;
@@ -120,13 +116,18 @@
 .righthand {
   display: none;
 }
-
 .offcanvasheader {
   background-color: var(--navyblue);
   width: 100%;
 }
+.offcanvas-header {
+  border: none !important;
+}
 .navbtn:focus {
   outline: 0;
+}
+.offcanvas-md {
+  --bs-offcanvas-width: 300px;
 }
 @media (max-width: 1160px) {
   .navbtn {

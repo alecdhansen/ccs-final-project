@@ -85,7 +85,7 @@ const AppLogin = () => {
                     display: "flex",
                     alignItems: "center",
                     color: "red",
-                    fontSize: "14px",
+                    fontSize: "12px",
                   }}
                 >
                   <RiErrorWarningFill style={{ marginRight: "3px" }} />

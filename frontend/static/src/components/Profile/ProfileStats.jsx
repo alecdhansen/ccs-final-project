@@ -66,7 +66,7 @@ function ProfileStats() {
         <h2 className="mystatsheader">Yesterday - {yesterdaysDate}</h2>
         <div className="yesterday">
           <div className="guesstitles row">
-            <span className="spanlabels col-4">Correct Picks</span>
+            <span className="spanlabels correctlabel col-4">Correct Picks</span>
             <span className="spanlabels col-4">Games</span>
             <span className="spanlabels col-4">Percentage</span>
           </div>
@@ -83,7 +83,7 @@ function ProfileStats() {
         <h2 className="mystatsheader">Lifetime Stats</h2>
         <div className="lifetime">
           <div className="guesstitles row">
-            <span className="spanlabels col-4">Correct Picks</span>
+            <span className="spanlabels correctlabel col-4">Correct Picks</span>
             <span className="spanlabels col-4">Games</span>
             <span className="spanlabels col-4">Percentage</span>
           </div>

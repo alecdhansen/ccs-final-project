@@ -3,16 +3,19 @@
   flex-direction: column;
   list-style-type: none;
   margin-top: 30px;
-  margin-bottom: 200px;
+  margin-bottom: 150px;
 }
 .welcome {
   text-align: center;
   color: var(--offwhite);
   padding: 0px;
+  font-family: "Fjalla One", sans-serif;
 }
 .instructions {
   font-size: 14px;
   margin-top: 5px;
+  font-family: "Fjalla One", sans-serif;
+  padding: 0px 20px;
 }
 .gamelist {
   list-style-type: none;
@@ -859,6 +862,7 @@
 .gamebtn {
   width: 500px;
   height: 140px;
+  color: #000;
 }
 .gamebtn:disabled {
   color: rgb(114, 114, 114);
@@ -874,6 +878,7 @@
   font-size: 18px;
   color: rgb(22, 124, 22);
   margin-bottom: 6px;
+  font-family: "Fjalla One", sans-serif;
 }
 .btnhidden {
   visibility: hidden;
@@ -931,8 +936,7 @@
     display: none;
   }
   .picksubmitted {
-    margin: 0px 0px 30px 0px;
-    /* position: absolute; */
+    margin: 0px;
   }
 }
 

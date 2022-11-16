@@ -21,8 +21,6 @@ function HeadToHead() {
   const previousDay = new Date(Date.now() - 86400000);
   const yesterday = moment(previousDay).format("YYYY-MM-DD");
 
-  console.log({ yesterday });
-
   const handleError = (err) => {
     console.warn(err);
   };
@@ -49,14 +47,15 @@ function HeadToHead() {
     (challenge) => challenge.date === currentDay
   );
 
-  console.log({ yesterdaysChallenges });
-  console.log({ todaysChallenges });
-  console.log({ challenges });
-
   return (
     <>
       <header className="titles col-md-8 offset-md-2 col-10 offset-1">
-        <h2 className="subtitles">Let's Go Head To Head!</h2>
+        <h2
+          style={{ marginTop: "15px", fontSize: "30px" }}
+          className="subtitles"
+        >
+          Let's Go Head To Head!
+        </h2>
         <h3
           style={{
             textDecoration: "underline",
@@ -65,8 +64,8 @@ function HeadToHead() {
         >
           The Rules
         </h3>
-        <p className="subtitles">
-          Get your picks in for today, challenge another user, and come back
+        <p className="subtitles subtext">
+          Make your picks for today, challenge another user, and come back
           tomorrow to see how you stacked up against your opponent!
         </p>
       </header>
@@ -86,7 +85,7 @@ function HeadToHead() {
           </Link>
         </section>
       ) : (
-        <section className="col-10 offset-1 challenges">
+        <section className="col-md-10 offset-md-1  col-12 challenges">
           <h3 className="mychallengestitle">My Challenges</h3>
           <div className="filters">
             <button
@@ -115,7 +114,7 @@ function HeadToHead() {
                 <div className="challengedate col-3">
                   <span>{moment(challenge.date).format("MMM DD, YYYY")}</span>
                   {challenge.games >= 1 ? (
-                    <div style={{ display: "flex" }}>
+                    <div className="logoplusgames" style={{ display: "flex" }}>
                       <div style={{ maxWidth: "25px" }}>
                         <img
                           src={require("../../media/NBA.png")}
@@ -146,17 +145,15 @@ function HeadToHead() {
                             />
                           </div>
                           {challenge.opponent_username}
-                          {challenge.opponent_picks_correct}
+                          {/* {challenge.opponent_picks_correct} */}
                         </div>
                       </div>
-                      <div className="h2hdetails col-4">
-                        <span className="result">Game Winner/Result</span>
+                      <div className="h2hdetails result2 col-4">
+                        <span className="result">Challenge Winner</span>
                         {(challenge.winner === "Tie") &
                         (challenge.date === currentDay) ? (
                           <div>
-                            <span className="winner cip">
-                              Challenge in progress...
-                            </span>
+                            <span className="winner cip">In progress</span>
                           </div>
                         ) : (
                           <div>
@@ -173,7 +170,7 @@ function HeadToHead() {
                   </div>
                 ) : (
                   <div className="side3 col-9">
-                    <div className="row">
+                    <div className="row row1">
                       <div className="h2hdetails col-4">
                         <div className="matchup">Correct Picks</div>
                         {challenge.opponent_picks_correct}
@@ -188,18 +185,16 @@ function HeadToHead() {
                               alt=""
                             />
                           </div>
-                          {challenge.challenger_username} (
-                          {challenge.challenger_picks_correct})
+                          {challenge.challenger_username}
+                          {/* ({challenge.challenger_picks_correct}) */}
                         </div>
                       </div>
-                      <div className="h2hdetails col-4">
-                        <span className="result">Game Winner/Result</span>
+                      <div className="h2hdetails result2 col-4">
+                        <span className="result">Challenge Winner</span>
                         {(challenge.winner === "Tie") &
                         (challenge.date === currentDay) ? (
                           <div>
-                            <span className="winner">
-                              Challenge in progress...
-                            </span>
+                            <span className="winner">In progress</span>
                           </div>
                         ) : (
                           <div>

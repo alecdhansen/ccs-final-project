@@ -128,7 +128,9 @@ function Register() {
                       fontSize: "12px",
                     }}
                   >
-                    <RiErrorWarningFill style={{ marginRight: "3px" }} />
+                    <RiErrorWarningFill
+                      style={{ marginRight: "3px", fontSize: "12px" }}
+                    />
                     {error}
                   </p>
                 );
@@ -141,10 +143,12 @@ function Register() {
                       display: "flex",
                       alignItems: "center",
                       color: "red",
-                      fontSize: "14px",
+                      fontSize: "12px",
                     }}
                   >
-                    <RiErrorWarningFill style={{ marginRight: "3px" }} />
+                    <RiErrorWarningFill
+                      style={{ marginRight: "3px", fontSize: "12px" }}
+                    />
                     {error}
                   </p>
                 );
@@ -154,7 +158,6 @@ function Register() {
             </button>
           </Form>
         </div>
-        {console.log({ error })}
       </main>
     </>
   );

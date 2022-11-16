@@ -68,7 +68,6 @@ export const ProtectedLayout = () => {
   };
 
   if (!user) {
-    console.log({ user });
     navigate("/");
   }
 

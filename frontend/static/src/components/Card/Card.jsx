@@ -55,7 +55,6 @@ function Card() {
       setTodaysPicks(data);
     }
   };
-  console.log({ todaysPicks });
 
   const getTodaysGames = async () => {
     const options = {
@@ -75,7 +74,6 @@ function Card() {
   };
 
   const handleAwayTeamInput = (e) => {
-    console.log("opponent is", e.target.name);
     setUserPick(e.target.value);
     setOpponent(e.target.name);
     setGameID(parseInt(e.target.id));
@@ -84,15 +82,12 @@ function Card() {
   };
 
   const handleHomeTeamInput = (e) => {
-    console.log("opponent is", e.target.name);
     setUserPick(e.target.value);
     setOpponent(e.target.name);
     setGameID(parseInt(e.target.id));
     setHomeTeamFocus(true);
     setAwayTeamFocus(false);
   };
-
-  console.log({ userPick });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -118,7 +113,7 @@ function Card() {
       localStorage.setItem(`00${gameID}`, userPick);
     }
     e.target.children[3].children[0].disabled = true;
-    window.scrollBy(0, 290);
+    window.scrollBy(0, 330);
     setUserPick("");
     setHomeTeamFocus(false);
     setAwayTeamFocus(false);
@@ -330,7 +325,8 @@ function Card() {
 
   return (
     <>
-      <div className="row">
+      {/* <div className="row"> */}
+      <main>
         {timeUntilEstGameInMS > 0 ? (
           <h4 className="welcome">
             Welcome, {user?.username}!{" "}
@@ -362,7 +358,7 @@ function Card() {
           getTodaysPicks={getTodaysPicks}
           timeUntilEstGameInMS={timeUntilEstGameInMS}
         />
-      </div>
+      </main>
     </>
   );
 }

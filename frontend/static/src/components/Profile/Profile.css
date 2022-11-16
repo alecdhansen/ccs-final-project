@@ -45,12 +45,6 @@
   flex-direction: column;
   align-items: center;
 }
-.mobiledisclaimer {
-  color: var(--navyblue);
-  text-align: start;
-  font-size: 12px;
-  margin-bottom: 30px;
-}
 .editsubmitbtns {
   width: 60%;
   display: flex;
@@ -91,14 +85,21 @@
   color: var(--offwhite);
 }
 .avatarinput {
-  width: 70%;
+  width: 90%;
+  margin: 10px 0px 0px 0px;
 }
 .favteaminput {
-  margin-bottom: 30px;
-  width: 70%;
+  width: 90%;
+  margin: 0px 0px 0px 0px;
 }
 .handinput {
-  width: 70%;
+  width: 90%;
+}
+.mobiledisclaimer {
+  color: var(--navyblue);
+  text-align: start;
+  font-size: 12px;
+  margin-bottom: 30px;
 }
 .formbtn {
   background-color: #fff;
@@ -119,6 +120,7 @@
   justify-content: center;
   color: var(--offwhite);
   margin-top: 30px;
+  text-align: center;
 }
 .landscapeATL {
   height: 150px;
@@ -647,6 +649,7 @@
 .spanlabels {
   text-decoration: underline;
 }
+
 .guessnumbers {
   display: flex;
   justify-content: space-around;
@@ -714,5 +717,8 @@
   }
   .sb2 {
     padding: 8px 50px;
+  }
+  .correctlabel {
+    padding: 0px;
   }
 }

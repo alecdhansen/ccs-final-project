@@ -71,8 +71,6 @@ function ProfileBox() {
   const initialSignUpDate = user.date_joined;
   const dateJoined = moment(initialSignUpDate).format("MMM YYYY");
 
-  console.log({ user });
-
   return (
     <>
       {/* <div className="profilebox"> */}
@@ -131,13 +129,12 @@ function ProfileBox() {
           <Modal.Body>
             <Form className="initialprofileform" onSubmit={handleSubmit}>
               <Form.Control
-                style={{ marginBottom: "30px" }}
                 type="file"
                 name="avatar"
                 onChange={handleImage}
                 className="avatarinput"
               />
-
+              <div className="mobiledisclaimer">*Required</div>
               <Form.Select
                 size="sm"
                 aria-label="Default select example"
@@ -177,7 +174,7 @@ function ProfileBox() {
                 <option value="UTA">Utah Jazz</option>
                 <option value="WAS">Washington Wizards</option>
               </Form.Select>
-
+              <div className="mobiledisclaimer">*Required</div>
               <Form.Select
                 size="sm"
                 aria-label="Default select example"
@@ -189,9 +186,10 @@ function ProfileBox() {
                 <option value="true">Right Handed</option>
                 <option value="false">Left Handed</option>
               </Form.Select>
-              <div className="mobiledisclaimer">
+              <div className="mobiledisclaimer" style={{ marginBottom: "0px" }}>
                 *This allows us to optimize your mobile experience
               </div>
+              <div className="mobiledisclaimer">*Required</div>
               <div className="editsubmitbtns">
                 <button className="sb2" type="button" onClick={handleClose}>
                   Close
