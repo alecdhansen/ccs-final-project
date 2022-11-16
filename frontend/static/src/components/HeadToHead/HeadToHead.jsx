@@ -194,7 +194,7 @@ function HeadToHead() {
                         {(challenge.winner === "Tie") &
                         (challenge.date === currentDay) ? (
                           <div>
-                            <span className="winner">In progress</span>
+                            <span className="winner cip">In progress</span>
                           </div>
                         ) : (
                           <div>
