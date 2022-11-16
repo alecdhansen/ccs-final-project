@@ -18,8 +18,6 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-
-# Create your views here.
 est_time = datetime.now(pytz.timezone("US/Eastern"))
 yesterday = est_time - timedelta(days=1)
 todays_date = est_time.strftime("%Y-%m-%d")

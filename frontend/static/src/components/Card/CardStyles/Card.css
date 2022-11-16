@@ -12,6 +12,7 @@
 }
 .instructions {
   font-size: 14px;
+  margin-top: 5px;
 }
 .gamelist {
   list-style-type: none;
@@ -868,11 +869,11 @@
   height: 144px;
 }
 .picksubmitted {
-  position: absolute;
-  top: 0%;
-  right: 3%;
-  font-size: 50px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
   color: rgb(22, 124, 22);
+  margin-bottom: 6px;
 }
 .btnhidden {
   visibility: hidden;

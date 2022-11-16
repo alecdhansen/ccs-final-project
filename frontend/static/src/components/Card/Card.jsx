@@ -10,7 +10,7 @@ import Cookies from "js-cookie";
 import moment from "moment";
 import Aos from "aos";
 //React Icons
-import { BsPatchCheckFill } from "react-icons/bs";
+import { BsCheckCircleFill } from "react-icons/bs";
 
 function Card() {
   const [todaysGames, setTodaysGames] = useState([]);
@@ -207,7 +207,7 @@ function Card() {
       <div>
         {localStorage.getItem(game.gameId) ? (
           <div className="picksubmitted">
-            <BsPatchCheckFill />
+            Pick Submitted <BsCheckCircleFill style={{ marginLeft: "5px" }} />
           </div>
         ) : (
           <button
@@ -335,7 +335,8 @@ function Card() {
           <h4 className="welcome">
             Welcome, {user?.username}!{" "}
             <p className="instructions">
-              Make sure to get your picks in before tip off!
+              Select your favorite teams to win and check back tomorrow to see
+              how you did!
             </p>
           </h4>
         ) : (

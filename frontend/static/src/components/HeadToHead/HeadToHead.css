@@ -7,6 +7,9 @@
   border-radius: 10px;
   margin-bottom: 30px;
 }
+.subtitles {
+  font-family: "Fjalla One", sans-serif;
+}
 .mychallengestitle {
   text-align: center;
   color: var(--offwhite);

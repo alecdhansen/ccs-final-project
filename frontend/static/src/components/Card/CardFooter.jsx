@@ -59,7 +59,7 @@ function CardFooter({
           <h2 className="col-2 offset-1 footerh2">
             Your Picks
             <div className="backbar">
-              {todaysPicks.length === 1 ? (
+              {todaysPicks.length <= 3 ? (
                 <>
                   <div
                     style={{ width: `${picksCompletedPercentage}%` }}

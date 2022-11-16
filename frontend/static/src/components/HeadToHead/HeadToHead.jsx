@@ -56,10 +56,19 @@ function HeadToHead() {
   return (
     <>
       <header className="titles col-md-8 offset-md-2 col-10 offset-1">
-        <h2>Let's Go Head To Head!</h2>
-        <h3 style={{ textDecoration: "underline" }}>The Rules</h3>
-        <p>Challenge another user</p>
-        <p>Get paid</p>
+        <h2 className="subtitles">Let's Go Head To Head!</h2>
+        <h3
+          style={{
+            textDecoration: "underline",
+          }}
+          className="subtitles"
+        >
+          The Rules
+        </h3>
+        <p className="subtitles">
+          Get your picks in for today, challenge another user, and come back
+          tomorrow to see how you stacked up against your opponent!
+        </p>
       </header>
       <section className="findanopponentsection">
         <h2 className="mychallengestitle findanopponent">Find An Opponent</h2>

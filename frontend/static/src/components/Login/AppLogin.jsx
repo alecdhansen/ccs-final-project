@@ -5,10 +5,13 @@ import { useAuth } from "../../hooks/useAuth";
 import Form from "react-bootstrap/Form";
 //npm
 import Cookies from "js-cookie";
+//React Icons
+import { RiErrorWarningFill } from "react-icons/ri";
 
 const AppLogin = () => {
   const { login } = useAuth();
   const [user, setUser] = useState({ username: "", password: "" });
+  const [error, setError] = useState("");
 
   const handleUsernameInput = (e) => {
     const value = e.target.value;
@@ -37,10 +40,11 @@ const AppLogin = () => {
     const response = await fetch("/dj-rest-auth/login/", options).catch(
       handleError
     );
+    const data = await response.json();
     if (!response.ok) {
+      setError(data);
       throw new Error("Uh oh. Something went wrong. Check your network tab!");
     } else {
-      const data = await response.json();
       Cookies.set("Authorization", `Token ${data.key}`);
       delete data.key;
       login(data);
@@ -73,6 +77,22 @@ const AppLogin = () => {
               required
             />
           </Form.Group>
+          {error &&
+            error?.non_field_errors?.map((error) => {
+              return (
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    color: "red",
+                    fontSize: "14px",
+                  }}
+                >
+                  <RiErrorWarningFill style={{ marginRight: "3px" }} />
+                  {error}
+                </p>
+              );
+            })}
           <div>
             <button
               className="submitbtn"

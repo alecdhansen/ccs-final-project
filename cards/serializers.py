@@ -104,13 +104,6 @@ class PlayerSerializer(serializers.ModelSerializer):
         elif correct_picks > 200:
             return "HOFer"
 
-    # def get_wins_vs_opponents(self, obj):
-    #     pass
-
-    # def get_competitions(self, obj):
-    #     pass
-
-
 class ChallengeSerializer(serializers.ModelSerializer):
     challenger_username = serializers.ReadOnlyField(source="challenger.username")
     challenger_avatar = serializers.ImageField(

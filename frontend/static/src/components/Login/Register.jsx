@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import Cookies from "js-cookie";
 //React Icons
 import { MdArrowBackIosNew } from "react-icons/md";
+import { RiErrorWarningFill } from "react-icons/ri";
 
 function Register() {
   const { login } = useAuth();
@@ -18,6 +19,7 @@ function Register() {
     password1: "",
     password2: "",
   });
+  const [error, setError] = useState("");
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -42,12 +44,12 @@ function Register() {
     const response = await fetch("/dj-rest-auth/registration/", options).catch(
       handleError
     );
+    const data = await response.json();
     if (!response.ok) {
-      throw new Error("Oops! Something went wrong");
+      setError(data);
+      throw new Error("Uh oh. Something went wrong. Check your network tab!");
     } else {
-      const data = await response.json();
       Cookies.set("Authorization", `Token ${data.key}`);
-      // localStorage.setItem("state", JSON.stringify(data));
       login(data);
       navigate("/home/games/");
     }
@@ -115,11 +117,44 @@ function Register() {
                 name="password2"
               />
             </Form.Group>
+            {error &&
+              error?.password1?.map((error) => {
+                return (
+                  <p
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      color: "red",
+                      fontSize: "12px",
+                    }}
+                  >
+                    <RiErrorWarningFill style={{ marginRight: "3px" }} />
+                    {error}
+                  </p>
+                );
+              })}
+            {error &&
+              error?.non_field_errors?.map((error) => {
+                return (
+                  <p
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      color: "red",
+                      fontSize: "14px",
+                    }}
+                  >
+                    <RiErrorWarningFill style={{ marginRight: "3px" }} />
+                    {error}
+                  </p>
+                );
+              })}
             <button className="registersubmitbtn" type="submit">
               Submit
             </button>
           </Form>
         </div>
+        {console.log({ error })}
       </main>
     </>
   );
