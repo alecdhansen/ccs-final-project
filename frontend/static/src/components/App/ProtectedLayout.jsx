@@ -1,7 +1,7 @@
 import "../Header/HeaderNav.css";
 import { Link, useOutlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 //Bootstrap
 import Nav from "react-bootstrap/Nav";
@@ -19,6 +19,7 @@ export const ProtectedLayout = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
+
   const handleError = (err) => {
     console.warn(err);
   };
@@ -49,7 +50,6 @@ export const ProtectedLayout = () => {
           toast.addEventListener("mouseleave", Swal.resumeTimer);
         },
       });
-
       Toast.fire({
         icon: "warning",
         title: "You are now logged out.",
@@ -67,9 +67,15 @@ export const ProtectedLayout = () => {
     }
   };
 
-  if (!user) {
-    navigate("/");
-  }
+  // if (!user) {
+  //   navigate("/");
+  // }
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <>
