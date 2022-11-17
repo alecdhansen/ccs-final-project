@@ -95,14 +95,15 @@ class PlayerSerializer(serializers.ModelSerializer):
 
     def get_badge(self, obj):
         correct_picks = PlayerSerializer.get_total_correct_picks(self, obj)
-        if 49 > correct_picks >= 15:
+        if 25 > correct_picks >= 15:
             return "Rookie"
-        elif 99 > correct_picks > 50:
+        elif 99 > correct_picks >= 25:
             return "Pro"
         elif 200 > correct_picks > 100:
             return "Legend"
         elif correct_picks > 200:
             return "HOFer"
+
 
 class ChallengeSerializer(serializers.ModelSerializer):
     challenger_username = serializers.ReadOnlyField(source="challenger.username")

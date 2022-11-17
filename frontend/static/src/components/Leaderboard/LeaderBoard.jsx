@@ -32,7 +32,7 @@ function Leaderboard() {
 
   return (
     <>
-      <main className="mainleaderboard col-md-8 offset-md-2 col-12">
+      <main className="mainleaderboard col-md-10 offset-md-1 col-12">
         <header className="leaderboardtitles">
           <h2 className="leaderboardh2">Leaderboard</h2>
           <h3 className="leaderboardh3">*Stats as of {yesterday}</h3>
@@ -43,7 +43,7 @@ function Leaderboard() {
             <span className="badgeRookie">Rookie</span>
             <span className="badgewins">15+</span>
             <span className="badgePro">Pro</span>
-            <span className="badgewins">50+</span>
+            <span className="badgewins">25+</span>
             <span className="badgeLegend">Legend</span>
             <span className="badgewins">100+</span>
             <span className="badgeHOFer">Hall of Famer</span>
