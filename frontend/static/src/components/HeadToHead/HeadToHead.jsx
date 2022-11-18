@@ -47,6 +47,12 @@ function HeadToHead() {
     (challenge) => challenge.date === currentDay
   );
 
+  const noChallenges = () => {
+    if (yesterdaysChallenges === 0) {
+      return <div>no challenges today</div>;
+    }
+  };
+
   return (
     <>
       <header className="titles col-md-8 offset-md-2 col-10 offset-1">
@@ -108,111 +114,138 @@ function HeadToHead() {
               All
             </button>
           </div>
-          <div className="challengesbox">
-            {selectedChallenges.map((challenge) => (
-              <section className="challengecard">
-                <div className="challengedate col-3">
-                  <span>{moment(challenge.date).format("MMM DD, YYYY")}</span>
-                  {challenge.games >= 1 ? (
-                    <div className="logoplusgames" style={{ display: "flex" }}>
-                      <div style={{ maxWidth: "25px" }}>
-                        <img
-                          src={require("../../media/NBA.png")}
-                          style={{ width: "100%" }}
-                          alt=""
-                        />
+          {selectedChallenges.length >= 1 ? (
+            <div className="challengesbox">
+              {selectedChallenges.map((challenge) => (
+                <section className="challengecard">
+                  <div className="challengedate col-3">
+                    <span>{moment(challenge.date).format("MMM DD, YYYY")}</span>
+                    {challenge.games >= 1 ? (
+                      <div
+                        className="logoplusgames"
+                        style={{ display: "flex" }}
+                      >
+                        <div style={{ maxWidth: "25px" }}>
+                          <img
+                            src={require("../../media/NBA.png")}
+                            style={{ width: "100%" }}
+                            alt=""
+                          />
+                        </div>
+                        {challenge.games} Games
                       </div>
-                      {challenge.games} Games
-                    </div>
-                  ) : null}
-                </div>
+                    ) : null}
+                  </div>
 
-                {user?.username === challenge.challenger_username ? (
-                  <div className="side3 col-9">
-                    <div className="row">
-                      <div className="h2hdetails col-4">
-                        <div className="matchup"> Correct Picks</div>
-                        {challenge.challenger_picks_correct}
-                      </div>
-                      <div className="h2hdetails col-4">
-                        <span className="matchup">Opponent</span>
-                        <div className="userplusavatarplusscore">
-                          <div className="avatarboxh2h">
-                            <img
-                              style={{ width: "100%", verticalAlign: "top" }}
-                              src={challenge.opponent_avatar}
-                              alt=""
-                            />
+                  {user?.username === challenge.challenger_username ? (
+                    <div className="side3 col-9">
+                      <div className="row">
+                        <div className="h2hdetails col-4">
+                          <div className="matchup"> Correct Picks</div>
+                          {challenge.challenger_picks_correct}
+                        </div>
+                        <div className="h2hdetails col-4">
+                          <span className="matchup">Opponent</span>
+                          <div className="userplusavatarplusscore">
+                            <div className="avatarboxh2h">
+                              <img
+                                style={{ width: "100%", verticalAlign: "top" }}
+                                src={challenge.opponent_avatar}
+                                alt=""
+                              />
+                            </div>
+                            {challenge.opponent_username}
+                            {/* {challenge.opponent_picks_correct} */}
                           </div>
-                          {challenge.opponent_username}
-                          {/* {challenge.opponent_picks_correct} */}
+                        </div>
+                        <div className="h2hdetails result2 col-4">
+                          <span className="result">Challenge Winner</span>
+                          {(challenge.winner === "Tie") &
+                          (challenge.date === currentDay) ? (
+                            <div>
+                              <span className="winner cip">In progress</span>
+                            </div>
+                          ) : (
+                            <div>
+                              {(!challenge.date === currentDay) &
+                              (challenge.winner === "Tie") ? (
+                                <span className="winner">You Tied!</span>
+                              ) : (
+                                <span className="winner">
+                                  {challenge.winner}
+                                </span>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
-                      <div className="h2hdetails result2 col-4">
-                        <span className="result">Challenge Winner</span>
-                        {(challenge.winner === "Tie") &
-                        (challenge.date === currentDay) ? (
-                          <div>
-                            <span className="winner cip">In progress</span>
-                          </div>
-                        ) : (
-                          <div>
-                            {(!challenge.date === currentDay) &
-                            (challenge.winner === "Tie") ? (
-                              <span className="winner">You Tied!</span>
-                            ) : (
-                              <span className="winner">{challenge.winner}</span>
-                            )}
-                          </div>
-                        )}
-                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <div className="side3 col-9">
-                    <div className="row row1">
-                      <div className="h2hdetails col-4">
-                        <div className="matchup">Correct Picks</div>
-                        {challenge.opponent_picks_correct}
-                      </div>
-                      <div className="h2hdetails col-4">
-                        <span className="matchup">Opponent</span>
-                        <div className="userplusavatarplusscore">
-                          <div className="avatarboxh2h">
-                            <img
-                              style={{ width: "100%", verticalAlign: "top" }}
-                              src={challenge.challenger_avatar}
-                              alt=""
-                            />
+                  ) : (
+                    <div className="side3 col-9">
+                      <div className="row row1">
+                        <div className="h2hdetails col-4">
+                          <div className="matchup">Correct Picks</div>
+                          {challenge.opponent_picks_correct}
+                        </div>
+                        <div className="h2hdetails col-4">
+                          <span className="matchup">Opponent</span>
+                          <div className="userplusavatarplusscore">
+                            <div className="avatarboxh2h">
+                              <img
+                                style={{ width: "100%", verticalAlign: "top" }}
+                                src={challenge.challenger_avatar}
+                                alt=""
+                              />
+                            </div>
+                            {challenge.challenger_username}
+                            {/* ({challenge.challenger_picks_correct}) */}
                           </div>
-                          {challenge.challenger_username}
-                          {/* ({challenge.challenger_picks_correct}) */}
+                        </div>
+                        <div className="h2hdetails result2 col-4">
+                          <span className="result">Challenge Winner</span>
+                          {(challenge.winner === "Tie") &
+                          (challenge.date === currentDay) ? (
+                            <div>
+                              <span className="winner cip">In progress</span>
+                            </div>
+                          ) : (
+                            <div>
+                              {(!challenge.date === currentDay) &
+                              (challenge.winner === "Tie") ? (
+                                <span className="winner">You Tied!</span>
+                              ) : (
+                                <span className="winner">
+                                  {challenge.winner}
+                                </span>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
-                      <div className="h2hdetails result2 col-4">
-                        <span className="result">Challenge Winner</span>
-                        {(challenge.winner === "Tie") &
-                        (challenge.date === currentDay) ? (
-                          <div>
-                            <span className="winner cip">In progress</span>
-                          </div>
-                        ) : (
-                          <div>
-                            {(!challenge.date === currentDay) &
-                            (challenge.winner === "Tie") ? (
-                              <span className="winner">You Tied!</span>
-                            ) : (
-                              <span className="winner">{challenge.winner}</span>
-                            )}
-                          </div>
-                        )}
-                      </div>
                     </div>
-                  </div>
-                )}
-              </section>
-            ))}
-          </div>
+                  )}
+                </section>
+              ))}
+            </div>
+          ) : (
+            <div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+                className="nochallengesthisday"
+              >
+                No challenges exist for this day
+                <Link to="/home/leaderboard">
+                  <button className="findopponentbtn2">
+                    Find an opponent <HiUsers style={{ marginBottom: "3px" }} />
+                  </button>
+                </Link>
+              </div>
+            </div>
+          )}
         </section>
       )}
     </>

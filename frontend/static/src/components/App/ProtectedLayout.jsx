@@ -115,17 +115,32 @@ export const ProtectedLayout = () => {
             closeVariant="white"
             className="offcanvasheader"
           ></Offcanvas.Header>
+
           <Offcanvas.Body className="offcanvasbody">
             <Nav.Item className="navlink">
               <Link to={`/home/${user?.username}/`} className="link">
-                <button className="navbtn" onClick={handleClose}>
+                <button
+                  className={
+                    window.location.href.includes(`/home/${user?.username}/`)
+                      ? "navbtnactive"
+                      : "navbtn"
+                  }
+                  onClick={handleClose}
+                >
                   Profile
                 </button>
               </Link>
             </Nav.Item>
             <Nav.Item className="navlink">
               <Link to={"leaderboard"}>
-                <button className="navbtn" onClick={handleClose}>
+                <button
+                  className={
+                    window.location.href.includes("leaderboard")
+                      ? "navbtnactive"
+                      : "navbtn"
+                  }
+                  onClick={handleClose}
+                >
                   Leaderboard
                 </button>
               </Link>
@@ -135,7 +150,11 @@ export const ProtectedLayout = () => {
                 <button
                   type="button"
                   autoFocus
-                  className="navbtn"
+                  className={
+                    window.location.href.includes("/home/games/")
+                      ? "navbtnactive"
+                      : "navbtn"
+                  }
                   onClick={handleClose}
                 >
                   Home
@@ -144,7 +163,14 @@ export const ProtectedLayout = () => {
             </Nav.Item>
             <Nav.Item className="navlink">
               <Link to={"headtohead"}>
-                <button className="navbtn" onClick={handleClose}>
+                <button
+                  className={
+                    window.location.href.includes("headtohead")
+                      ? "navbtnactive"
+                      : "navbtn"
+                  }
+                  onClick={handleClose}
+                >
                   Head to Head
                 </button>
               </Link>

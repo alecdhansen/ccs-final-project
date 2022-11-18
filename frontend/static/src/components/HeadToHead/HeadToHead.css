@@ -118,6 +118,14 @@
   font-weight: 600;
   margin-top: 100px;
 }
+.nochallengesthisday {
+  text-align: center;
+  color: var(--offwhite);
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 100px;
+  margin-bottom: 300px;
+}
 .findopponentbtn {
   padding: 4px 52px;
   border: none;
@@ -128,6 +136,20 @@
   border-radius: 24px;
 }
 .findopponentbtn:hover {
+  background-color: #b3b3b3;
+  transition: 0.3s;
+}
+.findopponentbtn2 {
+  padding: 4px 52px;
+  border: none;
+  background-color: var(--offwhite);
+  color: var(--navyblue);
+  font-weight: 500;
+  transition: 0.3s;
+  border-radius: 24px;
+  font-size: 16px;
+}
+.findopponentbtn2:hover {
   background-color: #b3b3b3;
   transition: 0.3s;
 }

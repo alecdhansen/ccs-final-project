@@ -57,9 +57,20 @@
 .navbtn {
   background-color: var(--navyblue);
   border: none;
+  border-bottom: 3px solid var(--navyblue);
   padding: 6px 80px 3px 80px;
   font-family: "Bebas Neue", cursive;
   font-size: 24px;
+  color: #fff;
+}
+.navbtnactive {
+  background-color: var(--navyblue);
+  border: none;
+  border-bottom: 3px solid var(--navyblue);
+  padding: 6px 80px 3px 80px;
+  font-family: "Bebas Neue", cursive;
+  font-size: 24px;
+  border-bottom: 3px solid #30618c;
   color: #fff;
 }
 .navbtn:hover {
@@ -71,14 +82,13 @@
   transition: all 0.25s ease-in-out;
 }
 .navbtn:focus {
-  /* here */
   border-bottom: 3px solid #30618c;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   -webkit-transition: all 0.25s ease-out;
   transition: all 0.25s ease-in-out;
 }
-.navbtn:active {
+/* .navbtn:active {
   border-bottom: 3px solid #30618c;
   background-color: #5f899e2a;
   border-top-left-radius: 5px;
@@ -86,7 +96,7 @@
   -webkit-transition: all 0.25s ease-out;
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
-}
+} */
 .offcanvasopenbtnleft {
   position: sticky;
   top: 0;
