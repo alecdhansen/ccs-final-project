@@ -88,6 +88,9 @@
   -webkit-transition: all 0.25s ease-out;
   transition: all 0.25s ease-in-out;
 }
+.navbtn:focus {
+  outline: 0;
+}
 /* .navbtn:active {
   border-bottom: 3px solid #30618c;
   background-color: #5f899e2a;
@@ -133,9 +136,7 @@
 .offcanvas-header {
   border: none !important;
 }
-.navbtn:focus {
-  outline: 0;
-}
+
 .offcanvas-md {
   --bs-offcanvas-width: 300px;
 }
@@ -181,6 +182,15 @@
   }
   .navbtn {
     font-size: 40px;
+  }
+  .navbtnactive {
+    background-color: var(--navyblue);
+    border: none;
+    border-bottom: 3px solid var(--navyblue);
+    padding: 6px 60px 3px 60px;
+    font-family: "Bebas Neue", cursive;
+    font-size: 40px;
+    color: #fff;
   }
   .offcanvasbody :nth-child(1) {
     order: 4;
