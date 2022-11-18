@@ -149,7 +149,7 @@ export const ProtectedLayout = () => {
               <Link to={"/home/games/"} className="linkto">
                 <button
                   type="button"
-                  autoFocus
+                  // autoFocus
                   className={
                     window.location.href.includes("/home/games/")
                       ? "navbtnactive"
