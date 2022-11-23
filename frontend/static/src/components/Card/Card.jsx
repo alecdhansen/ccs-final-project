@@ -29,7 +29,6 @@ function Card() {
   const mm = String(day.getMonth() + 1).padStart(2, "0");
   const yyyy = day.getFullYear();
   const currentDay = dd + "-" + mm + "-" + yyyy;
-  // const formattedCurrentDay = yyyy + "-" + mm + "-" + dd;
 
   const handleError = (err) => {
     console.warn(err);
@@ -325,7 +324,6 @@ function Card() {
 
   return (
     <>
-      {/* <div className="row"> */}
       <main>
         {timeUntilEstGameInMS > 0 ? (
           <h4 className="welcome">
