@@ -1,6 +1,5 @@
 import "./App.css";
-import { useNavigate, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { ProtectedLayout } from "./ProtectedLayout";
 import { useAuth } from "../../hooks/useAuth";
 import Card from "../Card/Card";
@@ -14,27 +13,7 @@ import HeadToHead from "../HeadToHead/HeadToHead";
 import UserInfo from "../Users/UserInfo";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
-  const [state, setState] = useState("");
   const { user } = useAuth();
-  const navigate = useNavigate();
-  const newState = JSON.parse(window.localStorage.getItem("state"));
-
-  // useEffect(() => {
-  //   setState(newState);
-  // }, [navigate]);
-
-  // useEffect(() => {
-  //   const checkAuth = async () => {
-  //     const response = await fetch("/dj-rest-auth/user/");
-  //     if (!response.ok) {
-  //       setIsAuth(false);
-  //     } else {
-  //       setIsAuth(true);
-  //     }
-  //   };
-  //   checkAuth();
-  // }, []);
 
   return (
     <>
