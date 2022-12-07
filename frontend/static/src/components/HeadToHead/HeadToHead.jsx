@@ -141,7 +141,7 @@ function HeadToHead() {
                     <div className="side3 col-9">
                       <div className="row">
                         <div className="h2hdetails col-4">
-                          <div className="matchup"> Correct Picks</div>
+                          <div className="matchup">Correct Picks</div>
                           {challenge.challenger_picks_correct}
                         </div>
                         <div className="h2hdetails col-4">
