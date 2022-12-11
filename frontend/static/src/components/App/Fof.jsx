@@ -1,78 +1,40 @@
 import { Link } from "react-router-dom";
+import { BasketballContainer, Basketball } from "./basketball.style";
+import img from "../../media/basketball.png";
 
 function Fof() {
   return (
     <main>
       <div className="main404">
-        <div class="ball1">
-          <img
-            src={require("../../media/basketball.png")}
-            style={{ width: "100%", borderRadius: "50%" }}
-            alt=""
-          ></img>
+        <BasketballContainer>
+          <Basketball src={img} alt=""></Basketball>
+        </BasketballContainer>
+        <div className="ball2">
+          <Basketball src={img} alt=""></Basketball>
         </div>
-        <div class="ball2">
-          <img
-            src={require("../../media/basketball.png")}
-            style={{ width: "100%", borderRadius: "50%" }}
-            alt=""
-          ></img>
+        <div className="ball3">
+          <Basketball src={img} alt=""></Basketball>
         </div>
-        <div class="ball3">
-          <img
-            src={require("../../media/basketball.png")}
-            style={{ width: "100%", borderRadius: "50%" }}
-            alt=""
-          ></img>
+        <div className="ball4">
+          <Basketball src={img} alt=""></Basketball>
         </div>
-        <div class="ball4">
-          <img
-            src={require("../../media/basketball.png")}
-            style={{ width: "100%", borderRadius: "50%" }}
-            alt=""
-          ></img>
+        <div className="ball5">
+          <Basketball src={img} alt=""></Basketball>
         </div>
-        <div class="ball5">
-          <img
-            src={require("../../media/basketball.png")}
-            style={{ width: "100%", borderRadius: "50%" }}
-            alt=""
-          ></img>
+        <div className="ball6">
+          <Basketball src={img} alt=""></Basketball>
         </div>
-        <div class="ball6">
-          <img
-            src={require("../../media/basketball.png")}
-            style={{ width: "100%", borderRadius: "50%" }}
-            alt=""
-          ></img>
+        <div className="ball7">
+          <Basketball src={img} alt=""></Basketball>
         </div>
-        <div class="ball7">
-          <img
-            src={require("../../media/basketball.png")}
-            style={{ width: "100%", borderRadius: "50%" }}
-            alt=""
-          ></img>
+        <div className="ball8">
+          <Basketball src={img} alt=""></Basketball>
         </div>
-        <div class="ball8">
-          <img
-            src={require("../../media/basketball.png")}
-            style={{ width: "100%", borderRadius: "50%" }}
-            alt=""
-          ></img>
+        <div className="ball9">
+          <Basketball src={img} alt=""></Basketball>
         </div>
-        <div class="ball9">
-          <img
-            src={require("../../media/basketball.png")}
-            style={{ width: "100%", borderRadius: "50%" }}
-            alt=""
-          ></img>
-        </div>
-        <div class="ball10">
-          <img
-            src={require("../../media/basketball.png")}
-            style={{ width: "100%", borderRadius: "50%" }}
-            alt=""
-          ></img>
+        <div className="ball10">
+          <Basketball src={img} alt=""></Basketball>
         </div>
       </div>
       <div className="lower404">

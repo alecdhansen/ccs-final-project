@@ -35,8 +35,6 @@
 .ball1 {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-
   animation: bounce1 0.5s;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
@@ -53,8 +51,6 @@
 .ball2 {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-
   animation: bounce2 0.7s;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
@@ -71,8 +67,6 @@
 .ball3 {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-
   animation: bounce2 0.3s;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
@@ -89,8 +83,6 @@
 .ball4 {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-
   animation: bounce2 0.4s;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(0.5, 0.15, 1, 0.5);
@@ -107,8 +99,6 @@
 .ball5 {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-
   animation: bounce5 0.4s;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.15);
@@ -125,8 +115,6 @@
 .ball6 {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-
   animation: bounce6 0.8s;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
@@ -143,8 +131,6 @@
 .ball7 {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-
   animation: bounce7 0.4s;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(0.15, 0.05, 1, 0.5);
@@ -161,8 +147,6 @@
 .ball8 {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-
   animation: bounce8 0.5s;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
@@ -179,8 +163,6 @@
 .ball9 {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-
   animation: bounce9 0.55s;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
@@ -197,8 +179,6 @@
 .ball10 {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-
   animation: bounce10 0.3s;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(0.55, 0.09, 1, 0.55);
