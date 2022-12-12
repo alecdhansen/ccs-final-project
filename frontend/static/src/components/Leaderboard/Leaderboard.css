@@ -3,7 +3,6 @@
   justify-content: center;
   flex-direction: column;
   border-radius: 10px;
-  /* background: linear-gradient(315deg, #051720, #051b25); */
   box-shadow: -10px -15px 50px #082636, 10px 15px 50px #082636;
   margin-bottom: 50px;
 }

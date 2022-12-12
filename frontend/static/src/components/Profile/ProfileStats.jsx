@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import moment from "moment";
+import { handleError } from "../utils";
 
-function ProfileStats() {
+const ProfileStats = () => {
   const [yesterdaysPicks, setYesterdaysPicks] = useState([]);
   const [lifetimePicks, setLifetimePicks] = useState([]);
-
-  const handleError = (err) => {
-    console.warn(err);
-  };
 
   useEffect(() => {
     getYesterdaysPicks();
@@ -100,5 +97,5 @@ function ProfileStats() {
       </div>
     </div>
   );
-}
+};
 export default ProfileStats;

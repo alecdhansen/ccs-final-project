@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import CountdownTimer from "../Timer/CountdownTimer";
 import CardFooter from "./CardFooter";
+import { handleError } from "../utils";
 //npm
 import Cookies from "js-cookie";
 import moment from "moment";
@@ -12,7 +13,7 @@ import Aos from "aos";
 //React Icons
 import { BsCheckCircleFill } from "react-icons/bs";
 
-function Card() {
+const Card = () => {
   const [todaysGames, setTodaysGames] = useState([]);
   const [todaysPicks, setTodaysPicks] = useState([]);
   const [gameID, setGameID] = useState("");
@@ -29,10 +30,6 @@ function Card() {
   const mm = String(day.getMonth() + 1).padStart(2, "0");
   const yyyy = day.getFullYear();
   const currentDay = dd + "-" + mm + "-" + yyyy;
-
-  const handleError = (err) => {
-    console.warn(err);
-  };
 
   useEffect(() => {
     getTodaysGames();
@@ -359,6 +356,6 @@ function Card() {
       </main>
     </>
   );
-}
+};
 
 export default Card;

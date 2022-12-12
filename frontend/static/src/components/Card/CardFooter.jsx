@@ -11,14 +11,14 @@ import { IoMdClose } from "react-icons/io";
 import { AiFillLock } from "react-icons/ai";
 import { IoIosArrowForward } from "react-icons/io";
 
-function CardFooter({
+const CardFooter = ({
   todaysGames,
   todaysPicks,
   picksCompletedPercentage,
   getTodaysPicks,
   timeUntilEstGameInMS,
-}) {
-  const { user, refreshUserPicks } = useAuth();
+}) => {
+  const { user } = useAuth();
   const [show, setShow] = useState(false);
   const [editedPick, setEditedPick] = useState([]);
   const handleClose = () => setShow(false);
@@ -46,7 +46,6 @@ function CardFooter({
     if (!response.ok) {
       throw new Error("Network response was not OK");
     } else {
-      // const data = await response.json();
       getTodaysPicks();
       handleClose();
     }
@@ -153,9 +152,6 @@ function CardFooter({
                     </Modal.Body>
                     <Modal.Footer>
                       <div className="pickeditbtnhouse">
-                        {/* <button className="pickeditbtn" onClick={handleClose}>
-                          Back
-                        </button> */}
                         <button
                           className="pickeditbtn"
                           onClick={handleSubmit}
@@ -173,5 +169,5 @@ function CardFooter({
       ) : null}
     </>
   );
-}
+};
 export default CardFooter;

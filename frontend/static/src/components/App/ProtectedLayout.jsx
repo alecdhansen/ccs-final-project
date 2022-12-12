@@ -3,6 +3,7 @@ import { Link, useOutlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
+import { handleError } from "../utils";
 //Bootstrap
 import Nav from "react-bootstrap/Nav";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -19,10 +20,6 @@ export const ProtectedLayout = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
-
-  const handleError = (err) => {
-    console.warn(err);
-  };
   const logoutUser = async () => {
     const options = {
       method: "POST",
@@ -35,10 +32,10 @@ export const ProtectedLayout = () => {
     const response = await fetch("/dj-rest-auth/logout/", options).catch(
       handleError
     );
-    if (!response.ok) {
+    if (!response?.ok) {
       throw new Error("Oops! Something went wrong");
     } else {
-      const data = await response.json();
+      const data = await response?.json();
       Cookies.remove("Authorization", `Token${" "}${data.key}`);
       const Toast = Swal.mixin({
         toast: true,
@@ -59,17 +56,13 @@ export const ProtectedLayout = () => {
     logout();
   };
 
-  const whoseHandIsItAnyway = () => {
+  const whoseHandIsItAnyway = (user) => {
     if (user?.right_handed) {
       return "end";
     } else {
       return "start";
     }
   };
-
-  // if (!user) {
-  //   navigate("/");
-  // }
 
   useEffect(() => {
     if (!user) {

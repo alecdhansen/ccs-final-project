@@ -2,6 +2,7 @@ import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { handleError } from "../utils";
 //Bootstrap
 import Form from "react-bootstrap/Form";
 //npm
@@ -10,7 +11,7 @@ import Cookies from "js-cookie";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { RiErrorWarningFill } from "react-icons/ri";
 
-function Register() {
+const Register = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -26,10 +27,6 @@ function Register() {
     setUser((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleError = (err) => {
-    console.warn(err);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const options = {
@@ -40,7 +37,6 @@ function Register() {
       },
       body: JSON.stringify(user),
     };
-
     const response = await fetch("/dj-rest-auth/registration/", options).catch(
       handleError
     );

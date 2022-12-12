@@ -2,12 +2,13 @@ import "./HeadToHead.css";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
+import { handleError } from "../utils";
 //npm
 import moment from "moment";
 //React Icons
 import { HiUsers } from "react-icons/hi";
 
-function HeadToHead() {
+const HeadToHead = () => {
   const [challenges, setChallenges] = useState([]);
   const [selectedChallenges, setSelectedChallenges] = useState([challenges]);
   const { user } = useAuth();
@@ -20,10 +21,6 @@ function HeadToHead() {
 
   const previousDay = new Date(Date.now() - 86400000);
   const yesterday = moment(previousDay).format("YYYY-MM-DD");
-
-  const handleError = (err) => {
-    console.warn(err);
-  };
 
   useEffect(() => {
     getChallenges();
@@ -46,12 +43,6 @@ function HeadToHead() {
   const todaysChallenges = challenges.filter(
     (challenge) => challenge.date === currentDay
   );
-
-  const noChallenges = () => {
-    if (yesterdaysChallenges === 0) {
-      return <div>no challenges today</div>;
-    }
-  };
 
   return (
     <>
@@ -155,7 +146,6 @@ function HeadToHead() {
                               />
                             </div>
                             {challenge.opponent_username}
-                            {/* {challenge.opponent_picks_correct} */}
                           </div>
                         </div>
                         <div className="h2hdetails result2 col-4">
@@ -198,7 +188,6 @@ function HeadToHead() {
                               />
                             </div>
                             {challenge.challenger_username}
-                            {/* ({challenge.challenger_picks_correct}) */}
                           </div>
                         </div>
                         <div className="h2hdetails result2 col-4">
@@ -250,5 +239,5 @@ function HeadToHead() {
       )}
     </>
   );
-}
+};
 export default HeadToHead;

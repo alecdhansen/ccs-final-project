@@ -2,7 +2,7 @@ import { Navigate, useOutlet } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import Header from "../Header/Header";
 
-function UnprotectedLayout() {
+const UnprotectedLayout = () => {
   const { user } = useAuth();
   const outlet = useOutlet();
 
@@ -15,5 +15,5 @@ function UnprotectedLayout() {
       {outlet}
     </div>
   );
-}
+};
 export default UnprotectedLayout;

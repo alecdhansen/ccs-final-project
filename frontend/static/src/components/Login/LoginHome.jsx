@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import TwitterLogin from "./TwitterLogin";
 import AppLogin from "./AppLogin";
 
-function LoginHome() {
+const LoginHome = () => {
   return (
     <>
       <main className="mainloginscreen">
@@ -23,6 +23,6 @@ function LoginHome() {
       </main>
     </>
   );
-}
+};
 
 export default LoginHome;
