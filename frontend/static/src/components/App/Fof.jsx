@@ -1,57 +1,61 @@
-import { Link } from "react-router-dom";
-import { BasketballContainer, Basketball } from "./basketball.style";
+import {
+  UpperContainer,
+  LowerContainer,
+  BasketballContainer,
+  Basketball,
+  Title,
+  Text,
+  Button,
+} from "./basketball.style";
 import img from "../../media/basketball.png";
 
 function Fof() {
   return (
-    <main>
-      <div className="main404">
-        <BasketballContainer>
+    <>
+      <UpperContainer>
+        <BasketballContainer animation="0.5s" timing="0.5, 0.05, 1, 0.5">
           <Basketball src={img} alt=""></Basketball>
         </BasketballContainer>
-        <div className="ball2">
+        <BasketballContainer animation="0.7s" timing="0.5, 0.05, 1, 0.5">
           <Basketball src={img} alt=""></Basketball>
-        </div>
-        <div className="ball3">
+        </BasketballContainer>
+        <BasketballContainer animation="0.3s" timing="0.5, 0.05, 1, 0.5">
           <Basketball src={img} alt=""></Basketball>
-        </div>
-        <div className="ball4">
+        </BasketballContainer>
+        <BasketballContainer animation="0.4s" timing="0.5, 0.15, 1, 0.5">
           <Basketball src={img} alt=""></Basketball>
-        </div>
-        <div className="ball5">
+        </BasketballContainer>
+        <BasketballContainer animation="0.4s" timing="0.5, 0.05, 1, 0.15">
           <Basketball src={img} alt=""></Basketball>
-        </div>
-        <div className="ball6">
+        </BasketballContainer>
+        <BasketballContainer animation="0.8s" timing="0.5, 0.05, 1, 0.5">
           <Basketball src={img} alt=""></Basketball>
-        </div>
-        <div className="ball7">
+        </BasketballContainer>
+        <BasketballContainer animation="0.4s" timing="0.15, 0.05, 1, 0.5">
           <Basketball src={img} alt=""></Basketball>
-        </div>
-        <div className="ball8">
+        </BasketballContainer>
+        <BasketballContainer animation="0.5s" timing="0.5, 0.05, 1, 0.5">
           <Basketball src={img} alt=""></Basketball>
-        </div>
-        <div className="ball9">
+        </BasketballContainer>
+        <BasketballContainer animation="0.55s" timing="0.5, 0.05, 1, 0.5">
           <Basketball src={img} alt=""></Basketball>
-        </div>
-        <div className="ball10">
+        </BasketballContainer>
+        <BasketballContainer animation="0.3s" timing="0.55, 0.09, 1, 0.55">
           <Basketball src={img} alt=""></Basketball>
-        </div>
-      </div>
-      <div className="lower404">
-        <h2 className="title404">404</h2>
-        <p className="ohnotext">Oh no! It's raining 404s over here!</p>
-        <Link to="card">
-          <button
-            className="btn404"
-            onClick={() => {
-              window.history.back();
-            }}
-          >
-            Take me back
-          </button>
-        </Link>
-      </div>
-    </main>
+        </BasketballContainer>
+      </UpperContainer>
+      <LowerContainer>
+        <Title>404</Title>
+        <Text>Oh no! It's raining 404s over here!</Text>
+        <Button
+          onClick={() => {
+            window.history.back();
+          }}
+        >
+          Take me back
+        </Button>
+      </LowerContainer>
+    </>
   );
 }
 export default Fof;

@@ -1,4 +1,3 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { ProtectedLayout } from "./ProtectedLayout";
 import { useAuth } from "../../hooks/useAuth";
@@ -22,7 +21,6 @@ function App() {
           <Route path="/" element={<LoginHome />} />
           <Route path="/register" element={<Register />} />
         </Route>
-
         <Route path="/home" element={<ProtectedLayout />}>
           <Route path="games" element={<Card />} />
           <Route path={user?.username} element={<ProfilePage />} />
@@ -30,7 +28,6 @@ function App() {
           <Route path="headtohead" element={<HeadToHead />} />
           <Route path=":username" element={<UserInfo />} />
         </Route>
-
         <Route path="*" element={<Fof />} />
       </Routes>
     </>
