@@ -9,3 +9,5 @@ Python, Django, Django REST Framework, React JS, React-Bootstrap, React Router, 
 
 APIs:
 NBA Schedule API
+
+Want a tour of the project? Check this out! https://www.youtube.com/watch?v=-ptcAcyyKY4
