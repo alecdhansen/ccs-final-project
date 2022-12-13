@@ -2,6 +2,7 @@ import "./HeadToHead.css";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
+import { handleError } from "../../utils";
 //npm
 import moment from "moment";
 //React Icons
@@ -20,10 +21,6 @@ function HeadToHead() {
 
   const previousDay = new Date(Date.now() - 86400000);
   const yesterday = moment(previousDay).format("YYYY-MM-DD");
-
-  const handleError = (err) => {
-    console.warn(err);
-  };
 
   useEffect(() => {
     getChallenges();

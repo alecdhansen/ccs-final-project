@@ -2,6 +2,7 @@ import "./UserInfo.css";
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { handleError } from "../../utils";
 //npm
 import moment from "moment";
 import Cookies from "js-cookie";
@@ -16,10 +17,6 @@ function UserInfo() {
   const [lifetimePicks, setLifetimePicks] = useState([]);
   const navigate = useNavigate();
   let { username } = useParams();
-
-  const handleError = (err) => {
-    console.warn(err);
-  };
 
   const day = new Date();
   const today = moment(day).format("YYYY-MM-DD");

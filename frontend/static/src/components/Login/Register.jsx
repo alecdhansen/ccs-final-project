@@ -2,6 +2,7 @@ import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { handleError } from "../../utils";
 //Bootstrap
 import Form from "react-bootstrap/Form";
 //npm
@@ -24,10 +25,6 @@ function Register() {
   const handleInput = (e) => {
     const { name, value } = e.target;
     setUser((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const handleError = (err) => {
-    console.warn(err);
   };
 
   const handleSubmit = async (e) => {

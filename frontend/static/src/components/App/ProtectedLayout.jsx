@@ -3,6 +3,7 @@ import { Link, useOutlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
+import { handleError } from "../../utils";
 //Bootstrap
 import Nav from "react-bootstrap/Nav";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -20,9 +21,6 @@ export const ProtectedLayout = () => {
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
 
-  const handleError = (err) => {
-    console.warn(err);
-  };
   const logoutUser = async () => {
     const options = {
       method: "POST",

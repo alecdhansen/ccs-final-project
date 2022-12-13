@@ -2,6 +2,7 @@ import "./Leaderboard.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { handleError } from "../../utils";
 //npm
 import moment from "moment";
 
@@ -11,10 +12,6 @@ function Leaderboard() {
 
   const previousDay = new Date(Date.now() - 86400000);
   const yesterday = moment(previousDay).format("MMM Do, YYYY");
-
-  const handleError = (err) => {
-    console.warn(err);
-  };
 
   useEffect(() => {
     getUserStats();

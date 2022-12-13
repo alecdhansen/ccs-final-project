@@ -1,6 +1,7 @@
 import "./Login.css";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import { handleError } from "../../utils";
 //Bootstrap
 import Form from "react-bootstrap/Form";
 //npm
@@ -21,10 +22,6 @@ const AppLogin = () => {
   const handlePasswordInput = (e) => {
     const value = e.target.value;
     setUser((prevState) => ({ ...prevState, password: value }));
-  };
-
-  const handleError = (err) => {
-    console.warn(err);
   };
 
   const handleSubmit = async (e) => {
