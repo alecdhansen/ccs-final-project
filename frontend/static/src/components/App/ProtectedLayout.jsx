@@ -65,10 +65,6 @@ export const ProtectedLayout = () => {
     }
   };
 
-  // if (!user) {
-  //   navigate("/");
-  // }
-
   useEffect(() => {
     if (!user) {
       navigate("/");
