@@ -4,7 +4,7 @@ import { BsTwitter } from "react-icons/bs";
 function TwitterLogin() {
   //   const redirectURI = "http://localhost:3000/card/";
 
-  function randomStringGenerator(length) {
+  const randomStringGenerator = (length) => {
     var result = "";
     var characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -13,7 +13,7 @@ function TwitterLogin() {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
-  }
+  };
   const randomChallengeString = randomStringGenerator(64);
   const randomStateString = randomStringGenerator(20);
   const base64Encode = (str) => {

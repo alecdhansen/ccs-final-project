@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { RiErrorWarningFill } from "react-icons/ri";
 
-function Register() {
+const Register = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -158,5 +158,5 @@ function Register() {
       </main>
     </>
   );
-}
+};
 export default Register;

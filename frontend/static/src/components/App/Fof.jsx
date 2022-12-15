@@ -9,7 +9,7 @@ import {
 } from "./basketball.style";
 import img from "../../media/basketball.png";
 
-function Fof() {
+const Fof = () => {
   return (
     <>
       <UpperContainer>
@@ -57,5 +57,5 @@ function Fof() {
       </LowerContainer>
     </>
   );
-}
+};
 export default Fof;

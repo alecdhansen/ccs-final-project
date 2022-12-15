@@ -11,7 +11,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import Cookies from "js-cookie";
 import moment from "moment";
 
-function ProfileBox() {
+const ProfileBox = () => {
   const { user, refreshUser } = useAuth();
   const [profile, setProfile] = useState({ avatar: null });
   const [preview, setPreview] = useState("");
@@ -73,7 +73,6 @@ function ProfileBox() {
 
   return (
     <>
-      {/* <div className="profilebox"> */}
       <div className={`landscape${user.favorite_team} landscape`}>
         <div className="teamimgbox">
           <img
@@ -204,5 +203,5 @@ function ProfileBox() {
       </div>
     </>
   );
-}
+};
 export default ProfileBox;

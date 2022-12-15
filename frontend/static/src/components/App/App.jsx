@@ -11,7 +11,7 @@ import Leaderboard from "../Leaderboard/LeaderBoard";
 import HeadToHead from "../HeadToHead/HeadToHead";
 import UserInfo from "../Users/UserInfo";
 
-function App() {
+const App = () => {
   const { user } = useAuth();
 
   return (
@@ -32,6 +32,6 @@ function App() {
       </Routes>
     </>
   );
-}
+};
 
 export default App;

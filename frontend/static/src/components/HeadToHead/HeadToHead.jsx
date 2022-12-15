@@ -8,7 +8,7 @@ import moment from "moment";
 //React Icons
 import { HiUsers } from "react-icons/hi";
 
-function HeadToHead() {
+const HeadToHead = () => {
   const [challenges, setChallenges] = useState([]);
   const [selectedChallenges, setSelectedChallenges] = useState([challenges]);
   const { user } = useAuth();
@@ -152,7 +152,6 @@ function HeadToHead() {
                               />
                             </div>
                             {challenge.opponent_username}
-                            {/* {challenge.opponent_picks_correct} */}
                           </div>
                         </div>
                         <div className="h2hdetails result2 col-4">
@@ -195,7 +194,6 @@ function HeadToHead() {
                               />
                             </div>
                             {challenge.challenger_username}
-                            {/* ({challenge.challenger_picks_correct}) */}
                           </div>
                         </div>
                         <div className="h2hdetails result2 col-4">
@@ -247,5 +245,5 @@ function HeadToHead() {
       )}
     </>
   );
-}
+};
 export default HeadToHead;

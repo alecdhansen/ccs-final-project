@@ -6,7 +6,7 @@ import { handleError } from "../../utils";
 //npm
 import moment from "moment";
 
-function Leaderboard() {
+const Leaderboard = () => {
   const { user } = useAuth();
   const [userStats, setUserStats] = useState([]);
 
@@ -94,5 +94,5 @@ function Leaderboard() {
       </main>
     </>
   );
-}
+};
 export default Leaderboard;

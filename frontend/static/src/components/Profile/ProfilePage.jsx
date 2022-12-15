@@ -3,7 +3,7 @@ import "../Card/CardStyles/Card.css";
 import UserStats from "./ProfileStats";
 import ProfileBox from "./ProfileBox";
 
-function ProfilePage() {
+const ProfilePage = () => {
   return (
     <main className="row mainprofilepage">
       <section className="col-md-4 offset-md-1 col-12 profilebox">
@@ -14,5 +14,5 @@ function ProfilePage() {
       </section>
     </main>
   );
-}
+};
 export default ProfilePage;

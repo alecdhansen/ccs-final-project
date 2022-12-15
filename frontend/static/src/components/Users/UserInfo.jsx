@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 
-function UserInfo() {
+const UserInfo = () => {
   const { user } = useAuth();
   const [userData, setUserData] = useState("");
   const [lifetimePicks, setLifetimePicks] = useState([]);
@@ -53,14 +53,14 @@ function UserInfo() {
     return array.filter((v) => v === value).length;
   };
   const lifetimeWinLoss = lifetimePicks.map((pick) => pick.is_correct);
-  const lifetimeCorrectGuesses = getOccurrence(lifetimeWinLoss, true); //here
+  const lifetimeCorrectGuesses = getOccurrence(lifetimeWinLoss, true);
   const lifetimeIncorrectGuesses = getOccurrence(lifetimeWinLoss, false);
   const lifetimeTotalGuesses =
-    lifetimeCorrectGuesses + lifetimeIncorrectGuesses; //here
+    lifetimeCorrectGuesses + lifetimeIncorrectGuesses;
   const lifetimeGuessPercentage = (
     (lifetimeCorrectGuesses / lifetimeTotalGuesses) *
     100
-  ).toFixed(0); //here
+  ).toFixed(0);
 
   const initialSignUpDate = userData?.date_joined;
   const dateJoined = moment(initialSignUpDate).format("MMM YYYY");
@@ -84,8 +84,6 @@ function UserInfo() {
     );
     if (!response.ok) {
       throw new Error("Network response was not OK");
-    } else {
-      const data = await response.json();
     }
     const Toast = Swal.mixin({
       toast: true,
@@ -167,5 +165,5 @@ function UserInfo() {
       </div>
     </>
   );
-}
+};
 export default UserInfo;

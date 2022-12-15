@@ -13,7 +13,7 @@ import Aos from "aos";
 //React Icons
 import { BsCheckCircleFill } from "react-icons/bs";
 
-function Card() {
+const Card = () => {
   const [todaysGames, setTodaysGames] = useState([]);
   const [todaysPicks, setTodaysPicks] = useState([]);
   const [gameID, setGameID] = useState("");
@@ -356,6 +356,6 @@ function Card() {
       </main>
     </>
   );
-}
+};
 
 export default Card;

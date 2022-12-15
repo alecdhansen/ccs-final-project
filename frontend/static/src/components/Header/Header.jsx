@@ -1,7 +1,7 @@
 import "./HeaderNav.css";
 import { useAuth } from "../../hooks/useAuth";
 
-function Header() {
+const Header = () => {
   const { user } = useAuth();
   return (
     <div className="mainheader">
@@ -20,5 +20,5 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 export default Header;
