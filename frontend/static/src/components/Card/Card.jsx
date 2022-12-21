@@ -69,6 +69,24 @@ const Card = () => {
     setGameDate(moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD"));
   };
 
+  const getTodaysGamesNBA = async () => {
+    const options = {
+      method: "GET",
+      headers: {
+        "X-Gravitee-Api-Key": process.env.REACT_APP_NBAKEY,
+        "X-Gravitee-Host": "https://api.nba.com/v0",
+      },
+      mode: "no-cors",
+    };
+    const data = await fetch(
+      "https://api.nba.com/v0/api/stats/pbp?gameId=0022100001",
+      options
+    ).then((response) => response.json());
+    console.log({ data });
+  };
+
+  getTodaysGamesNBA();
+
   const handleAwayTeamInput = (e) => {
     setUserPick(e.target.value);
     setOpponent(e.target.name);
