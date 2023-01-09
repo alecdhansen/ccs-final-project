@@ -10,4 +10,6 @@ Python, Django, Django REST Framework, React JS, React-Bootstrap, React Router, 
 APIs:
 NBA Schedule API
 
-Want a tour of the project? Check this out! https://www.youtube.com/watch?v=-ptcAcyyKY4
+Want a tour of the project? Check this out! --> https://www.youtube.com/watch?v=-ptcAcyyKY4
+
+Access the site here (save a step and use username "Alec" with password "safepass1" --> https://braggem.herokuapp.com/
