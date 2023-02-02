@@ -17,8 +17,14 @@ const LoginHome = () => {
               Sign up
             </Link>
           </div>
-
           {/* <TwitterLogin /> */}
+        </div>
+        <div className="lowercontainer">
+          <div className="quickaccess">
+            <h3>For quick access</h3>
+            <h5>Username - Alec</h5>
+            <h5>password - safepass1</h5>
+          </div>
         </div>
       </main>
     </>
