@@ -87,19 +87,9 @@
   border-top-right-radius: 3px;
   -webkit-transition: all 0.25s ease-out;
   transition: all 0.25s ease-in-out;
-}
-.navbtn:focus {
   outline: 0;
 }
-/* .navbtn:active {
-  border-bottom: 3px solid #30618c;
-  background-color: #5f899e2a;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  -webkit-transition: all 0.25s ease-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-} */
+
 .offcanvasopenbtnleft {
   position: sticky;
   top: 0;
