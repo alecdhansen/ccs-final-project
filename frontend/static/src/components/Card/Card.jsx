@@ -16,6 +16,7 @@ import { BsCheckCircleFill } from "react-icons/bs";
 const Card = () => {
   const [todaysGames, setTodaysGames] = useState([]);
   const [todaysPicks, setTodaysPicks] = useState([]);
+  const [MLBGames, setMLBGames] = useState([]);
   const [gameID, setGameID] = useState("");
   const [gameDate, setGameDate] = useState("");
   const [userPick, setUserPick] = useState("");
@@ -34,6 +35,7 @@ const Card = () => {
   useEffect(() => {
     getTodaysGames();
     getTodaysPicks();
+    // getMLBGames();
   }, []);
 
   useEffect(() => {
@@ -67,6 +69,21 @@ const Card = () => {
     setTodaysGames(data[0].games);
     setFirstGameTime(data[0].games[0].gameDateTimeEst);
     setGameDate(moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD"));
+  };
+
+  const getMLBGames = async () => {
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": process.env.REACT_APP_APIKEY,
+        "X-RapidAPI-Host": "sportspage-feeds.p.rapidapi.com",
+      },
+    };
+    const data = await fetch(
+      "https://sportspage-feeds.p.rapidapi.com/games",
+      options
+    ).then((response) => response.json());
+    console.log({ data });
   };
 
   const handleAwayTeamInput = (e) => {
