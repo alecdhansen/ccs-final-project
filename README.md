@@ -1,7 +1,7 @@
 <h3>UPDATE 1/1/24</h3>
 Heroku no longer supports free hosting, I've made the decision to pull down my project...for now.
 
-Braggem
+<h2>Braggem</h2>
 
 Your competitive nature and love for sports collide on Braggem.
 Think you can predict how today’s games will end up?
