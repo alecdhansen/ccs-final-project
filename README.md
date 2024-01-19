@@ -1,5 +1,6 @@
 <h3>UPDATE 1/1/24</h3>
 Heroku no longer supports free hosting, I've made the decision to pull down my project...for now.
+Want a tour of the project? Check this out! --> https://www.youtube.com/watch?v=-ptcAcyyKY4
 
 <h2>Braggem</h2>
 
@@ -12,7 +13,3 @@ Python, Django, Django REST Framework, React JS, React-Bootstrap, React Router, 
 
 APIs:
 NBA Schedule API
-
-Want a tour of the project? Check this out! --> https://www.youtube.com/watch?v=-ptcAcyyKY4
-
-Access the site here (save a step and use username "Alec" with password "safepass1" --> https://braggem.herokuapp.com/ <--
